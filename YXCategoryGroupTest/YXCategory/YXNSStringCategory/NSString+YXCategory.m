@@ -56,33 +56,177 @@
 }
 
 #pragma mark - 字典转Json字符串
-+ (NSString *)yxConvertToJsonDataByDic:(id)dic {
++ (NSString *)yxConvertToJsonDataByData:(id)data {
     
-    NSError *error;
-    if (!dic) {
-        return @"";
-    }
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:&error];
     
-    NSString *jsonString;
-    
-    if (!jsonData) {
-        NSLog(@"%@", error);
+    if ([jsonData length] > 0 && error == nil) {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+        
+        NSRange range = {0, jsonString.length};
+        [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+        
+        NSRange range2 = {0, mutStr.length};
+        [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+        
+        NSRange range3 = {0, mutStr.length};
+        
+        NSString *str = @"\\";
+        [mutStr replaceOccurrencesOfString:str withString:@"" options:NSLiteralSearch range:range3];
+        return mutStr;
     }
     else {
-        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return nil;
+    }
+}
+
+#pragma mark - 计算字符串所占大小
++ (CGSize)yxSizeOfValueByStr:(NSString *)str size:(CGSize)size font:(UIFont *)font {
+    
+    if (str.length == 0) {
+        return CGSizeZero;
     }
     
-    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
-    NSRange range = {0, jsonString.length};
-    //去掉字符串中的空格
-    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    CGSize newSize = [str boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil] context:nil].size;
     
-    NSRange range2 = {0, mutStr.length};
-    //去掉字符串中的换行符
-    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    return newSize;
+}
++ (CGSize)yxSizeOfValueByAttriStr:(NSAttributedString *)attStr size:(CGSize)size {
     
-    return mutStr;
+    if (attStr.length == 0) {
+        return CGSizeZero;
+    }
+    
+    CGSize newSize = [attStr boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+
+    return newSize;
+}
+
+#pragma mark - 设置三变属性文字
++ (NSMutableAttributedString *)yxAttributedStringThirdByText:(NSString *)text font:(UIFont *)font color:(UIColor *)color subString:(NSString *)subString subFont:(UIFont *)subFont subColor:(UIColor *)subColor thirdString:(NSString *)thirdString thirdFont:(UIFont *)thirdFont thirdColor:(UIColor *)thirdColor lineSpaceValue:(NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(UIColor *)underLineColor strikethroughColor:(UIColor *)strikethroughColor {
+    
+    if (text.length == 0) {
+        return nil;
+    }
+    
+    //设置字符串
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
+    //整个字符串的范围
+    NSRange range = [text rangeOfString:text];
+    //整个字符串字体类型和大小
+    [attString addAttribute:NSFontAttributeName value:font range:range];
+    //整个字符串字体颜色
+    [attString addAttribute:NSForegroundColorAttributeName value:color range:range];
+    
+    //改变某段字符串
+    if (subString.length > 0) {
+        //计算要改变的范围
+        NSRange subRange = [text rangeOfString:subString];
+        //改某段字体类型和大小
+        [attString addAttribute:NSFontAttributeName value:subFont range:subRange];
+        //改某段字体颜色
+        [attString addAttribute:NSForegroundColorAttributeName value:subColor range:subRange];
+    }
+    
+    if (thirdString.length > 0) {
+        //计算要改变的范围
+        NSRange thirdRange = [text rangeOfString:thirdString];
+        //改某段字体类型和大小
+        [attString addAttribute:NSFontAttributeName value:thirdFont range:thirdRange];
+        //改某段字体颜色
+        [attString addAttribute:NSForegroundColorAttributeName value:thirdColor range:thirdRange];
+    }
+    
+    if (lineSpaceValue.yxHasValue) { //间距
+        CGFloat lineSpace = [lineSpaceValue floatValue];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = lineSpace - (font.lineHeight - font.pointSize);
+        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+        paragraphStyle.alignment = alignment;
+        [attString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
+    }
+    if (underLineColor) { //下划线
+        [attString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+        [attString addAttribute:NSUnderlineColorAttributeName value:underLineColor range:range];
+    }
+    if (strikethroughColor) { //删除线
+        [attString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+        [attString addAttribute:NSStrikethroughColorAttributeName value:strikethroughColor range:range];
+    }
+    
+    return attString;
+}
+
+#pragma mark - 设置两变属性文字
++ (NSMutableAttributedString *)yxAttributedStringSecondByText:(NSString *)text font:(UIFont *)font color:(UIColor *)color subString:(NSArray *)subStringArr subFont:(NSArray *)subFontArr subColor:(NSArray *)subColorArr lineSpaceValue:(NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(UIColor *)underLineColor strikethroughColor:(UIColor *)strikethroughColor {
+    
+    if (text.length == 0) {
+        return nil;
+    }
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
+    NSRange range = [text rangeOfString:text];
+    [attString addAttribute:NSFontAttributeName value:font range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:color range:range];
+    
+    for (int i = 0; i < subStringArr.count; i++) {
+        NSString *subString = subStringArr[i];
+        NSRange subRange = [text rangeOfString:subString];
+        [attString addAttribute:NSFontAttributeName value:subFontArr[i] range:subRange];
+        [attString addAttribute:NSForegroundColorAttributeName value:subColorArr[i] range:subRange];
+    }
+    
+    if (lineSpaceValue.yxHasValue) { //间距
+        CGFloat lineSpace = [lineSpaceValue floatValue];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = lineSpace - (font.lineHeight - font.pointSize);
+        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+        paragraphStyle.alignment = alignment;
+        [attString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
+    }
+    if (underLineColor) { //下划线
+        [attString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+        [attString addAttribute:NSUnderlineColorAttributeName value:underLineColor range:range];
+    }
+    if (strikethroughColor) { //删除线
+        [attString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+        [attString addAttribute:NSStrikethroughColorAttributeName value:strikethroughColor range:range];
+    }
+    
+    return attString;
+}
+
+#pragma mark - 设置行间距属性文字
++ (NSMutableAttributedString *)yxAttributedStringLineByText:(NSString *)text lineSpace:(CGFloat)lineSpace font:(UIFont *)font color:(UIColor *)color alignment:(NSTextAlignment)alignment underLineColor:(UIColor *)underLineColor strikethroughColor:(UIColor *)strikethroughColor {
+    
+    if (text.length == 0) {
+        return nil;
+    }
+    
+    NSRange range = [text rangeOfString:text];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attString addAttribute:NSFontAttributeName value:font range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:color range:range];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = lineSpace - (font.lineHeight - font.pointSize);
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    paragraphStyle.alignment = alignment;
+    [attString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
+    
+    if (underLineColor) { //下划线
+        [attString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+        [attString addAttribute:NSUnderlineColorAttributeName value:underLineColor range:range];
+        
+    }
+    if (strikethroughColor) { //删除线
+        [attString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+        [attString addAttribute:NSStrikethroughColorAttributeName value:strikethroughColor range:range];
+    }
+    
+    return attString;
 }
 
 #pragma mark - 图文混排
@@ -134,6 +278,22 @@
     NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
     
     return timeString;
+}
+
+#pragma mark - 指定两个日期的间隔天数
++ (NSString *)yxNumberOfDaysByFromDateValue:(NSString *)fromDateValue toDateValue:(NSString *)toDateValue format:(NSString *)format {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:format];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:100000]];
+    
+    NSDate *fromDate = [dateFormatter dateFromString:fromDateValue];
+    NSDate *toDate = [dateFormatter dateFromString:toDateValue];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitDay fromDate:fromDate toDate:toDate options:NSCalendarWrapComponents];
+    
+    return [NSString stringWithFormat:@"%@", @(comp.day)];
 }
 
 #pragma mark - 判断指定日期是星期几（参数格式:yyyy-MM-dd）
@@ -256,6 +416,33 @@
     }
     
     return distanceStr;
+}
+
+#pragma mark - 秒转时间
++ (NSString *)yxTurnSecondTimeBySeconds:(NSString *)secondTime {
+
+    NSInteger seconds = [secondTime floatValue];
+    NSString *hour = [NSString stringWithFormat:@"%02ld", seconds /3600];
+    NSString *minute = [NSString stringWithFormat:@"%02ld", (seconds %3600) /60];
+    NSString *second = [NSString stringWithFormat:@"%02ld", seconds %60];
+    
+    NSString *formatTime = [NSString stringWithFormat:@"%@:%@:%@", hour, minute, second];
+    if ([hour integerValue] == 0) {
+        formatTime = [NSString stringWithFormat:@"%@:%@", minute, second];
+    }
+
+    return formatTime;
+}
+
+#pragma mark - 时间戳转时间
+- (NSString *)yxTimeStampTurnsTimeByTimeStamp:(NSString *)timeStamp format:(NSString *)format {
+    
+    NSTimeInterval time = [timeStamp doubleValue] /1000;
+    NSDate *detailDate = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:format];
+    NSString *currentDateStr = [dateFormatter stringFromDate:detailDate];
+    return currentDateStr;
 }
 
 #pragma mark - 获取设备名称

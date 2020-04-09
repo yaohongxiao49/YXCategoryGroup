@@ -13,6 +13,20 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIColor (YXCategory)
 
 /**
+ * 二进制色值
+ * @param hexString 二进制（如#000000）
+ */
++ (UIColor *)yxColorByHexString:(NSString *)hexString;
+
+/**
+ * 二进制色值
+ * @param hexString 二进制（如#000000）
+ * @param alpha 透明度
+ */
++ (UIColor *)yxColorByHexString:(NSString *)hexString
+                          alpha:(CGFloat)alpha;
+
+/**
  * 视图渐变色
  * @param view 基础视图
  * @param colorArr 色值数组
@@ -77,10 +91,10 @@ NS_ASSUME_NONNULL_BEGIN
  * @param shadowOffset 阴影偏移量
  * @param shadowBlurRadius 阴影半径
  */
-+ (void)addTextShadow:(UILabel *)lab
-          shadowColor:(UIColor *)shadowColor
-         shadowOffset:(CGSize)shadowOffset
-     shadowBlurRadius:(CGFloat)shadowBlurRadius;
++ (void)yxDrawTextShadowByLab:(UILabel *)lab
+                  shadowColor:(UIColor *)shadowColor
+                 shadowOffset:(CGSize)shadowOffset
+             shadowBlurRadius:(CGFloat)shadowBlurRadius;
 
 @end
 

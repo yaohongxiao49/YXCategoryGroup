@@ -23,6 +23,8 @@
 		846E55A4243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559B243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m */; };
 		846E55A5243EF2D200CB7233 /* YXBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559C243EF2D200CB7233 /* YXBaseManager.m */; };
 		846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559F243EF2D200CB7233 /* UIImage+YXCategory.m */; };
+		846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */; };
+		846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,10 @@
 		846E559C243EF2D200CB7233 /* YXBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBaseManager.m; sourceTree = "<group>"; };
 		846E559E243EF2D200CB7233 /* UIImage+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+YXCategory.h"; sourceTree = "<group>"; };
 		846E559F243EF2D200CB7233 /* UIImage+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YXCategory.m"; sourceTree = "<group>"; };
+		846E55A8243EFBCD00CB7233 /* NSObject+YXCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YXCategory.h"; sourceTree = "<group>"; };
+		846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YXCategory.m"; sourceTree = "<group>"; };
+		846E55AC243F153C00CB7233 /* UIButton+YXCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+YXCategory.h"; sourceTree = "<group>"; };
+		846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YXCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,12 +172,14 @@
 				846E5598243EF2D200CB7233 /* YXCategoryPCH.pch */,
 				846E558E243EF2D200CB7233 /* YXBaseManager.h */,
 				846E559C243EF2D200CB7233 /* YXBaseManager.m */,
-				846E558B243EF2D200CB7233 /* YXUIColorCategory */,
-				846E558F243EF2D200CB7233 /* YXNSArrayCategory */,
-				846E5592243EF2D200CB7233 /* YXNSStringCategory */,
+				846E55A7243EFBB000CB7233 /* YXNSObjectCategory */,
 				846E5595243EF2D200CB7233 /* YXUIViewCategory */,
-				846E5599243EF2D200CB7233 /* YXNSDictionaryCategory */,
 				846E559D243EF2D200CB7233 /* YXUIImageCategory */,
+				846E55AB243F152900CB7233 /* YXUIButtonCategory */,
+				846E558B243EF2D200CB7233 /* YXUIColorCategory */,
+				846E5592243EF2D200CB7233 /* YXNSStringCategory */,
+				846E558F243EF2D200CB7233 /* YXNSArrayCategory */,
+				846E5599243EF2D200CB7233 /* YXNSDictionaryCategory */,
 			);
 			path = YXCategory;
 			sourceTree = "<group>";
@@ -228,6 +236,24 @@
 				846E559F243EF2D200CB7233 /* UIImage+YXCategory.m */,
 			);
 			path = YXUIImageCategory;
+			sourceTree = "<group>";
+		};
+		846E55A7243EFBB000CB7233 /* YXNSObjectCategory */ = {
+			isa = PBXGroup;
+			children = (
+				846E55A8243EFBCD00CB7233 /* NSObject+YXCategory.h */,
+				846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */,
+			);
+			path = YXNSObjectCategory;
+			sourceTree = "<group>";
+		};
+		846E55AB243F152900CB7233 /* YXUIButtonCategory */ = {
+			isa = PBXGroup;
+			children = (
+				846E55AC243F153C00CB7233 /* UIButton+YXCategory.h */,
+				846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */,
+			);
+			path = YXUIButtonCategory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +396,8 @@
 				846E55A2243EF2D200CB7233 /* NSString+YXCategory.m in Sources */,
 				846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */,
 				846E55A0243EF2D200CB7233 /* UIColor+YXCategory.m in Sources */,
+				846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */,
+				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,
 				846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

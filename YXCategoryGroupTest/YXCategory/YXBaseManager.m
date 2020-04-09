@@ -8,6 +8,7 @@
 
 #import "YXBaseManager.h"
 #import <AVFoundation/AVFoundation.h>
+#import <objc/runtime.h>
 
 @implementation YXBaseManager
 
@@ -23,20 +24,83 @@
     return yxBaseManager;
 }
 
-#pragma mark - 指定两个日期的间隔天数
-- (NSInteger)yxNumberOfDaysByFromDateValue:(NSString *)fromDateValue toDateValue:(NSString *)toDateValue format:(NSString *)format {
+#pragma mark - 钩子方法
++ (void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector {
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:format];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:100000]];
+    Class class = cls;
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+    BOOL didAddMethod = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
     
-    NSDate *fromDate = [dateFormatter dateFromString:fromDateValue];
-    NSDate *toDate = [dateFormatter dateFromString:toDateValue];
+    if (didAddMethod) {
+        class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+    }
+    else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
+}
+
+#pragma mark - 打电话
++ (void)yxCallMobile:(NSString *)mobile {
     
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *comp = [calendar components:NSCalendarUnitDay fromDate:fromDate toDate:toDate options:NSCalendarWrapComponents];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", mobile]];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@YES};
+        [[UIApplication sharedApplication] openURL:url options:options completionHandler:nil];
+    }
+}
+
+#pragma mark - 发短信
+- (void)yxSendSMSByMobile:(NSString *)mobile {
     
-    return comp.day;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"sms:%@", mobile]];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@YES};
+        [[UIApplication sharedApplication] openURL:url options:options completionHandler:nil];
+    }
+}
+
+#pragma mark - 打开app设置页面
+- (void)yxOpenAppSetting {
+    
+    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@YES};
+        [[UIApplication sharedApplication] openURL:url options:options completionHandler:nil];
+    }
+}
+
+#pragma mark - 打开safari
+- (void)yxOpenSafariByUrl:(NSString *)url {
+    
+    NSURL *urls = [NSURL URLWithString:url];
+    if ([[UIApplication sharedApplication] canOpenURL:urls]) {
+        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@YES};
+        [[UIApplication sharedApplication] openURL:urls options:options completionHandler:nil];
+    }
+}
+
+#pragma mark - 打开app商店
+- (void)yxOpenAppStoreByIdent:(NSString *)ident boolDetail:(BOOL)boolDetail {
+    
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=%@", ident];
+    if (boolDetail) str = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa /wa/viewContentsUserReviews?type=Purple+Software&id=%@", ident];
+    
+    NSURL *urls = [NSURL URLWithString:str];
+    if ([[UIApplication sharedApplication] canOpenURL:urls]) {
+        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@YES};
+        [[UIApplication sharedApplication] openURL:urls options:options completionHandler:nil];
+    }
+}
+
+#pragma mark - 获取录音时长
+- (NSString *)yxGetVoiceTime:(NSString *)path {
+    
+    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:path] options:opts];
+    CMTime audioDuration = urlAsset.duration;
+    int audioDurationSeconds = ceil(audioDuration.value /audioDuration.timescale);
+    return [NSString stringWithFormat:@"%@″", @(audioDurationSeconds)];
 }
 
 #pragma mark - 判断当前设备是否开启相机功能
@@ -68,11 +132,7 @@
             
             UIAlertAction *sureAlert = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"%@", @"确定"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
-                NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                    [[UIApplication sharedApplication] openURL:url];
-                }
+                [self yxOpenAppSetting];
             }];
             UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"%@", @"取消"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
             

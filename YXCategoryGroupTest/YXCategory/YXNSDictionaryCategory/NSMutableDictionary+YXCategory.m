@@ -107,4 +107,18 @@
    return [NSNull null];
 }
 
+#pragma mark - 将链接中的参数转为字典
++ (NSDictionary *)yxConversionToDicByUrl:(NSString *)url {
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
+    NSURL *realUrl = [NSURL URLWithString:url];
+    NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithString:realUrl.absoluteString];
+    [urlComponents.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [params setObject:obj.value forKey:obj.name];
+    }];
+    
+    return params;
+}
+
 @end

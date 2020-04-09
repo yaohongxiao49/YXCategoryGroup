@@ -32,6 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (id)yxArrayOrDicWithObject:(id)origin;
 
+/**
+ * 将链接中的参数转为字典
+ * @param url 链接
+ */
++ (NSDictionary *)yxConversionToDicByUrl:(NSString *)url;
+
 @end
 
 NS_ASSUME_NONNULL_END
