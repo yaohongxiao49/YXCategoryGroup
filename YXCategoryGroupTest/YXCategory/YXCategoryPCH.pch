@@ -1,0 +1,20 @@
+//
+//  YXCategaryPCH.pch
+//  YXCategaryGroupTest
+//
+//  Created by ios on 2020/4/8.
+//  Copyright © 2020 August. All rights reserved.
+//
+
+#ifndef YXCategaryPCH_pch
+#define YXCategaryPCH_pch
+
+#import "YXBaseManager.h"
+#import "UIView+YXCategory.h"
+#import "UIColor+YXCategory.h"
+#import "NSMutableArray+YXCategory.h"
+#import "NSMutableDictionary+YXCategory.h"
+#import "NSString+YXCategory.h"
+#import "UIImage+YXCategory.h"
+
+#endif /* YXCategaryPCH_pch */
