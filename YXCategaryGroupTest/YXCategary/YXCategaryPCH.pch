@@ -1,0 +1,16 @@
+//
+//  YXCategaryPCH.pch
+//  YXCategaryGroupTest
+//
+//  Created by ios on 2020/4/8.
+//  Copyright © 2020 August. All rights reserved.
+//
+
+#ifndef YXCategaryPCH_pch
+#define YXCategaryPCH_pch
+
+#import <objc/runtime.h>
+#import <AdSupport/AdSupport.h>
+#import <AVFoundation/AVFoundation.h>
+
+#endif /* YXCategaryPCH_pch */
