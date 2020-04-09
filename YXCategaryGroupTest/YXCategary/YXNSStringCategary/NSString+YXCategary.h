@@ -1,5 +1,5 @@
 //
-//  NSString+YXNStringCategary.h
+//  NSString+YXCategary.h
 //  YXCategaryGroupTest
 //
 //  Created by ios on 2020/4/8.
@@ -11,10 +11,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSString (YXNStringCategary)
+@interface NSString (YXCategary)
 
 /** 是否有值 */
 - (BOOL)yxHasValue;
+
+/**
+ * 判断手机号有效性
+ * @param mobile 手机号
+ */
+- (BOOL)isVaildMobile:(NSString *)mobile;
 
 /** 获取设备唯一标识 */
 + (NSString *)yxGetUUID;
@@ -61,6 +67,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)yxJudgeSpecifiedDateIsDayOfTheWeek:(NSString *)specifiedDate
                                           format:(NSString *)format;
+
+/**
+ * 时间比较（格式 yyyy-MM-dd HH:mm:ss）
+ * @param aDateStr 时间1
+ * @param bDateStr 时间2
+ */
++ (BOOL)yxCompareDate:(NSString *)aDateStr
+             withDate:(NSString *)bDateStr;
 
 /** 获取设备名称 */
 + (NSString *)yxGetDeviceName;

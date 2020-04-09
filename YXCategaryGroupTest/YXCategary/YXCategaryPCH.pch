@@ -9,8 +9,10 @@
 #ifndef YXCategaryPCH_pch
 #define YXCategaryPCH_pch
 
-#import <objc/runtime.h>
-#import <AdSupport/AdSupport.h>
-#import <AVFoundation/AVFoundation.h>
+#import "YXBaseManager.h"
+#import "UIColor+YXCategary.h"
+#import "NSMutableArray+YXCategary.h"
+#import "NSMutableDictionary+YXCategary.h"
+#import "NSString+YXCategary.h"
 
 #endif /* YXCategaryPCH_pch */

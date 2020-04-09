@@ -1,5 +1,5 @@
 //
-//  NSMutableArray+YXNSMutableArrCategary.h
+//  NSMutableArray+YXCategary.h
 //  YXCategaryGroupTest
 //
 //  Created by ios on 2020/4/8.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSMutableArray (YXNSMutableArrCategary)
+@interface NSMutableArray (YXCategary)
 
 /**
  * 转模型

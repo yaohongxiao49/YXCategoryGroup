@@ -1,21 +1,30 @@
 //
-//  NSString+YXNStringCategary.m
+//  NSString+YXCategary.m
 //  YXCategaryGroupTest
 //
 //  Created by ios on 2020/4/8.
 //  Copyright © 2020 August. All rights reserved.
 //
 
-#import "NSString+YXNStringCategary.h"
+#import "NSString+YXCategary.h"
 #import <sys/utsname.h>
 #import <AdSupport/AdSupport.h>
 
-@implementation NSString (YXNStringCategary)
+@implementation NSString (YXCategary)
 
 #pragma mark - 是否有值
 - (BOOL)yxHasValue {
     
     return ([self isKindOfClass:[NSString class]] && self.length > 0);
+}
+
+#pragma mark - 判断手机号有效性
+- (BOOL)isVaildMobile:(NSString *)mobile {
+    
+    NSString *phoneRegex = @"^((1[3456789]))\\d{9}$";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    
+    return [phoneTest evaluateWithObject:mobile];
 }
 
 #pragma mark - 获取设备唯一标识
@@ -164,6 +173,33 @@
     }
     
     return week;
+}
+
+#pragma mark - 时间比较
++ (BOOL)yxCompareDate:(NSString *)aDateStr withDate:(NSString *)bDateStr {
+    
+    BOOL isOk = NO;
+    
+    NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
+    [dateformater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *aDate = [[NSDate alloc] init];
+    NSDate *bDate = [[NSDate alloc] init];
+    
+    aDate = [dateformater dateFromString:aDateStr];
+    bDate = [dateformater dateFromString:bDateStr];
+    NSComparisonResult result = [aDate compare:bDate];
+    if (result == NSOrderedSame) {
+        isOk = NO;
+    }
+    else if (result == NSOrderedDescending) {
+        isOk = NO;
+    }
+    else if (result == NSOrderedAscending) {
+        isOk = YES;
+    }
+    
+    return isOk;
 }
 
 #pragma mark - 获取设备名称

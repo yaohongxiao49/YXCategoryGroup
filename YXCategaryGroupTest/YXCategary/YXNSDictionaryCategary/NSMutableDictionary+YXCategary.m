@@ -1,15 +1,15 @@
 //
-//  NSMutableDictionary+YXNSMutableDicCategary.m
+//  NSMutableDictionary+YXCategary.m
 //  YXCategaryGroupTest
 //
 //  Created by ios on 2020/4/8.
 //  Copyright © 2020 August. All rights reserved.
 //
 
-#import "NSMutableDictionary+YXNSMutableDicCategary.h"
+#import "NSMutableDictionary+YXCategary.h"
 #import <objc/runtime.h>
 
-@implementation NSMutableDictionary (YXNSMutableDicCategary)
+@implementation NSMutableDictionary (YXCategary)
 
 #pragma mark - 模型转字典
 + (NSMutableDictionary *)yxDicFromObject:(NSObject *)obj {

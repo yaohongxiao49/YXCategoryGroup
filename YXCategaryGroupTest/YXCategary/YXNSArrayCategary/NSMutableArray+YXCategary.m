@@ -1,14 +1,14 @@
 //
-//  NSMutableArray+YXNSMutableArrCategary.m
+//  NSMutableArray+YXCategary.m
 //  YXCategaryGroupTest
 //
 //  Created by ios on 2020/4/8.
 //  Copyright © 2020 August. All rights reserved.
 //
 
-#import "NSMutableArray+YXNSMutableArrCategary.h"
+#import "NSMutableArray+YXCategary.h"
 
-@implementation NSMutableArray (YXNSMutableArrCategary)
+@implementation NSMutableArray (YXCategary)
 
 #pragma mark - 转换"className"模型
 + (NSArray *)yxConversionToModelByResult:(id)result className:(NSString *)className valuePath:(NSString *)valuePath {
