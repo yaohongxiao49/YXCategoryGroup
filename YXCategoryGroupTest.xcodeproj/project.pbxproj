@@ -10,6 +10,9 @@
 		844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19DA2440563C009FE378 /* YXToolLogs.m */; };
 		844E19DE24405707009FE378 /* YXToolLocalSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19DD24405707009FE378 /* YXToolLocalSave.m */; };
 		844E19E4244057D4009FE378 /* YXToolLocalSaveByKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19E3244057D4009FE378 /* YXToolLocalSaveByKeychain.m */; };
+		844E19E724406F3D009FE378 /* YXToolLocalSaveBySqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19E624406F3D009FE378 /* YXToolLocalSaveBySqlite.m */; };
+		844E19EA24407990009FE378 /* YXToolGetSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19E924407990009FE378 /* YXToolGetSandbox.m */; };
+		844E19ED24407B56009FE378 /* YXToolAppBaseMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19EC24407B56009FE378 /* YXToolAppBaseMessage.m */; };
 		846E5557243EF2BE00CB7233 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E5556243EF2BE00CB7233 /* AppDelegate.m */; };
 		846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E5559243EF2BE00CB7233 /* SceneDelegate.m */; };
 		846E555D243EF2BE00CB7233 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E555C243EF2BE00CB7233 /* ViewController.m */; };
@@ -55,6 +58,12 @@
 		844E19DD24405707009FE378 /* YXToolLocalSave.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolLocalSave.m; sourceTree = "<group>"; };
 		844E19E2244057D4009FE378 /* YXToolLocalSaveByKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolLocalSaveByKeychain.h; sourceTree = "<group>"; };
 		844E19E3244057D4009FE378 /* YXToolLocalSaveByKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolLocalSaveByKeychain.m; sourceTree = "<group>"; };
+		844E19E524406F3D009FE378 /* YXToolLocalSaveBySqlite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolLocalSaveBySqlite.h; sourceTree = "<group>"; };
+		844E19E624406F3D009FE378 /* YXToolLocalSaveBySqlite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolLocalSaveBySqlite.m; sourceTree = "<group>"; };
+		844E19E824407990009FE378 /* YXToolGetSandbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolGetSandbox.h; sourceTree = "<group>"; };
+		844E19E924407990009FE378 /* YXToolGetSandbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolGetSandbox.m; sourceTree = "<group>"; };
+		844E19EB24407B56009FE378 /* YXToolAppBaseMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolAppBaseMessage.h; sourceTree = "<group>"; };
+		844E19EC24407B56009FE378 /* YXToolAppBaseMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolAppBaseMessage.m; sourceTree = "<group>"; };
 		846E5552243EF2BE00CB7233 /* YXCategoryGroupTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXCategoryGroupTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E5555243EF2BE00CB7233 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E5556243EF2BE00CB7233 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -139,10 +148,16 @@
 		844E19D52440552C009FE378 /* YXToolLocalSave */ = {
 			isa = PBXGroup;
 			children = (
+				844E19EB24407B56009FE378 /* YXToolAppBaseMessage.h */,
+				844E19EC24407B56009FE378 /* YXToolAppBaseMessage.m */,
 				844E19DC24405707009FE378 /* YXToolLocalSave.h */,
 				844E19DD24405707009FE378 /* YXToolLocalSave.m */,
+				844E19E524406F3D009FE378 /* YXToolLocalSaveBySqlite.h */,
+				844E19E624406F3D009FE378 /* YXToolLocalSaveBySqlite.m */,
 				844E19E2244057D4009FE378 /* YXToolLocalSaveByKeychain.h */,
 				844E19E3244057D4009FE378 /* YXToolLocalSaveByKeychain.m */,
+				844E19E824407990009FE378 /* YXToolGetSandbox.h */,
+				844E19E924407990009FE378 /* YXToolGetSandbox.m */,
 			);
 			path = YXToolLocalSave;
 			sourceTree = "<group>";
@@ -430,6 +445,7 @@
 				846E555D243EF2BE00CB7233 /* ViewController.m in Sources */,
 				846E55A3243EF2D200CB7233 /* UIView+YXCategory.m in Sources */,
 				846E5557243EF2BE00CB7233 /* AppDelegate.m in Sources */,
+				844E19E724406F3D009FE378 /* YXToolLocalSaveBySqlite.m in Sources */,
 				846E55A1243EF2D200CB7233 /* NSMutableArray+YXCategory.m in Sources */,
 				844E19E4244057D4009FE378 /* YXToolLocalSaveByKeychain.m in Sources */,
 				846E5568243EF2C000CB7233 /* main.m in Sources */,
@@ -437,8 +453,10 @@
 				846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */,
 				846E55A0243EF2D200CB7233 /* UIColor+YXCategory.m in Sources */,
 				846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */,
+				844E19ED24407B56009FE378 /* YXToolAppBaseMessage.m in Sources */,
 				844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */,
 				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,
+				844E19EA24407990009FE378 /* YXToolGetSandbox.m in Sources */,
 				846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */,
 				844E19DE24405707009FE378 /* YXToolLocalSave.m in Sources */,
 			);
