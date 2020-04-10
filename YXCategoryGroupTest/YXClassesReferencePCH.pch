@@ -1,15 +1,19 @@
 //
-//  YXCategaryPCH.pch
-//  YXCategaryGroupTest
+//  YXClassesReferencePCH.pch
+//  YXCategoryGroupTest
 //
-//  Created by ios on 2020/4/8.
+//  Created by ios on 2020/4/10.
 //  Copyright © 2020 August. All rights reserved.
 //
 
-#ifndef YXCategaryPCH_pch
-#define YXCategaryPCH_pch
+#ifndef YXClassesReferencePCH_pch
+#define YXClassesReferencePCH_pch
 
-#import "YXBaseManager.h"
+#pragma mark - YXTools
+#import "YXToolLogs.h"
+
+#pragma mark - YXCategorys
+#import "YXCategoryBaseManager.h"
 #import "NSObject+YXCategory.h"
 #import "UIView+YXCategory.h"
 #import "UIImage+YXCategory.h"
@@ -19,4 +23,4 @@
 #import "NSMutableArray+YXCategory.h"
 #import "NSMutableDictionary+YXCategory.h"
 
-#endif /* YXCategaryPCH_pch */
+#endif /* YXClassesReferencePCH_pch */

@@ -11,9 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YXBaseManager : NSObject
+@interface YXCategoryBaseManager : NSObject
 
-+ (YXBaseManager *)instanceManager;
++ (YXCategoryBaseManager *)instanceManager;
 
 /**
  * 钩子方法

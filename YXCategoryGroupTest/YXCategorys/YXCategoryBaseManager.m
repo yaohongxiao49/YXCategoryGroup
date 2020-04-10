@@ -6,19 +6,19 @@
 //  Copyright © 2020 August. All rights reserved.
 //
 
-#import "YXBaseManager.h"
+#import "YXCategoryBaseManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import <objc/runtime.h>
 
-@implementation YXBaseManager
+@implementation YXCategoryBaseManager
 
-+ (YXBaseManager *)instanceManager {
++ (YXCategoryBaseManager *)instanceManager {
     
-    static YXBaseManager *yxBaseManager = nil;
+    static YXCategoryBaseManager *yxBaseManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        yxBaseManager = [YXBaseManager new];
+        yxBaseManager = [YXCategoryBaseManager new];
     });
     
     return yxBaseManager;

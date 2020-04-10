@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19DA2440563C009FE378 /* YXToolLogs.m */; };
+		844E19DE24405707009FE378 /* YXToolLocalSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19DD24405707009FE378 /* YXToolLocalSave.m */; };
+		844E19E4244057D4009FE378 /* YXToolLocalSaveByKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E19E3244057D4009FE378 /* YXToolLocalSaveByKeychain.m */; };
 		846E5557243EF2BE00CB7233 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E5556243EF2BE00CB7233 /* AppDelegate.m */; };
 		846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E5559243EF2BE00CB7233 /* SceneDelegate.m */; };
 		846E555D243EF2BE00CB7233 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E555C243EF2BE00CB7233 /* ViewController.m */; };
@@ -21,7 +24,7 @@
 		846E55A2243EF2D200CB7233 /* NSString+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E5593243EF2D200CB7233 /* NSString+YXCategory.m */; };
 		846E55A3243EF2D200CB7233 /* UIView+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E5596243EF2D200CB7233 /* UIView+YXCategory.m */; };
 		846E55A4243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559B243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m */; };
-		846E55A5243EF2D200CB7233 /* YXBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559C243EF2D200CB7233 /* YXBaseManager.m */; };
+		846E55A5243EF2D200CB7233 /* YXCategoryBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559C243EF2D200CB7233 /* YXCategoryBaseManager.m */; };
 		846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559F243EF2D200CB7233 /* UIImage+YXCategory.m */; };
 		846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */; };
 		846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */; };
@@ -45,6 +48,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		844E19D42440532A009FE378 /* YXClassesReferencePCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXClassesReferencePCH.pch; sourceTree = "<group>"; };
+		844E19D92440563C009FE378 /* YXToolLogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolLogs.h; sourceTree = "<group>"; };
+		844E19DA2440563C009FE378 /* YXToolLogs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolLogs.m; sourceTree = "<group>"; };
+		844E19DC24405707009FE378 /* YXToolLocalSave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolLocalSave.h; sourceTree = "<group>"; };
+		844E19DD24405707009FE378 /* YXToolLocalSave.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolLocalSave.m; sourceTree = "<group>"; };
+		844E19E2244057D4009FE378 /* YXToolLocalSaveByKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolLocalSaveByKeychain.h; sourceTree = "<group>"; };
+		844E19E3244057D4009FE378 /* YXToolLocalSaveByKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolLocalSaveByKeychain.m; sourceTree = "<group>"; };
 		846E5552243EF2BE00CB7233 /* YXCategoryGroupTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YXCategoryGroupTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846E5555243EF2BE00CB7233 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		846E5556243EF2BE00CB7233 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,17 +75,16 @@
 		846E557E243EF2C000CB7233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		846E558C243EF2D200CB7233 /* UIColor+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YXCategory.m"; sourceTree = "<group>"; };
 		846E558D243EF2D200CB7233 /* UIColor+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YXCategory.h"; sourceTree = "<group>"; };
-		846E558E243EF2D200CB7233 /* YXBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBaseManager.h; sourceTree = "<group>"; };
+		846E558E243EF2D200CB7233 /* YXCategoryBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCategoryBaseManager.h; sourceTree = "<group>"; };
 		846E5590243EF2D200CB7233 /* NSMutableArray+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+YXCategory.h"; sourceTree = "<group>"; };
 		846E5591243EF2D200CB7233 /* NSMutableArray+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+YXCategory.m"; sourceTree = "<group>"; };
 		846E5593243EF2D200CB7233 /* NSString+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YXCategory.m"; sourceTree = "<group>"; };
 		846E5594243EF2D200CB7233 /* NSString+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YXCategory.h"; sourceTree = "<group>"; };
 		846E5596243EF2D200CB7233 /* UIView+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YXCategory.m"; sourceTree = "<group>"; };
 		846E5597243EF2D200CB7233 /* UIView+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YXCategory.h"; sourceTree = "<group>"; };
-		846E5598243EF2D200CB7233 /* YXCategoryPCH.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCategoryPCH.pch; sourceTree = "<group>"; };
 		846E559A243EF2D200CB7233 /* NSMutableDictionary+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+YXCategory.h"; sourceTree = "<group>"; };
 		846E559B243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+YXCategory.m"; sourceTree = "<group>"; };
-		846E559C243EF2D200CB7233 /* YXBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBaseManager.m; sourceTree = "<group>"; };
+		846E559C243EF2D200CB7233 /* YXCategoryBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCategoryBaseManager.m; sourceTree = "<group>"; };
 		846E559E243EF2D200CB7233 /* UIImage+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+YXCategory.h"; sourceTree = "<group>"; };
 		846E559F243EF2D200CB7233 /* UIImage+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YXCategory.m"; sourceTree = "<group>"; };
 		846E55A8243EFBCD00CB7233 /* NSObject+YXCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YXCategory.h"; sourceTree = "<group>"; };
@@ -109,6 +118,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		844E19CD2440516D009FE378 /* YXTools */ = {
+			isa = PBXGroup;
+			children = (
+				844E19D52440552C009FE378 /* YXToolLocalSave */,
+				844E19CE244051C5009FE378 /* YXToolLogs */,
+			);
+			path = YXTools;
+			sourceTree = "<group>";
+		};
+		844E19CE244051C5009FE378 /* YXToolLogs */ = {
+			isa = PBXGroup;
+			children = (
+				844E19D92440563C009FE378 /* YXToolLogs.h */,
+				844E19DA2440563C009FE378 /* YXToolLogs.m */,
+			);
+			path = YXToolLogs;
+			sourceTree = "<group>";
+		};
+		844E19D52440552C009FE378 /* YXToolLocalSave */ = {
+			isa = PBXGroup;
+			children = (
+				844E19DC24405707009FE378 /* YXToolLocalSave.h */,
+				844E19DD24405707009FE378 /* YXToolLocalSave.m */,
+				844E19E2244057D4009FE378 /* YXToolLocalSaveByKeychain.h */,
+				844E19E3244057D4009FE378 /* YXToolLocalSaveByKeychain.m */,
+			);
+			path = YXToolLocalSave;
+			sourceTree = "<group>";
+		};
 		846E5549243EF2BE00CB7233 = {
 			isa = PBXGroup;
 			children = (
@@ -132,7 +170,9 @@
 		846E5554243EF2BE00CB7233 /* YXCategoryGroupTest */ = {
 			isa = PBXGroup;
 			children = (
-				846E558A243EF2D200CB7233 /* YXCategory */,
+				844E19D42440532A009FE378 /* YXClassesReferencePCH.pch */,
+				844E19CD2440516D009FE378 /* YXTools */,
+				846E558A243EF2D200CB7233 /* YXCategorys */,
 				846E5555243EF2BE00CB7233 /* AppDelegate.h */,
 				846E5556243EF2BE00CB7233 /* AppDelegate.m */,
 				846E5558243EF2BE00CB7233 /* SceneDelegate.h */,
@@ -166,94 +206,93 @@
 			path = YXCategoryGroupTestUITests;
 			sourceTree = "<group>";
 		};
-		846E558A243EF2D200CB7233 /* YXCategory */ = {
+		846E558A243EF2D200CB7233 /* YXCategorys */ = {
 			isa = PBXGroup;
 			children = (
-				846E5598243EF2D200CB7233 /* YXCategoryPCH.pch */,
-				846E558E243EF2D200CB7233 /* YXBaseManager.h */,
-				846E559C243EF2D200CB7233 /* YXBaseManager.m */,
-				846E55A7243EFBB000CB7233 /* YXNSObjectCategory */,
-				846E5595243EF2D200CB7233 /* YXUIViewCategory */,
-				846E559D243EF2D200CB7233 /* YXUIImageCategory */,
-				846E55AB243F152900CB7233 /* YXUIButtonCategory */,
-				846E558B243EF2D200CB7233 /* YXUIColorCategory */,
-				846E5592243EF2D200CB7233 /* YXNSStringCategory */,
-				846E558F243EF2D200CB7233 /* YXNSArrayCategory */,
-				846E5599243EF2D200CB7233 /* YXNSDictionaryCategory */,
+				846E558E243EF2D200CB7233 /* YXCategoryBaseManager.h */,
+				846E559C243EF2D200CB7233 /* YXCategoryBaseManager.m */,
+				846E55A7243EFBB000CB7233 /* YXCategoryNSObject */,
+				846E5595243EF2D200CB7233 /* YXCategoryUIView */,
+				846E559D243EF2D200CB7233 /* YXCategoryUIImage */,
+				846E55AB243F152900CB7233 /* YXCategoryUIButton */,
+				846E558B243EF2D200CB7233 /* YXCategoryUIColor */,
+				846E5592243EF2D200CB7233 /* YXCategoryNSString */,
+				846E558F243EF2D200CB7233 /* YXCategoryNSArray */,
+				846E5599243EF2D200CB7233 /* YXCategoryNSDictionary */,
 			);
-			path = YXCategory;
+			path = YXCategorys;
 			sourceTree = "<group>";
 		};
-		846E558B243EF2D200CB7233 /* YXUIColorCategory */ = {
+		846E558B243EF2D200CB7233 /* YXCategoryUIColor */ = {
 			isa = PBXGroup;
 			children = (
 				846E558D243EF2D200CB7233 /* UIColor+YXCategory.h */,
 				846E558C243EF2D200CB7233 /* UIColor+YXCategory.m */,
 			);
-			path = YXUIColorCategory;
+			path = YXCategoryUIColor;
 			sourceTree = "<group>";
 		};
-		846E558F243EF2D200CB7233 /* YXNSArrayCategory */ = {
+		846E558F243EF2D200CB7233 /* YXCategoryNSArray */ = {
 			isa = PBXGroup;
 			children = (
 				846E5590243EF2D200CB7233 /* NSMutableArray+YXCategory.h */,
 				846E5591243EF2D200CB7233 /* NSMutableArray+YXCategory.m */,
 			);
-			path = YXNSArrayCategory;
+			path = YXCategoryNSArray;
 			sourceTree = "<group>";
 		};
-		846E5592243EF2D200CB7233 /* YXNSStringCategory */ = {
+		846E5592243EF2D200CB7233 /* YXCategoryNSString */ = {
 			isa = PBXGroup;
 			children = (
 				846E5594243EF2D200CB7233 /* NSString+YXCategory.h */,
 				846E5593243EF2D200CB7233 /* NSString+YXCategory.m */,
 			);
-			path = YXNSStringCategory;
+			path = YXCategoryNSString;
 			sourceTree = "<group>";
 		};
-		846E5595243EF2D200CB7233 /* YXUIViewCategory */ = {
+		846E5595243EF2D200CB7233 /* YXCategoryUIView */ = {
 			isa = PBXGroup;
 			children = (
 				846E5597243EF2D200CB7233 /* UIView+YXCategory.h */,
 				846E5596243EF2D200CB7233 /* UIView+YXCategory.m */,
 			);
-			path = YXUIViewCategory;
+			path = YXCategoryUIView;
 			sourceTree = "<group>";
 		};
-		846E5599243EF2D200CB7233 /* YXNSDictionaryCategory */ = {
+		846E5599243EF2D200CB7233 /* YXCategoryNSDictionary */ = {
 			isa = PBXGroup;
 			children = (
 				846E559A243EF2D200CB7233 /* NSMutableDictionary+YXCategory.h */,
 				846E559B243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m */,
 			);
-			path = YXNSDictionaryCategory;
+			path = YXCategoryNSDictionary;
 			sourceTree = "<group>";
 		};
-		846E559D243EF2D200CB7233 /* YXUIImageCategory */ = {
+		846E559D243EF2D200CB7233 /* YXCategoryUIImage */ = {
 			isa = PBXGroup;
 			children = (
 				846E559E243EF2D200CB7233 /* UIImage+YXCategory.h */,
 				846E559F243EF2D200CB7233 /* UIImage+YXCategory.m */,
 			);
-			path = YXUIImageCategory;
+			path = YXCategoryUIImage;
 			sourceTree = "<group>";
 		};
-		846E55A7243EFBB000CB7233 /* YXNSObjectCategory */ = {
+		846E55A7243EFBB000CB7233 /* YXCategoryNSObject */ = {
 			isa = PBXGroup;
 			children = (
 				846E55A8243EFBCD00CB7233 /* NSObject+YXCategory.h */,
 				846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */,
 			);
-			path = YXNSObjectCategory;
+			path = YXCategoryNSObject;
 			sourceTree = "<group>";
 		};
-		846E55AB243F152900CB7233 /* YXUIButtonCategory */ = {
+		846E55AB243F152900CB7233 /* YXCategoryUIButton */ = {
 			isa = PBXGroup;
 			children = (
 				846E55AC243F153C00CB7233 /* UIButton+YXCategory.h */,
 				846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */,
 			);
-			path = YXUIButtonCategory;
+			path = YXCategoryUIButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,18 +426,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				846E55A4243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m in Sources */,
-				846E55A5243EF2D200CB7233 /* YXBaseManager.m in Sources */,
+				846E55A5243EF2D200CB7233 /* YXCategoryBaseManager.m in Sources */,
 				846E555D243EF2BE00CB7233 /* ViewController.m in Sources */,
 				846E55A3243EF2D200CB7233 /* UIView+YXCategory.m in Sources */,
 				846E5557243EF2BE00CB7233 /* AppDelegate.m in Sources */,
 				846E55A1243EF2D200CB7233 /* NSMutableArray+YXCategory.m in Sources */,
+				844E19E4244057D4009FE378 /* YXToolLocalSaveByKeychain.m in Sources */,
 				846E5568243EF2C000CB7233 /* main.m in Sources */,
 				846E55A2243EF2D200CB7233 /* NSString+YXCategory.m in Sources */,
 				846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */,
 				846E55A0243EF2D200CB7233 /* UIColor+YXCategory.m in Sources */,
 				846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */,
+				844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */,
 				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,
 				846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */,
+				844E19DE24405707009FE378 /* YXToolLocalSave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,7 +610,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCategoryGroupTest/YXCategory/YXCategoryPCH.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCategoryGroupTest/YXClassesReferencePCH.pch";
 				INFOPLIST_FILE = YXCategoryGroupTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -586,7 +628,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCategoryGroupTest/YXCategory/YXCategoryPCH.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCategoryGroupTest/YXClassesReferencePCH.pch";
 				INFOPLIST_FILE = YXCategoryGroupTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
