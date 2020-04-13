@@ -11,12 +11,12 @@
 
 @implementation UIButton (YXCategory)
 
-static NSString *keyOfUseCategoryMethod; //用分类方法创建的button，关联对象的key
+//用分类方法创建的button，关联对象的key
+static NSString *keyOfUseCategoryMethod;
 static NSString *keyOfBlock;
 
 //因category不能添加属性，只能通过关联对象的方式。
 static const char *UIControlAcceptEventInterval = "UIControl_acceptEventInterval";
-
 static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
 
 #pragma mark - 通过block对button的点击事件封装
@@ -44,6 +44,83 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
     return button;
 }
 
+#pragma mark - 创建按钮包含普通及选中状态
++ (UIButton *)yxCreateSelectedBtnByFrame:(CGRect)frame norTitle:(NSString *)norTitle norTitleColor:(UIColor *)norTitleColor norTitleFont:(UIFont *)norTitleFont norImgName:(NSString *)norImgName norBgColor:(UIColor *)norBgColor selTitle:(NSString *)selTitle selTitleColor:(UIColor *)selTitleColor selTitleFont:(UIFont *)selTitleFont selImgName:(NSString *)selImgName selBgColor:(UIColor *)selBgColor bgImgName:(NSString *)bgImgName bgCorner:(NSString *)bgCorner boolSel:(BOOL)boolSel action:(YXBtnTapActionBlock)action {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = frame;
+    if (bgImgName != nil) {
+        UIImage *bgImg = [UIImage imageNamed:bgImgName];
+        bgImg = [bgImg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [button setBackgroundImage:bgImg forState:UIControlStateNormal];
+    }
+    if (bgCorner != nil) {
+        button.layer.cornerRadius = [bgCorner floatValue];
+        button.layer.masksToBounds = YES;
+    }
+    
+    button.norTitle = norTitle; button.norTitleColor = norTitleColor; button.norTitleFont = norTitleFont; button.norImgName = norImgName; button.norBgColor = norBgColor;
+    button.selTitle = selTitle; button.selTitleColor = selTitleColor; button.selTitleFont = selTitleFont; button.selImgName = selImgName; button.selBgColor = selBgColor;
+    button.boolSel = boolSel;
+    
+    [button addTarget:button action:@selector(tapAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    objc_setAssociatedObject (button, &keyOfUseCategoryMethod, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    
+    return button;
+}
+
+#pragma mark - 修改按钮包含普通及选中状态
+- (UIButton *)yxChangeSelectedBtnByTitle:(NSString *)norTitle norTitleColor:(UIColor *)norTitleColor norTitleFont:(UIFont *)norTitleFont norImgName:(NSString *)norImgName norBgColor:(UIColor *)norBgColor selTitle:(NSString *)selTitle selTitleColor:(UIColor *)selTitleColor selTitleFont:(UIFont *)selTitleFont selImgName:(NSString *)selImgName selBgColor:(UIColor *)selBgColor bgImgName:(NSString *)bgImgName bgCorner:(NSString *)bgCorner boolSel:(BOOL)boolSel action:(YXBtnTapActionBlock)action {
+    
+    if (bgImgName != nil) {
+        UIImage *bgImg = [UIImage imageNamed:bgImgName];
+        bgImg = [bgImg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [self setBackgroundImage:bgImg forState:UIControlStateNormal];
+    }
+    if (bgCorner != nil) {
+        self.layer.cornerRadius = [bgCorner floatValue];
+        self.layer.masksToBounds = YES;
+    }
+    
+    self.norTitle = norTitle; self.norTitleColor = norTitleColor; self.norTitleFont = norTitleFont; self.norImgName = norImgName; self.norBgColor = norBgColor;
+    self.selTitle = selTitle; self.selTitleColor = selTitleColor; self.selTitleFont = selTitleFont; self.selImgName = selImgName; self.selBgColor = selBgColor;
+    self.boolSel = boolSel;
+    
+    [self addTarget:self action:@selector(tapAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    objc_setAssociatedObject (self, &keyOfUseCategoryMethod, action, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    
+    return self;
+}
+
+#pragma mark - 按钮显示
+- (void)judgeBtnShow:(BOOL)boolSel {
+    
+    if (boolSel) {
+        if (self.selTitle) [self setTitle:self.selTitle forState:UIControlStateNormal];
+        if (self.selTitleColor) [self setTitleColor:self.selTitleColor forState:UIControlStateNormal];
+        if (self.selTitleFont) [self.titleLabel setFont:self.selTitleFont];
+        if (self.selBgColor) [self setBackgroundColor:self.selBgColor];
+        if (self.selImgName != nil) {
+            UIImage *selImg = [UIImage imageNamed:self.selImgName];
+            selImg = [selImg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            [self setImage:selImg forState:UIControlStateNormal];
+        }
+    }
+    else {
+        if (self.norTitle) [self setTitle:self.norTitle forState:UIControlStateNormal];
+        if (self.norTitleColor) [self setTitleColor:self.norTitleColor forState:UIControlStateNormal];
+        if (self.norTitleFont) [self.titleLabel setFont:self.norTitleFont];
+        if (self.norBgColor) [self setBackgroundColor:self.norBgColor];
+        if (self.norImgName != nil) {
+            UIImage *norImg = [UIImage imageNamed:self.norImgName];
+            norImg = [norImg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            [self setImage:norImg forState:UIControlStateNormal];
+        }
+    }
+}
+
 #pragma mark - 按钮点击事件
 - (void)tapAction:(UIButton *)sender {
     
@@ -51,13 +128,17 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
      * 通过key获取被关联对象
      * objc_getAssociatedObject(id object, const void *key)
      */
-    YXBtnTapActionBlock block = (YXBtnTapActionBlock)objc_getAssociatedObject (sender, &keyOfUseCategoryMethod);
+    self.boolSel =! self.boolSel;
+
+    YXBtnTapActionBlock block = (YXBtnTapActionBlock)objc_getAssociatedObject(sender, &keyOfUseCategoryMethod);
     
     if (block) {
-        block(sender);
+        block(sender, self.boolSel);
     }
 }
 
+#pragma mark - setting
+#pragma mark - 点击回调
 - (void)setYxBtnTapActionBlock:(YXBtnTapActionBlock)yxBtnTapActionBlock {
     
     objc_setAssociatedObject(self, &keyOfBlock, yxBtnTapActionBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -162,25 +243,6 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
     dispatch_resume(_timer);
 }
 
-#pragma mark - 使用runtime 防止按钮被重复点击
-- (NSTimeInterval)repeatClickEventInterval {
-    
-    return  [objc_getAssociatedObject(self, UIControlAcceptEventInterval) doubleValue];
-}
-- (void)setRepeatClickEventInterval:(NSTimeInterval)repeatClickEventInterval {
-    
-    objc_setAssociatedObject(self, UIControlAcceptEventInterval, @(repeatClickEventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSTimeInterval)acceptEventTime {
-    
-    return  [objc_getAssociatedObject(self, UIControlAcceptEventTime) doubleValue];
-}
-- (void)setAcceptEventTime:(NSTimeInterval)acceptEventTime {
-    
-    objc_setAssociatedObject(self, UIControlAcceptEventTime, @(acceptEventTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 #pragma mark - 在load时执行hook
 + (void)load {
     
@@ -221,6 +283,126 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
     }
 
     [self cs_sendAction:action to:target forEvent:event];
+}
+
+#pragma mark - 使用runtime 防止按钮被重复点击
+- (NSTimeInterval)repeatClickEventInterval {
+    
+    return [objc_getAssociatedObject(self, UIControlAcceptEventInterval) doubleValue];
+}
+- (void)setRepeatClickEventInterval:(NSTimeInterval)repeatClickEventInterval {
+    
+    objc_setAssociatedObject(self, UIControlAcceptEventInterval, @(repeatClickEventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSTimeInterval)acceptEventTime {
+    
+    return [objc_getAssociatedObject(self, UIControlAcceptEventTime) doubleValue];
+}
+- (void)setAcceptEventTime:(NSTimeInterval)acceptEventTime {
+    
+    objc_setAssociatedObject(self, UIControlAcceptEventTime, @(acceptEventTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSString *)norTitle {
+    
+    return objc_getAssociatedObject(self, @"norTitle");
+}
+- (void)setNorTitle:(NSString *)norTitle {
+    
+    objc_setAssociatedObject(self, @"norTitle", norTitle, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)norTitleColor {
+    
+    return objc_getAssociatedObject(self, @"norTitleColor");
+}
+- (void)setNorTitleColor:(UIColor *)norTitleColor {
+    
+    objc_setAssociatedObject(self, @"norTitleColor", norTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIFont *)norTitleFont {
+    
+    return objc_getAssociatedObject(self, @"norTitleFont");
+}
+- (void)setNorTitleFont:(UIFont *)norTitleFont {
+    
+    objc_setAssociatedObject(self, @"norTitleFont", norTitleFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSString *)norImgName {
+    
+    return objc_getAssociatedObject(self, @"norImgName");
+}
+- (void)setNorImgName:(NSString *)norImgName {
+    
+    objc_setAssociatedObject(self, @"norImgName", norImgName, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)norBgColor {
+    
+    return objc_getAssociatedObject(self, @"norBgColor");
+}
+- (void)setNorBgColor:(UIColor *)norBgColor {
+    
+    objc_setAssociatedObject(self, @"norBgColor", norBgColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSString *)selTitle {
+    
+    return objc_getAssociatedObject(self, @"selTitle");
+}
+- (void)setSelTitle:(NSString *)selTitle {
+    
+    objc_setAssociatedObject(self, @"selTitle", selTitle, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)selTitleColor {
+    
+    return objc_getAssociatedObject(self, @"selTitleColor");
+}
+- (void)setSelTitleColor:(UIColor *)selTitleColor {
+    
+    objc_setAssociatedObject(self, @"selTitleColor", selTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIFont *)selTitleFont {
+    
+    return objc_getAssociatedObject(self, @"selTitleFont");
+}
+- (void)setSelTitleFont:(UIFont *)selTitleFont {
+    
+    objc_setAssociatedObject(self, @"selTitleFont", selTitleFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSString *)selImgName {
+    
+    return objc_getAssociatedObject(self, @"selImgName");
+}
+- (void)setSelImgName:(NSString *)selImgName {
+    
+    objc_setAssociatedObject(self, @"selImgName", selImgName, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)selBgColor {
+    
+    return objc_getAssociatedObject(self, @"selBgColor");
+}
+- (void)setSelBgColor:(UIColor *)selBgColor {
+    
+    objc_setAssociatedObject(self, @"selBgColor", selBgColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)boolSel {
+    
+    return [objc_getAssociatedObject(self, @"boolSel") doubleValue];
+}
+- (void)setBoolSel:(BOOL)boolSel {
+    
+    objc_setAssociatedObject(self, @"boolSel", @(boolSel), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    [self judgeBtnShow:self.boolSel];
 }
 
 @end

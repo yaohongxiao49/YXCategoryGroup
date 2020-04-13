@@ -9,7 +9,7 @@
 #import "UIView+YXCategory.h"
 #import <objc/runtime.h>
 
-static const char *YXTapGestureBlock;
+static const char *kTapGestureRecognizerBlockAddress;
 
 @implementation UIView (YXCategory)
 
@@ -142,32 +142,31 @@ static const char *YXTapGestureBlock;
 }
 
 #pragma mark - 添加点击手势
-- (void)yxAddTapGestureWithBlock:(void(^)(UIView *view))block {
+- (void)yxTapUpWithBlock:(void(^)(UIView *))aBlock {
     
-    if (block) {
-        self.tapGestureBlock = block;
+    if (aBlock) {
+        self.tapAction = aBlock;
         self.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
-        [self addGestureRecognizer:tapGesture];
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelfTargetAction)];
+        [self addGestureRecognizer:tapGestureRecognizer];
     }
 }
-- (void)setTapGestureBlock:(void (^)(UIView *))tapGestureBlock {
+- (void)setTapAction:(void (^)(UIView *))tapAction {
     
-    objc_setAssociatedObject(self, &YXTapGestureBlock, tapGestureBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &kTapGestureRecognizerBlockAddress, tapAction, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void(^)(UIView *))tapGestureBlock {
+- (void(^)(UIView *))tapAction {
     
-    return objc_getAssociatedObject(self, &YXTapGestureBlock);
+    return objc_getAssociatedObject(self, &kTapGestureRecognizerBlockAddress);
 }
-- (void)tapAction {
+- (void)tapSelfTargetAction {
     
-    id block = objc_getAssociatedObject(self, &YXTapGestureBlock);
-    if (block == nil) {
+    id block = objc_getAssociatedObject(self, &kTapGestureRecognizerBlockAddress);
+    if (!block) {
         return;
     }
-    
-    void(^tapGestureBlock)(UIView *) = block;
-    tapGestureBlock(self);
+    void(^touchUpBlock)(UIView *) = block;
+    touchUpBlock(self);
 }
 
 #pragma mark - 指定圆角

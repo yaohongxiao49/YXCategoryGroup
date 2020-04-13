@@ -11,22 +11,22 @@
 
 #define kYXToolSqliteUserDefaultHandle [NSUserDefaults standardUserDefaults]
 
-#define userInfos @"userInfos"
-#define userNames @"userNames"
-#define userPassWords @"userPassWords"
+#define kYXToolAppBaseMsgUserInfos @"YXToolAppBaseMsgUserInfos"
+#define kYXToolAppBaseMsgUserNames @"YXToolAppBaseMsgVersionUserNames"
+#define kYXToolAppBaseMsgUserPassWords @"YXToolAppBaseMsgVersionUserPassWords"
 
 @implementation YXToolAppBaseMessage
 
-+ (id)sharedInstance {
++ (id)instanceManager {
     
-    static YXToolAppBaseMessage *yxBaseManager = nil;
+    static YXToolAppBaseMessage *yxToolAppBaseMessage = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        yxBaseManager = [YXToolAppBaseMessage new];
+        yxToolAppBaseMessage = [YXToolAppBaseMessage new];
     });
     
-    return yxBaseManager;
+    return yxToolAppBaseMessage;
 }
 
 + (void)synchronize {
@@ -36,64 +36,65 @@
 
 + (void)registerUserDefaults {
     
-    YXToolAppBaseMessage *defaults = [YXToolAppBaseMessage sharedInstance];
+    YXToolAppBaseMessage *defaults = [YXToolAppBaseMessage instanceManager];
     NSString *bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *settingVersion = [defaults versionString];
-    if (nil == settingVersion) { //初次使用应用
-        [defaults setVersionString:bundleVersion];
-        defaults.appState = PublicAppStateFirstUse;
+    NSString *settingVersion = [defaults version];
+    if (settingVersion == nil) { //初次使用应用
+        [defaults setVersion:bundleVersion];
+        defaults.appState = YXToolAppBaseTypeFirstUse;
     }
     else if (![bundleVersion isEqualToString:settingVersion]) { //通过版本和bundleVersion进行匹配来判断是否进行了更新
-        [defaults setVersionString:bundleVersion];
-        defaults.appState = PublicAppStateUpgrade;
+        [defaults setVersion:bundleVersion];
+        defaults.appState = YXToolAppBaseTypeUpgrade;
     }
     else { //正常情况
-        defaults.appState = PublicAppStateNormal;
+        defaults.appState = YXToolAppBaseTypeNormal;
     }
     [YXToolAppBaseMessage synchronize];
 }
 
 #pragma mark - saved key&value
-- (NSString *)versionString {
+#pragma mark - version
+- (NSString *)version {
     
-    return [YXToolLocalSaveBySqlite yxReadUserDefaultsByKey:@"PublicVersionString"];
+    return [YXToolLocalSaveBySqlite yxReadUserDefaultsByKey:@"YXToolAppBaseMsgVersion"];
+}
+- (void)setVersion:(NSString *)version {
+    
+    return [YXToolLocalSaveBySqlite yxSaveUserDefaultsByValue:version Key:@"YXToolAppBaseMsgVersion"];
 }
 
-- (void)setVersionString:(NSString *)versionString {
-    
-    return [YXToolLocalSaveBySqlite yxSaveUserDefaultsByValue:versionString Key:@"PublicVersionString"];
-}
-
+#pragma mark - userName
 - (NSString *)username {
     
-    return [YXToolLocalSaveBySqlite yxReadKeychainsByKey:userNames keychainKey:userInfos];
+    return [YXToolLocalSaveBySqlite yxReadKeychainsByKey:kYXToolAppBaseMsgUserNames keychainKey:kYXToolAppBaseMsgUserInfos];
 }
-
 - (void)setUsername:(NSString *)username {
     
-    [YXToolLocalSaveBySqlite yxSaveKeychainsByValue:username dicKey:userNames keychainKey:userInfos];
+    [YXToolLocalSaveBySqlite yxSaveKeychainsByValue:username dicKey:kYXToolAppBaseMsgUserNames keychainKey:kYXToolAppBaseMsgUserInfos];
 }
 
+#pragma mark - password
 - (NSString *)password {
     
-    return [YXToolLocalSaveBySqlite yxReadKeychainsByKey:userPassWords keychainKey:userInfos];
+    return [YXToolLocalSaveBySqlite yxReadKeychainsByKey:kYXToolAppBaseMsgUserPassWords keychainKey:kYXToolAppBaseMsgUserInfos];
 }
-
 - (void)setPassword:(NSString *)password {
     
-    [YXToolLocalSaveBySqlite yxSaveKeychainsByValue:password dicKey:userPassWords keychainKey:userInfos];
+    [YXToolLocalSaveBySqlite yxSaveKeychainsByValue:password dicKey:kYXToolAppBaseMsgUserPassWords keychainKey:kYXToolAppBaseMsgUserInfos];
 }
 
+#pragma mark - rememberLogin
 - (BOOL)rememberLogin {
     
-    return [kYXToolSqliteUserDefaultHandle boolForKey:@"PublicRememberLogin"];
+    return [kYXToolSqliteUserDefaultHandle boolForKey:@"YXToolAppBaseMsgRemLogin"];
 }
-
 - (void)setRememberLogin:(BOOL)rememberLogin {
     
-    [kYXToolSqliteUserDefaultHandle setBool:rememberLogin forKey:@"PublicRememberLogin"];
+    [kYXToolSqliteUserDefaultHandle setBool:rememberLogin forKey:@"YXToolAppBaseMsgRemLogin"];
 }
 
+#pragma mark - boolNotInHomeFirstUse
 - (BOOL)boolNotInHomeFirstUse {
     
     return [kYXToolSqliteUserDefaultHandle boolForKey:@"BoolNotInHomeFirstUse"];

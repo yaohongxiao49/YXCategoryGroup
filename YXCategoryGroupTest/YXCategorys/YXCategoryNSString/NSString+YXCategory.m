@@ -19,12 +19,111 @@
 }
 
 #pragma mark - 判断手机号有效性
-- (BOOL)yxBoolVaildMobile:(NSString *)mobile {
+- (BOOL)yxBoolVaildMobile {
     
-    NSString *phoneRegex = @"^((1[3456789]))\\d{9}$";
-    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    NSString *CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d|705)\\d{7}$"; //移动
+    NSString *CU = @"^1((3[0-2]|5[256]|8[56])\\d|709)\\d{7}$"; //联通
+    NSString *CT = @"^1((33|53|8[09])\\d|349|700)\\d{7}$"; //电信
+    NSString *PHS = @"^0(10|2[0-57-9]|\\d{3})\\d{7,8}$"; //小灵通
     
-    return [phoneTest evaluateWithObject:mobile];
+    BOOL CMRex = [self yxBoolValidateByRegex:CM];
+    BOOL CURex = [self yxBoolValidateByRegex:CU];
+    BOOL CTRex = [self yxBoolValidateByRegex:CT];
+    BOOL PHSRex = [self yxBoolValidateByRegex:PHS];
+    
+    return (CMRex || CURex || CTRex || PHSRex);
+}
+- (BOOL)yxBoolValidateByRegex:(NSString *)regex {
+    
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    return [pre evaluateWithObject:self];
+}
+
+#pragma mark - 手机号隐藏中间四位
+- (NSString *)yxPhoneNumHiddenCenter {
+    
+    if (![self yxBoolVaildMobile]) {
+        return nil;
+    }
+    NSString *startStr = [self substringWithRange:NSMakeRange(0, 3)];
+    NSString *endStr = [self substringWithRange:NSMakeRange(self.length - 4, 4)];
+    NSString *hiddenStr = [NSString stringWithFormat:@"%@****%@", startStr, endStr];
+    
+    return hiddenStr;
+}
+
+#pragma mark - 邮箱有效性
+- (BOOL)yxBoolEmail {
+    
+    NSString *regex = @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    
+    return [self yxBoolValidateByRegex:regex];
+}
+
+#pragma mark - 身份证号有效性
+- (BOOL)yxBoolIdCard {
+    
+    NSString *regex = @"^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
+    BOOL isRex = [self yxBoolValidateByRegex:regex];
+    if (!isRex) {
+         //身份证号码格式不对
+        return NO;
+    }
+    //加权因子 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2
+    NSArray *weightingArray = @[@"7", @"9", @"10", @"5", @"8", @"4", @"2", @"1", @"6", @"3", @"7", @"9", @"10", @"5", @"8", @"4", @"2"];
+    //校验码 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2
+    NSArray *verificationArray = @[@"1", @"0", @"10", @"9", @"8", @"7", @"6", @"5", @"4", @"3", @"2"];
+    
+    NSInteger sum = 0; //保存前17位各自乖以加权因子后的总和
+    for (int i = 0; i < weightingArray.count; i++) { //将前17位数字和加权因子相乘的结果相加
+        NSString *subStr = [self substringWithRange:NSMakeRange(i, 1)];
+        sum += [subStr integerValue] *[weightingArray[i] integerValue];
+    }
+    
+    NSInteger modNum = sum %11; //总和除以11取余
+    NSString *idCardMod = verificationArray[modNum]; //根据余数取出校验码
+    NSString *idCardLast = [self.uppercaseString substringFromIndex:17]; //获取身份证最后一位
+    
+    if (modNum == 2) { //等于2时 idCardMod为10 身份证最后一位用X表示10
+        idCardMod = @"X";
+    }
+    if ([idCardLast isEqualToString:idCardMod]) { //身份证号码验证成功
+        return YES;
+    }
+    
+    return NO;
+}
+
+#pragma mark - 车牌号有效性
+- (BOOL)yxBoolCarNumber {
+    
+    //车牌号:湘K-DE829 香港车牌号码:粤Z-J499港
+    NSString *carRegex = @"^[\u4e00-\u9fff]{1}[a-zA-Z]{1}[-][a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fff]$"; //其中\u4e00-\u9fa5表示unicode编码中汉字已编码部分，\u9fa5-\u9fff是保留部分，将来可能会添加
+    
+    return [self yxBoolValidateByRegex:carRegex];
+}
+
+#pragma mark - 是否为URL
+- (BOOL)yxBoolUrl {
+    
+    NSString *pattern = @"http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
+    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:0 error:nil];
+    NSArray *regexArray = [regex matchesInString:self options:0 range:NSMakeRange(0, self.length)];
+    if (regexArray.count > 0) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+#pragma mark - 校验密码
+- (BOOL)yxCheackPassByMax:(NSInteger)max min:(NSInteger)min {
+    
+    NSString *regex = [NSString stringWithFormat:@"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z`~!@#$%^&*()+=|{}':;',//[//].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]{%@,%@}$", @(min), @(max)];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch = [pred evaluateWithObject:self];
+    return isMatch;
 }
 
 #pragma mark - 判断是否能打开第三方平台

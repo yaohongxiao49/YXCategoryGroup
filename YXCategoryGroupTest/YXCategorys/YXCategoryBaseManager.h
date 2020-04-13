@@ -8,6 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <objc/runtime.h>
+#import <Photos/Photos.h>
+#import <CoreLocation/CoreLocation.h>
+#import <UserNotifications/UserNotifications.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+
+/** 媒体权限枚举 */
+typedef NS_ENUM(NSUInteger, YXCategoryPermissionsType) {
+    /** 相册 */
+    YXCategoryPermissionsTypePhoto,
+    /** 相机 */
+    YXCategoryPermissionsTypeCamera,
+    /** 视频 */
+    YXCategoryPermissionsTypeAudio,
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -55,18 +71,21 @@ NS_ASSUME_NONNULL_BEGIN
                    boolDetail:(BOOL)boolDetail;
 
 /**
- * 获取录音时长
- * @param path 地址
- */
-- (NSString *)yxGetVoiceTime:(NSString *)path;
-
-/**
  * 判断当前设备是否开启相机功能
  * @param vc 控制器
  * @param resultBlock 结果回调
  */
 - (void)yxJudgeAVCaptureDevice:(UIViewController *)vc
                    resultBlock:(void(^)(BOOL boolSuccess))resultBlock;
+
+/**
+ * 权限开启情况
+ * @param type 权限类型
+ * @param failBlock 未开启的回调
+ */
+- (void)yxJudgePermissionsByType:(YXCategoryPermissionsType)type
+                       failBlock:(void(^)(void))failBlock;
+@property (nonatomic, assign) CBManagerState cbManagerState;
 
 /**
  * 输入框输入字数限制

@@ -7,8 +7,10 @@
 //
 
 #import "YXCategoryBaseManager.h"
-#import <AVFoundation/AVFoundation.h>
-#import <objc/runtime.h>
+
+@interface YXCategoryBaseManager () <CBCentralManagerDelegate>
+
+@end
 
 @implementation YXCategoryBaseManager
 
@@ -93,16 +95,6 @@
     }
 }
 
-#pragma mark - 获取录音时长
-- (NSString *)yxGetVoiceTime:(NSString *)path {
-    
-    NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:path] options:opts];
-    CMTime audioDuration = urlAsset.duration;
-    int audioDurationSeconds = ceil(audioDuration.value /audioDuration.timescale);
-    return [NSString stringWithFormat:@"%@″", @(audioDurationSeconds)];
-}
-
 #pragma mark - 判断当前设备是否开启相机功能
 - (void)yxJudgeAVCaptureDevice:(UIViewController *)vc resultBlock:(void(^)(BOOL boolSuccess))resultBlock {
     
@@ -156,6 +148,104 @@
         [alertControl addAction:sureAlert];
         [vc presentViewController:alertControl animated:YES completion:nil];
     }
+}
+
+#pragma mark - 判断权限开启情况
+- (void)yxJudgePermissionsByType:(YXCategoryPermissionsType)type failBlock:(void(^)(void))failBlock {
+    
+    __weak typeof(self) weakSelf = self;
+    __block CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+         
+           dispatch_async(dispatch_get_main_queue(), ^{
+               
+               if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) { //相册权限
+                   [weakSelf yxShowAlertViewWithTitle:@"无法访问相册" message:@"请在设置-隐私-照片中允许访问相册" buttonTitles:@[@"设置", @"取消"]];
+               }
+               else if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusRestricted || [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusDenied) { //相机权限
+                   [weakSelf yxShowAlertViewWithTitle:@"无法访问相机" message:@"请在设置-隐私-相机中允许访问相机" buttonTitles:@[@"设置", @"取消"]];
+               }
+               else if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusRestricted || [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusDenied) { //麦克风权限
+                   [weakSelf yxShowAlertViewWithTitle:@"无法访问麦克风" message:@"请在设置-隐私-麦克风中允许访问麦克风" buttonTitles:@[@"设置", @"取消"]];
+               }
+               else if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) { //定位权限
+                   [weakSelf yxShowAlertViewWithTitle:@"无法访问定位信息" message:@"请在设置-隐私-定位服务中允许访问定位信息" buttonTitles:@[@"设置", @"取消"]];
+               }
+               else if (![self yxGetNotificationPermissions]) {
+                   [weakSelf yxShowAlertViewWithTitle:@"无法进行消息推送" message:@"请在设置-通知-app中允许通知" buttonTitles:@[@"设置", @"取消"]];
+               }
+               else if (self.cbManagerState != CBManagerStatePoweredOn) {
+                   centralManager = nil;
+                   [weakSelf yxShowAlertViewWithTitle:@"无法使用蓝牙" message:@"请在设置中检查蓝牙" buttonTitles:@[@"设置", @"取消"]];
+               }
+               else {
+                   if (failBlock) {
+                       failBlock();
+                   }
+               }
+           });
+       }];
+}
+
+#pragma mark - 获取推送权限
+- (BOOL)yxGetNotificationPermissions {
+    
+    __block BOOL boolOpen;
+    [[UNUserNotificationCenter currentNotificationCenter] getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+       
+        if (settings.authorizationStatus == UNAuthorizationStatusDenied || settings.authorizationStatus == UNAuthorizationStatusNotDetermined) {
+            boolOpen = NO;
+        }
+        else {
+            boolOpen = YES;
+        }
+    }];
+    
+    return boolOpen;
+}
+
+#pragma mark - <CBCentralManagerDelegate>获取蓝牙权限
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+ 
+    switch (central.state) {
+        case CBManagerStatePoweredOn:
+            NSLog(@"蓝牙开启且可用");
+            break;
+        case CBManagerStateUnknown:
+            NSLog(@"手机没有识别到蓝牙，请检查手机。");
+            break;
+        case CBManagerStateResetting:
+            NSLog(@"手机蓝牙已断开连接，重置中。");
+            break;
+        case CBManagerStateUnsupported:
+            NSLog(@"手机不支持蓝牙功能，请更换手机。");
+            break;
+        case CBManagerStatePoweredOff:
+            NSLog(@"手机蓝牙功能关闭，请前往设置打开蓝牙及控制中心打开蓝牙。");
+            break;
+        case CBManagerStateUnauthorized:
+            NSLog(@"手机蓝牙功能没有权限，请前往设置。");
+            break;
+        default:
+            break;
+    }
+    self.cbManagerState = (int)central.state;
+}
+
+#pragma mark - 显示弹窗
+- (void)yxShowAlertViewWithTitle:(NSString *)title message:(NSString *)message buttonTitles:(NSArray *)buttontitles {
+    
+    NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@YES};
+    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@", title] message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sureAlert = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"%@", buttontitles[0]] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:options completionHandler:nil];
+    }];
+    UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"%@", buttontitles[1]] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {}];
+    
+    [alertControl addAction:sureAlert];
+    [alertControl addAction:cancelAlert];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertControl animated:YES completion:nil];
 }
 
 #pragma mark - 输入框输入字数限制

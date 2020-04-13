@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, YXBtnEdgeInsetsStyle) {
     YXBtnEdgeInsetsStyleRight,
 };
 
-typedef void(^YXBtnTapActionBlock)(UIButton *button);
+typedef void(^YXBtnTapActionBlock)(UIButton *button, BOOL boolSelected);
 typedef void(^YXStartWithTimeIsEndBlock)(id);
 
 @interface UIButton (YXCategory)
@@ -42,12 +42,89 @@ typedef void(^YXStartWithTimeIsEndBlock)(id);
  * @return button
  */
 + (UIButton *)yxCreateBtnByFrame:(CGRect)frame
-                           title:(NSString *)title
-                    nomalImgName:(NSString *)nomalImgName
-                 selectedImgName:(NSString *)selectedImgName
-              highlightedImgName:(NSString *)highlightedImgName
-                       bgImgName:(NSString *)bgImgName
+                           title:(NSString *__nullable)title
+                    nomalImgName:(NSString *__nullable)nomalImgName
+                 selectedImgName:(NSString *__nullable)selectedImgName
+              highlightedImgName:(NSString *__nullable)highlightedImgName
+                       bgImgName:(NSString *__nullable)bgImgName
                           action:(YXBtnTapActionBlock)action;
+
+/**
+ * 创建按钮包含普通及选中状态
+ * @param frame 尺寸
+ * @param norTitle 普通标题
+ * @param norTitleColor 普通标题颜色
+ * @param norTitleFont 普通标题字号
+ * @param norImgName 普通图片
+ * @param norBgColor 普通背景色
+ * @param selTitle 选中标题
+ * @param selTitleColor 选中标题色
+ * @param selTitleFont 选中标题字号
+ * @param selImgName 选中图片
+ * @param selBgColor 选中背景色
+ * @param bgImgName 背景图片
+ * @param bgCorner 圆角
+ * @param boolSel 是否选中
+ * @param action 点击事件回调
+ */
++ (UIButton *)yxCreateSelectedBtnByFrame:(CGRect)frame
+                                norTitle:(NSString *__nullable)norTitle
+                           norTitleColor:(UIColor *__nullable)norTitleColor
+                            norTitleFont:(UIFont *__nullable)norTitleFont
+                              norImgName:(NSString *__nullable)norImgName
+                              norBgColor:(UIColor *__nullable)norBgColor
+                                selTitle:(NSString *__nullable)selTitle
+                           selTitleColor:(UIColor *__nullable)selTitleColor
+                            selTitleFont:(UIFont *__nullable)selTitleFont
+                              selImgName:(NSString *__nullable)selImgName
+                              selBgColor:(UIColor *__nullable)selBgColor
+                               bgImgName:(NSString *__nullable)bgImgName
+                                bgCorner:(NSString *__nullable)bgCorner
+                                 boolSel:(BOOL)boolSel
+                                  action:(YXBtnTapActionBlock)action;
+
+/**
+* 修改按钮包含普通及选中状态
+* @param norTitle 普通标题
+* @param norTitleColor 普通标题颜色
+* @param norTitleFont 普通标题字号
+* @param norImgName 普通图片
+* @param norBgColor 普通背景色
+* @param selTitle 选中标题
+* @param selTitleColor 选中标题色
+* @param selTitleFont 选中标题字号
+* @param selImgName 选中图片
+* @param selBgColor 选中背景色
+* @param bgImgName 背景图片
+* @param bgCorner 圆角
+* @param boolSel 是否选中
+* @param action 点击事件回调
+*/
+- (UIButton *)yxChangeSelectedBtnByTitle:(NSString *__nullable)norTitle
+                           norTitleColor:(UIColor *__nullable)norTitleColor
+                            norTitleFont:(UIFont *__nullable)norTitleFont
+                              norImgName:(NSString *__nullable)norImgName
+                              norBgColor:(UIColor *__nullable)norBgColor
+                                selTitle:(NSString *__nullable)selTitle
+                           selTitleColor:(UIColor *__nullable)selTitleColor
+                            selTitleFont:(UIFont *__nullable)selTitleFont
+                              selImgName:(NSString *__nullable)selImgName
+                              selBgColor:(UIColor *__nullable)selBgColor
+                               bgImgName:(NSString *__nullable)bgImgName
+                                bgCorner:(NSString *__nullable)bgCorner
+                                 boolSel:(BOOL)boolSel
+                                  action:(YXBtnTapActionBlock)action;
+@property (nonatomic, copy) NSString *norTitle; //普通标题
+@property (nonatomic, strong) UIColor *norTitleColor; //普通标题颜色
+@property (nonatomic, strong) UIFont *norTitleFont; //普通标题字号
+@property (nonatomic, copy) NSString *norImgName; //普通图片
+@property (nonatomic, strong) UIColor *norBgColor; //普通背景颜色
+@property (nonatomic, copy) NSString *selTitle; //选中标题
+@property (nonatomic, strong) UIColor *selTitleColor; //选中标题颜色
+@property (nonatomic, strong) UIFont *selTitleFont; //选中标题字号
+@property (nonatomic, copy) NSString *selImgName; //选中图片
+@property (nonatomic, strong) UIColor *selBgColor; //选中背景颜色
+@property (nonatomic, assign) BOOL boolSel; //是否选中
 
 /**
  * 设置button的titleLab和ImgView的布局样式，及间距

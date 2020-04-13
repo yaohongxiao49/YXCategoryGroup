@@ -56,10 +56,10 @@ NS_ASSUME_NONNULL_BEGIN
  * @param tensileRight 右部数值
  */
 + (UIImage *)yxGetTensileImgByImgName:(NSString *)imgName
-                           tensileTop:(NSString *)tensileTop
-                          tensileLeft:(NSString *)tensileLeft
-                        tensileBottom:(NSString *)tensileBottom
-                         tensileRight:(NSString *)tensileRight;
+                           tensileTop:(NSString *__nullable)tensileTop
+                          tensileLeft:(NSString *__nullable)tensileLeft
+                        tensileBottom:(NSString *__nullable)tensileBottom
+                         tensileRight:(NSString *__nullable)tensileRight;
 
 @end
 

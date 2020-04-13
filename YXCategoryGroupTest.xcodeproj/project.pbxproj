@@ -31,6 +31,20 @@
 		846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559F243EF2D200CB7233 /* UIImage+YXCategory.m */; };
 		846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */; };
 		846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */; };
+		84AD55DA2443F7CE00004B7E /* YXToolLocalSavePlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84AD55D92443F7CE00004B7E /* YXToolLocalSavePlist.plist */; };
+		84AD55DE2444018700004B7E /* YXToolMediaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55DD2444018700004B7E /* YXToolMediaManager.m */; };
+		84AD55F724442B7400004B7E /* TYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55E424442B7400004B7E /* TYAlertView.m */; };
+		84AD55F824442B7400004B7E /* UIView+TYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55E824442B7400004B7E /* UIView+TYAlertView.m */; };
+		84AD55F924442B7400004B7E /* TYAlertScaleFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55E924442B7400004B7E /* TYAlertScaleFadeAnimation.m */; };
+		84AD55FA24442B7400004B7E /* TYAlertFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55EB24442B7400004B7E /* TYAlertFadeAnimation.m */; };
+		84AD55FB24442B7400004B7E /* TYAlertController+TransitionAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55EC24442B7400004B7E /* TYAlertController+TransitionAnimate.m */; };
+		84AD55FC24442B7400004B7E /* UIView+TYAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55EE24442B7400004B7E /* UIView+TYAutoLayout.m */; };
+		84AD55FD24442B7400004B7E /* TYAlertDropDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55EF24442B7400004B7E /* TYAlertDropDownAnimation.m */; };
+		84AD55FE24442B7400004B7E /* TYShowAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55F224442B7400004B7E /* TYShowAlertView.m */; };
+		84AD55FF24442B7400004B7E /* TYBaseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55F324442B7400004B7E /* TYBaseAnimation.m */; };
+		84AD560024442B7400004B7E /* TYAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55F524442B7400004B7E /* TYAlertController.m */; };
+		84AD560424442BC000004B7E /* YXToolAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560224442BC000004B7E /* YXToolAlert.m */; };
+		84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560624442BDF00004B7E /* YXToolAlertVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +114,32 @@
 		846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YXCategory.m"; sourceTree = "<group>"; };
 		846E55AC243F153C00CB7233 /* UIButton+YXCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+YXCategory.h"; sourceTree = "<group>"; };
 		846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YXCategory.m"; sourceTree = "<group>"; };
+		84AD55D92443F7CE00004B7E /* YXToolLocalSavePlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YXToolLocalSavePlist.plist; sourceTree = "<group>"; };
+		84AD55DC2444018700004B7E /* YXToolMediaManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolMediaManager.h; sourceTree = "<group>"; };
+		84AD55DD2444018700004B7E /* YXToolMediaManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolMediaManager.m; sourceTree = "<group>"; };
+		84AD55E424442B7400004B7E /* TYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertView.m; sourceTree = "<group>"; };
+		84AD55E524442B7400004B7E /* TYAlertDropDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertDropDownAnimation.h; sourceTree = "<group>"; };
+		84AD55E624442B7400004B7E /* UIView+TYAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TYAutoLayout.h"; sourceTree = "<group>"; };
+		84AD55E724442B7400004B7E /* TYShowAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYShowAlertView.h; sourceTree = "<group>"; };
+		84AD55E824442B7400004B7E /* UIView+TYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TYAlertView.m"; sourceTree = "<group>"; };
+		84AD55E924442B7400004B7E /* TYAlertScaleFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertScaleFadeAnimation.m; sourceTree = "<group>"; };
+		84AD55EA24442B7400004B7E /* TYBaseAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYBaseAnimation.h; sourceTree = "<group>"; };
+		84AD55EB24442B7400004B7E /* TYAlertFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertFadeAnimation.m; sourceTree = "<group>"; };
+		84AD55EC24442B7400004B7E /* TYAlertController+TransitionAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TYAlertController+TransitionAnimate.m"; sourceTree = "<group>"; };
+		84AD55ED24442B7400004B7E /* TYAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertController.h; sourceTree = "<group>"; };
+		84AD55EE24442B7400004B7E /* UIView+TYAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TYAutoLayout.m"; sourceTree = "<group>"; };
+		84AD55EF24442B7400004B7E /* TYAlertDropDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertDropDownAnimation.m; sourceTree = "<group>"; };
+		84AD55F024442B7400004B7E /* TYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertView.h; sourceTree = "<group>"; };
+		84AD55F124442B7400004B7E /* UIView+TYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TYAlertView.h"; sourceTree = "<group>"; };
+		84AD55F224442B7400004B7E /* TYShowAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYShowAlertView.m; sourceTree = "<group>"; };
+		84AD55F324442B7400004B7E /* TYBaseAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYBaseAnimation.m; sourceTree = "<group>"; };
+		84AD55F424442B7400004B7E /* TYAlertScaleFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertScaleFadeAnimation.h; sourceTree = "<group>"; };
+		84AD55F524442B7400004B7E /* TYAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertController.m; sourceTree = "<group>"; };
+		84AD55F624442B7400004B7E /* TYAlertFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertFadeAnimation.h; sourceTree = "<group>"; };
+		84AD560224442BC000004B7E /* YXToolAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXToolAlert.m; sourceTree = "<group>"; };
+		84AD560324442BC000004B7E /* YXToolAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXToolAlert.h; sourceTree = "<group>"; };
+		84AD560524442BDF00004B7E /* YXToolAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolAlertVC.h; sourceTree = "<group>"; };
+		84AD560624442BDF00004B7E /* YXToolAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolAlertVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +170,8 @@
 		844E19CD2440516D009FE378 /* YXTools */ = {
 			isa = PBXGroup;
 			children = (
+				84AD55DF24442B1F00004B7E /* YXToolAlert */,
+				84AD55DB2444016D00004B7E /* YXToolMedia */,
 				844E19D52440552C009FE378 /* YXToolLocalSave */,
 				844E19CE244051C5009FE378 /* YXToolLogs */,
 			);
@@ -158,6 +200,7 @@
 				844E19E3244057D4009FE378 /* YXToolLocalSaveByKeychain.m */,
 				844E19E824407990009FE378 /* YXToolGetSandbox.h */,
 				844E19E924407990009FE378 /* YXToolGetSandbox.m */,
+				84AD55D92443F7CE00004B7E /* YXToolLocalSavePlist.plist */,
 			);
 			path = YXToolLocalSave;
 			sourceTree = "<group>";
@@ -310,6 +353,61 @@
 			path = YXCategoryUIButton;
 			sourceTree = "<group>";
 		};
+		84AD55DB2444016D00004B7E /* YXToolMedia */ = {
+			isa = PBXGroup;
+			children = (
+				84AD55DC2444018700004B7E /* YXToolMediaManager.h */,
+				84AD55DD2444018700004B7E /* YXToolMediaManager.m */,
+			);
+			path = YXToolMedia;
+			sourceTree = "<group>";
+		};
+		84AD55DF24442B1F00004B7E /* YXToolAlert */ = {
+			isa = PBXGroup;
+			children = (
+				84AD560124442BC000004B7E /* YXToolAlertView */,
+				84AD55E324442B7400004B7E /* TYAlertController */,
+			);
+			path = YXToolAlert;
+			sourceTree = "<group>";
+		};
+		84AD55E324442B7400004B7E /* TYAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				84AD55ED24442B7400004B7E /* TYAlertController.h */,
+				84AD55F524442B7400004B7E /* TYAlertController.m */,
+				84AD55F024442B7400004B7E /* TYAlertView.h */,
+				84AD55E424442B7400004B7E /* TYAlertView.m */,
+				84AD55E524442B7400004B7E /* TYAlertDropDownAnimation.h */,
+				84AD55EF24442B7400004B7E /* TYAlertDropDownAnimation.m */,
+				84AD55E624442B7400004B7E /* UIView+TYAutoLayout.h */,
+				84AD55EE24442B7400004B7E /* UIView+TYAutoLayout.m */,
+				84AD55E724442B7400004B7E /* TYShowAlertView.h */,
+				84AD55F224442B7400004B7E /* TYShowAlertView.m */,
+				84AD55EA24442B7400004B7E /* TYBaseAnimation.h */,
+				84AD55F324442B7400004B7E /* TYBaseAnimation.m */,
+				84AD55F624442B7400004B7E /* TYAlertFadeAnimation.h */,
+				84AD55EB24442B7400004B7E /* TYAlertFadeAnimation.m */,
+				84AD55F124442B7400004B7E /* UIView+TYAlertView.h */,
+				84AD55E824442B7400004B7E /* UIView+TYAlertView.m */,
+				84AD55E924442B7400004B7E /* TYAlertScaleFadeAnimation.m */,
+				84AD55F424442B7400004B7E /* TYAlertScaleFadeAnimation.h */,
+				84AD55EC24442B7400004B7E /* TYAlertController+TransitionAnimate.m */,
+			);
+			path = TYAlertController;
+			sourceTree = "<group>";
+		};
+		84AD560124442BC000004B7E /* YXToolAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				84AD560324442BC000004B7E /* YXToolAlert.h */,
+				84AD560224442BC000004B7E /* YXToolAlert.m */,
+				84AD560524442BDF00004B7E /* YXToolAlertVC.h */,
+				84AD560624442BDF00004B7E /* YXToolAlertVC.m */,
+			);
+			path = YXToolAlertView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -414,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				846E5565243EF2C000CB7233 /* LaunchScreen.storyboard in Resources */,
+				84AD55DA2443F7CE00004B7E /* YXToolLocalSavePlist.plist in Resources */,
 				846E5562243EF2C000CB7233 /* Assets.xcassets in Resources */,
 				846E5560243EF2BE00CB7233 /* Main.storyboard in Resources */,
 			);
@@ -440,21 +539,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AD55F824442B7400004B7E /* UIView+TYAlertView.m in Sources */,
 				846E55A4243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m in Sources */,
+				84AD55FA24442B7400004B7E /* TYAlertFadeAnimation.m in Sources */,
 				846E55A5243EF2D200CB7233 /* YXCategoryBaseManager.m in Sources */,
+				84AD55F924442B7400004B7E /* TYAlertScaleFadeAnimation.m in Sources */,
+				84AD55FC24442B7400004B7E /* UIView+TYAutoLayout.m in Sources */,
+				84AD55F724442B7400004B7E /* TYAlertView.m in Sources */,
+				84AD560424442BC000004B7E /* YXToolAlert.m in Sources */,
 				846E555D243EF2BE00CB7233 /* ViewController.m in Sources */,
 				846E55A3243EF2D200CB7233 /* UIView+YXCategory.m in Sources */,
+				84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */,
 				846E5557243EF2BE00CB7233 /* AppDelegate.m in Sources */,
+				84AD55DE2444018700004B7E /* YXToolMediaManager.m in Sources */,
+				84AD55FE24442B7400004B7E /* TYShowAlertView.m in Sources */,
 				844E19E724406F3D009FE378 /* YXToolLocalSaveBySqlite.m in Sources */,
+				84AD560024442B7400004B7E /* TYAlertController.m in Sources */,
 				846E55A1243EF2D200CB7233 /* NSMutableArray+YXCategory.m in Sources */,
+				84AD55FB24442B7400004B7E /* TYAlertController+TransitionAnimate.m in Sources */,
 				844E19E4244057D4009FE378 /* YXToolLocalSaveByKeychain.m in Sources */,
 				846E5568243EF2C000CB7233 /* main.m in Sources */,
 				846E55A2243EF2D200CB7233 /* NSString+YXCategory.m in Sources */,
 				846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */,
 				846E55A0243EF2D200CB7233 /* UIColor+YXCategory.m in Sources */,
+				84AD55FD24442B7400004B7E /* TYAlertDropDownAnimation.m in Sources */,
 				846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */,
 				844E19ED24407B56009FE378 /* YXToolAppBaseMessage.m in Sources */,
 				844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */,
+				84AD55FF24442B7400004B7E /* TYBaseAnimation.m in Sources */,
 				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,
 				844E19EA24407990009FE378 /* YXToolGetSandbox.m in Sources */,
 				846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */,
@@ -628,6 +740,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HSQ24Z864;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCategoryGroupTest/YXClassesReferencePCH.pch";
 				INFOPLIST_FILE = YXCategoryGroupTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -646,6 +759,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2HSQ24Z864;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCategoryGroupTest/YXClassesReferencePCH.pch";
 				INFOPLIST_FILE = YXCategoryGroupTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

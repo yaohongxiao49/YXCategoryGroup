@@ -16,11 +16,31 @@ NS_ASSUME_NONNULL_BEGIN
 /** 是否有值 */
 - (BOOL)yxHasValue;
 
+/** 判断手机号有效性 */
+- (BOOL)yxBoolVaildMobile;
+
+/** 隐藏手机号中间四位 */
+- (NSString *)yxPhoneNumHiddenCenter;
+
+/** 邮箱有效性 */
+- (BOOL)yxBoolEmail;
+
+/** 身份证号有效性 */
+- (BOOL)yxBoolIdCard;
+
+/** 车牌号有效性 */
+- (BOOL)yxBoolCarNumber;
+
+/** 是否是链接 */
+- (BOOL)yxBoolUrl;
+
 /**
- * 判断手机号有效性
- * @param mobile 手机号
+ * 校验密码
+ * @param max 最大位数
+ * @param min 最小位数
  */
-- (BOOL)yxBoolVaildMobile:(NSString *)mobile;
+- (BOOL)yxCheackPassByMax:(NSInteger)max
+                      min:(NSInteger)min;
 
 /**
  * 判断是否能打开第三方平台

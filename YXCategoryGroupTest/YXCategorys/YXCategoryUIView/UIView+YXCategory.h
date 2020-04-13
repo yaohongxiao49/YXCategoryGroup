@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 添加点击手势
  * @param block 点击回调
  */
-- (void)yxAddTapGestureWithBlock:(void(^)(UIView *view))block;
+- (void)yxTapUpWithBlock:(void(^)(UIView *view))block;
 
 /**
  * 指定圆角
