@@ -7,8 +7,6 @@
 //
 
 #import "YXToolMediaManager.h"
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 
 @implementation YXToolMediaManager
 

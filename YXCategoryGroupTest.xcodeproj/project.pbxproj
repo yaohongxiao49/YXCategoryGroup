@@ -114,6 +114,8 @@
 		846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YXCategory.m"; sourceTree = "<group>"; };
 		846E55AC243F153C00CB7233 /* UIButton+YXCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+YXCategory.h"; sourceTree = "<group>"; };
 		846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YXCategory.m"; sourceTree = "<group>"; };
+		8487941F2446D9E20010B23B /* YXCategorysPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCategorysPCH.pch; sourceTree = "<group>"; };
+		848794202446D9FF0010B23B /* YXToolsPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolsPCH.pch; sourceTree = "<group>"; };
 		84AD55D92443F7CE00004B7E /* YXToolLocalSavePlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YXToolLocalSavePlist.plist; sourceTree = "<group>"; };
 		84AD55DC2444018700004B7E /* YXToolMediaManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolMediaManager.h; sourceTree = "<group>"; };
 		84AD55DD2444018700004B7E /* YXToolMediaManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolMediaManager.m; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		844E19CD2440516D009FE378 /* YXTools */ = {
 			isa = PBXGroup;
 			children = (
+				848794202446D9FF0010B23B /* YXToolsPCH.pch */,
 				84AD55DF24442B1F00004B7E /* YXToolAlert */,
 				84AD55DB2444016D00004B7E /* YXToolMedia */,
 				844E19D52440552C009FE378 /* YXToolLocalSave */,
@@ -267,6 +270,7 @@
 		846E558A243EF2D200CB7233 /* YXCategorys */ = {
 			isa = PBXGroup;
 			children = (
+				8487941F2446D9E20010B23B /* YXCategorysPCH.pch */,
 				846E558E243EF2D200CB7233 /* YXCategoryBaseManager.h */,
 				846E559C243EF2D200CB7233 /* YXCategoryBaseManager.m */,
 				846E55A7243EFBB000CB7233 /* YXCategoryNSObject */,

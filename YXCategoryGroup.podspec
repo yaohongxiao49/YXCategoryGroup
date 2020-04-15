@@ -3,7 +3,7 @@
 Pod::Spec.new do |spec|
 
   spec.name                = "YXCategoryGroup" #跟文件名保持一致
-  spec.version             = "0.1.2"
+  spec.version             = "0.1.3"
   spec.summary             = "基础数据类型的分类集合"
   spec.description         = <<-DESC
                              this project provide all kinds of categories for iOS developer 
@@ -14,14 +14,17 @@ Pod::Spec.new do |spec|
   spec.platform            = :ios, "10.0"
   spec.source              = { :git => "https://github.com/yaohongxiao49/YXCategoryGroup.git", :tag => "#{spec.version}"}
 
+  spec.source_files         = "YXCategoryGroupTest/**/*.{h,m}"
+  spec.private_header_files = "YXCategoryGroupTest/*.(h,m)"
+
   spec.subspec 'YXCategorys' do |s|
-    s.source_files        = "YXCategoryGroupTest/YXCategorys/**/*.{h,m}"
-    s.public_header_files = "YXCategoryGroupTest/YXCategorys/**/*.h"
+    s.source_files         = "YXCategoryGroupTest/YXCategorys/**/*.{h,m}"
+    s.public_header_files  = "YXCategoryGroupTest/YXCategorys/**/*.h"
   end
 
   spec.subspec 'YXTools' do |s|
-    s.source_files        = "YXCategoryGroupTest/YXTools/**/*.{h,m}"
-    s.public_header_files = "YXCategoryGroupTest/YXTools/**/*.h"
+    s.source_files         = "YXCategoryGroupTest/YXTools/**/*.{h,m}"
+    s.public_header_files  = "YXCategoryGroupTest/YXTools/**/*.h"
   end
 
   spec.exclude_files       = "Classes/Exclude"

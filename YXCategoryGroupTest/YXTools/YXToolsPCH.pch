@@ -1,0 +1,20 @@
+//
+//  YXToolsPCH.pch
+//  YXCategoryGroupTest
+//
+//  Created by ios on 2020/4/15.
+//  Copyright © 2020 August. All rights reserved.
+//
+
+#ifndef YXToolsPCH_pch
+#define YXToolsPCH_pch
+
+#import "YXToolLogs.h"
+#import "YXToolAppBaseMessage.h"
+#import "YXToolLocalSave.h"
+#import "YXToolLocalSaveBySqlite.h"
+#import "YXToolMediaManager.h"
+#import "YXToolAlert.h"
+#import "TYAlertController.h"
+
+#endif /* YXToolsPCH_pch */

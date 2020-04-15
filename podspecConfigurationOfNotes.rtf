@@ -61,12 +61,21 @@ Pod::Spec.new do |spec|\
 \cb1   spec.exclude_files       = "Classes/Exclude" 
 \f2 \cf5 \cb6 \expnd0\expndtw0\kerning0
 #
-\f1 \'d7\'ca\'d4\'b4\'ce\'c4\'bc\'fe\'b5\'d8\'d6\'b7
+\f1 \'b2\'bb\'b0\'fc\'ba\'ac\'b5\'c4\'ce\'c4\'bc\'fe
 \f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
   spec.public_header_files = "YXCategoryGroupTest/**/*.h" 
 \f2 \cf5 \cb6 \expnd0\expndtw0\kerning0
 #
-\f1 \'bf\'aa\'b7\'c5\'b5\'c4\'cd\'b7\'ce\'c4\'bc\'fe
+\f1 \'bf\'aa\'b7\'c5\'b5\'c4\'cd\'b7\'ce\'c4\'bc\'fe\
+  spec.subspec 'YXCategorys' do |s| #\'d7\'e9\'bc\'fe\'bb\'af\
+    s.source_files         = "YXCategoryGroupTest/YXCategorys/**/*.\{h,m\}"\
+    s.public_header_files  = "YXCategoryGroupTest/YXCategorys/**/*.h"\
+    s.prefix_header_file   = "YXCategoryGroupTest/YXCategorys/YXCategorysPCH.pch"\
+  end\
+  
+\f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 spec
+\f1 \cf5 \cb6 \expnd0\expndtw0\kerning0
+.prefix_header_file  = 'YXCategoryGroupTest/YXClassesReferencePCH.pch' #pch\'cb\'f9\'d4\'da\'b5\'d8\'d6\'b7
 \f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
   spec.requires_arc        = true\
 #  spec.frameworks         =  \'91UIKit\'92 #
