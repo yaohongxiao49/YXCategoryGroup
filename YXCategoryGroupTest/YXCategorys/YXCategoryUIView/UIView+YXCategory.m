@@ -179,4 +179,26 @@ static const char *kTapGestureRecognizerBlockAddress;
     view.layer.mask = maskLayer;
 }
 
+#pragma mark - 指定圆角带边框
++ (void)getSpecifiedFilletWithBorder:(UIView *)view corners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor {
+    
+    [self getSpecifiedFillet:view corners:corners cornerRadii:cornerRadii];
+    [view.layer.sublayers enumerateObjectsUsingBlock:^(__kindof CALayer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        if ([obj isKindOfClass:[CAShapeLayer class]]) {
+            [obj removeFromSuperlayer];
+        }
+    }];
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:corners cornerRadii:cornerRadii];
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    maskLayer.fillColor = [UIColor clearColor].CGColor;
+    maskLayer.strokeColor = lineColor.CGColor;
+    maskLayer.lineWidth = lineWidth;
+    [view.layer addSublayer:maskLayer];
+}
+
 @end

@@ -49,11 +49,25 @@ NS_ASSUME_NONNULL_BEGIN
  * 指定圆角
  * @param view 视图
  * @param corners 圆角方位
- * @param cornerRadii 圆角层度
+ * @param cornerRadii 圆角程度
  */
 + (void)yxSpecifiedCornerFilletByView:(UIView *)view
                               corners:(UIRectCorner)corners
                           cornerRadii:(CGSize)cornerRadii;
+
+/**
+ * 指定圆角带边框
+ * @param view 视图
+ * @param corners 圆角方位
+ * @param cornerRadii 圆角程度
+ * @param lineWidth 边框宽度
+ * @param lineColor 边框色值
+ */
++ (void)getSpecifiedFilletWithBorder:(UIView *)view
+                             corners:(UIRectCorner)corners
+                         cornerRadii:(CGSize)cornerRadii
+                           lineWidth:(CGFloat)lineWidth
+                           lineColor:(UIColor *)lineColor;
 
 @end
 
