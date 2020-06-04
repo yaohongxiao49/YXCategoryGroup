@@ -235,4 +235,25 @@
     return newImage;
 }
 
+#pragma mark - 动态填充图片色值
+- (UIImage *)yxFillImgColorByImg:(UIImage *)img showSize:(CGSize)showSize toColor:(UIColor *)color fillWidth:(CGFloat)fillWidth {
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(showSize.width, img.size.height), NO, img.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0, img.size.height);
+
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    CGRect rect = CGRectMake(0, 0, showSize.width, img.size.height);
+
+    CGContextClipToMask(context, rect, img.CGImage);
+    [color setFill];
+    
+    CGContextFillRect(context, CGRectMake(0, 0, fillWidth, rect.size.height));
+    UIImage *colorImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    return colorImage;
+}
+
 @end

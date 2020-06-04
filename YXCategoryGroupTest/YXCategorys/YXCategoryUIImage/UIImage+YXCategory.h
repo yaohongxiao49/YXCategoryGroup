@@ -61,6 +61,18 @@ NS_ASSUME_NONNULL_BEGIN
                         tensileBottom:(NSString *__nullable)tensileBottom
                          tensileRight:(NSString *__nullable)tensileRight;
 
+/**
+ * 动态填充/更改图片颜色（如需要看到原图与更改后的差别，需在底部增加一个原图显示控件）
+ * @param img 需要填充/更改图片
+ * @param showSize 显示范围
+ * @param color 填充/更改色值
+ * @param fillWidth 填充范围
+ */
+- (UIImage *)yxFillImgColorByImg:(UIImage *)img
+                        showSize:(CGSize)showSize
+                         toColor:(UIColor *)color
+                       fillWidth:(CGFloat)fillWidth;
+
 @end
 
 NS_ASSUME_NONNULL_END
