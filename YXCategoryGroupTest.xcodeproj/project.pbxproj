@@ -31,6 +31,7 @@
 		846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E559F243EF2D200CB7233 /* UIImage+YXCategory.m */; };
 		846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E55A9243EFBCD00CB7233 /* NSObject+YXCategory.m */; };
 		846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */; };
+		84A67C322490AAC100BACE1B /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 84A67C312490AAC100BACE1B /* test.mov */; };
 		84AD55DA2443F7CE00004B7E /* YXToolLocalSavePlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84AD55D92443F7CE00004B7E /* YXToolLocalSavePlist.plist */; };
 		84AD55DE2444018700004B7E /* YXToolMediaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55DD2444018700004B7E /* YXToolMediaManager.m */; };
 		84AD55F724442B7400004B7E /* TYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55E424442B7400004B7E /* TYAlertView.m */; };
@@ -116,6 +117,7 @@
 		846E55AD243F153C00CB7233 /* UIButton+YXCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+YXCategory.m"; sourceTree = "<group>"; };
 		8487941F2446D9E20010B23B /* YXCategorysPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCategorysPCH.pch; sourceTree = "<group>"; };
 		848794202446D9FF0010B23B /* YXToolsPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolsPCH.pch; sourceTree = "<group>"; };
+		84A67C312490AAC100BACE1B /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = test.mov; sourceTree = "<group>"; };
 		84AD55D92443F7CE00004B7E /* YXToolLocalSavePlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YXToolLocalSavePlist.plist; sourceTree = "<group>"; };
 		84AD55DC2444018700004B7E /* YXToolMediaManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolMediaManager.h; sourceTree = "<group>"; };
 		84AD55DD2444018700004B7E /* YXToolMediaManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolMediaManager.m; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				846E5563243EF2C000CB7233 /* LaunchScreen.storyboard */,
 				846E5566243EF2C000CB7233 /* Info.plist */,
 				846E5567243EF2C000CB7233 /* main.m */,
+				84A67C312490AAC100BACE1B /* test.mov */,
 			);
 			path = YXCategoryGroupTest;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A67C322490AAC100BACE1B /* test.mov in Resources */,
 				846E5565243EF2C000CB7233 /* LaunchScreen.storyboard in Resources */,
 				84AD55DA2443F7CE00004B7E /* YXToolLocalSavePlist.plist in Resources */,
 				846E5562243EF2C000CB7233 /* Assets.xcassets in Resources */,

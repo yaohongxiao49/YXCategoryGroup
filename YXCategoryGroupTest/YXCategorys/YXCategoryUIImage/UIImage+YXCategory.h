@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#if TARGET_OS_IPHONE
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <UIKit/UIKit.h>
+#elif TARGET_OS_MAC
+#import <CoreServices/CoreServices.h>
+#import <WebKit/WebKit.h>
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (YXCategory)
@@ -19,6 +27,31 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIImage *)yxGetVideoThumbnailWithVideoUrl:(NSString *)videoUrl
                                       second:(CGFloat)second;
+
+/**
+ * 根据时间、帧率获取视频帧图片集合
+ * @param videoUrl 视频地址
+ * @param second 持续时间
+ * @param fps 帧率
+ */
+- (void)getVideoFrameImageWithUrl:(NSURL *)videoUrl
+                           second:(CGFloat)second
+                              fps:(float)fps
+                      finishBlock:(void(^)(NSMutableArray *arr))finishBlock;
+
+/**
+ * 图片合成gif
+ * @param imagePathArray 图片数组
+ * @param gifNamed gif名称
+ */
+- (NSString *)yxSyntheticGifByImgArr:(NSMutableArray *)imagePathArray
+                            gifNamed:(NSString *)gifNamed;
+
+/**
+ * 分割gif
+ * @param url 地址
+ */
+- (NSMutableArray *)yxSegmentationGifByUrl:(NSURL *)url;
 
 /** 获取启动图 */
 + (UIImage *)yxGetLaunchImage;
@@ -72,6 +105,28 @@ NS_ASSUME_NONNULL_BEGIN
                         showSize:(CGSize)showSize
                          toColor:(UIColor *)color
                        fillWidth:(CGFloat)fillWidth;
+
+/**
+ *  将本地视频转换成Gif图
+ *  @param videoUrl 本地视频的url
+ *  @param frameCount 一共切多少张
+ *  @param delayTime 每一张几秒钟显示
+ *  @param loopCount 是否循环
+ *  @param boolNeedCompression 是否需要压缩
+ *  @param compressionWidth 压缩尺寸 宽
+ *  @param compressionHight 压缩尺寸 高
+ *  @param filleName 生成gif 的文件名
+ *  @param completionBlock 成功回调 会返回 gif tmp文件下本地路径
+ */
++ (void)yxCreateGifByUrl:(NSURL *)videoUrl
+              frameCount:(int)frameCount
+               delayTime:(float)delayTime
+               loopCount:(int)loopCount
+     boolNeedCompression:(BOOL)boolNeedCompression
+        compressionWidth:(float)compressionWidth
+        compressionHight:(float)compressionHight
+               filleName:(NSString *)filleName
+         completionBlock:(void(^)(NSString *gifPath))completionBlock;
 
 @end
 
