@@ -19,7 +19,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    __weak typeof(self) weakSelf = self;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mov"];
     NSURL *url = [NSURL fileURLWithPath:path];
     
