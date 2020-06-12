@@ -30,7 +30,7 @@
     
     [[UIImage alloc] getVideoFrameImageWithUrl:url second:3 fps:20 finishBlock:^(NSMutableArray * _Nonnull arr) {
         
-        NSString *path = [[UIImage alloc] yxSyntheticGifByImgArr:arr gifNamed:@"test"];
+        NSString *path = [[UIImage alloc] yxSyntheticGifByImgArr:arr gifNamed:@"test" targetSize:CGSizeMake(100, 100)];
         UIImage *img = [UIImage imageWithContentsOfFile:path];
         
         dispatch_async(dispatch_get_main_queue(), ^{

@@ -43,9 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
  * 图片合成gif
  * @param imagePathArray 图片数组
  * @param gifNamed gif名称
+ * @param targetSize 根据尺寸压缩
  */
 - (NSString *)yxSyntheticGifByImgArr:(NSMutableArray *)imagePathArray
-                            gifNamed:(NSString *)gifNamed;
+                            gifNamed:(NSString *)gifNamed
+                          targetSize:(CGSize)targetSize;
 
 /**
  * 分割gif

@@ -114,7 +114,7 @@ typedef NS_ENUM(NSUInteger, GifSize) {
 }
 
 #pragma mark - 合成gif
-- (NSString *)yxSyntheticGifByImgArr:(NSMutableArray *)imagePathArray gifNamed:(NSString *)gifNamed {
+- (NSString *)yxSyntheticGifByImgArr:(NSMutableArray *)imagePathArray gifNamed:(NSString *)gifNamed targetSize:(CGSize)targetSize {
     
     //创建储存路径
     NSString *savePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
@@ -137,12 +137,13 @@ typedef NS_ENUM(NSUInteger, GifSize) {
     [dict setObject:(NSString *)kCGImagePropertyColorModelRGB forKey:(NSString *)kCGImagePropertyColorModel];
     [dict setObject:[NSNumber numberWithInt:16] forKey:(NSString*)kCGImagePropertyDepth]; //颜色深度
     [dict setObject:[NSNumber numberWithInt:0] forKey:(NSString *)kCGImagePropertyGIFLoopCount];
-    
     NSDictionary *gifproperty = [NSDictionary dictionaryWithObject:dict forKey:(NSString *)kCGImagePropertyGIFDictionary];
     
     //合成gif
     for (UIImage *img in imagePathArray) {
-        CGImageDestinationAddImage(destination, img.CGImage, (__bridge CFDictionaryRef)frameProperties);
+        UIImage *imgs = img;
+        if (targetSize.width != 0) imgs = [UIImage yxImgCompressForSizeImg:img targetSize:targetSize];
+        CGImageDestinationAddImage(destination, imgs.CGImage, (__bridge CFDictionaryRef)frameProperties);
     }
 
     CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef)gifproperty);
