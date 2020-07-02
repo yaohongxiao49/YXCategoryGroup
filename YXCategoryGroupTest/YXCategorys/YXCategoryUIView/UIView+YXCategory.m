@@ -11,6 +11,11 @@
 
 static const char *kTapGestureRecognizerBlockAddress;
 
+#pragma mark - 输入框限制
+static const char kLimitInputWordsCountAddressKey;
+static const char kFilterKeyWordsAddressKey;
+static const char kFilterActionTypeAddressKey;
+
 @implementation UIView (YXCategory)
 
 #pragma mark - 视图x坐标
@@ -199,6 +204,122 @@ static const char *kTapGestureRecognizerBlockAddress;
     maskLayer.strokeColor = lineColor.CGColor;
     maskLayer.lineWidth = lineWidth;
     [view.layer addSublayer:maskLayer];
+}
+
+#pragma mark - 输入框限制
+- (void)setYXFilterActionType:(int)filterActionType {
+    
+    objc_setAssociatedObject(self, &kFilterActionTypeAddressKey, [NSString stringWithFormat:@"%d", filterActionType], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (filterActionType == YXFilterNoneType) {
+        return;
+    }
+    [self registerFilterNotification];
+}
+
+- (int)filterActionType {
+    
+    return 0;
+}
+
+- (NSString *)filterActionTypeString {
+    
+    return objc_getAssociatedObject(self, &kFilterActionTypeAddressKey);
+}
+
+- (void)setLimitInputWords:(int)limitInputWords {
+    
+    if (limitInputWords <= 0) {
+        return;
+    }
+    objc_setAssociatedObject(self, &kLimitInputWordsCountAddressKey, [NSString stringWithFormat:@"%d", limitInputWords], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (int)limitInputWords {
+    
+    return [objc_getAssociatedObject(self, &kLimitInputWordsCountAddressKey) intValue];
+}
+
+- (NSArray *)filterKeyWordsArray {
+    
+    return objc_getAssociatedObject(self, &kFilterKeyWordsAddressKey);
+}
+
+- (void)setFilterKeyWordsArray:(NSArray *)filterKeyWordsArray {
+    
+    objc_setAssociatedObject(self, &kFilterKeyWordsAddressKey, filterKeyWordsArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)registerFilterNotification {
+    
+    NSString *textDidChangeNotificationName = ([self isKindOfClass:[UITextField class]] && ![(UITextField *)self isSecureTextEntry]) ?
+    UITextFieldTextDidChangeNotification : [self isKindOfClass:[UITextView class]] ?
+    UITextViewTextDidChangeNotification : nil;
+    if(!textDidChangeNotificationName) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:textDidChangeNotificationName object:nil];
+}
+
+- (void)textDidChangeAction:(NSNotification *)notify {
+    
+    NSString *selfText = [self valueForKey:@"text"];
+    NSString *lang = [self.textInputMode primaryLanguage]; //键盘输入模式
+    int limitCount = self.limitInputWords;
+    YXFilterActionType actionType = [[self filterActionTypeString] intValue];
+    if ([lang isEqualToString:@"zh-Hans"]) { //简体中文输入，包括简体拼音，健体五笔，简体手写
+        UITextRange *selectedRange = [self valueForKey:@"markedTextRange"];
+        //获取高亮部分
+        UITextPosition *position = nil;
+        if ([self isKindOfClass:[UITextField class]]) {
+            position = [(UITextField *)self positionFromPosition:selectedRange.start offset:0];
+        }
+        else if ([self isKindOfClass:[UITextView class]]) {
+            position = [(UITextView *)self positionFromPosition:selectedRange.start offset:0];
+        }
+        //没有高亮选择的字，则对已输入的文字进行字数统计和限制
+        if (!position) {
+            if ((actionType & YXFilterLimitType || actionType & YXFilterLimitEmojiType) && selfText.length > limitCount) {
+                selfText = [selfText substringToIndex:limitCount];
+            }
+            [self setValue:[self textFilterWordsWithText:selfText] forKey:@"text"];
+        }
+        //有高亮选择的字符串，则暂不对文字进行统计和限制
+        else {
+            
+        }
+    }
+    //中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+    else {
+        if ((actionType & YXFilterLimitType || actionType & YXFilterLimitEmojiType) && selfText.length > limitCount) {
+            selfText = [selfText substringToIndex:limitCount];
+        }
+        [self setValue:[self textFilterWordsWithText:selfText] forKey:@"text"];
+    }
+}
+
+- (NSString *)textFilterWordsWithText:(NSString *)aText {
+    
+    NSString *tempString = aText;
+    YXFilterActionType actionType = [[self filterActionTypeString] intValue];
+    if (actionType == YXFilterNoneType) {
+        return aText;
+    }
+    
+    if (actionType & YXFilterKeyWordsType) {
+        __block NSString *replaceString = tempString;
+        [self.filterKeyWordsArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            if ([obj isKindOfClass:[NSString class]] && [obj length] > 0) {
+                replaceString = [replaceString stringByReplacingOccurrencesOfString:obj withString:@""];
+            }
+        }];
+        tempString = replaceString;
+    }
+    
+    if (actionType & YXFilterEmojiType || actionType & YXFilterLimitEmojiType) {
+        tempString = [tempString stringByReplacingOccurrencesOfString:@"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [tempString length])];
+    }
+    return tempString;
 }
 
 @end

@@ -103,7 +103,7 @@
     audioMix.inputParameters = @[originAudioInputParams];
 
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:path];
-    [YXToolMediaManager yxRemoveMediaWithPath:filePath];
+    [YXToolLocalSaveBySqlite yxRemoveFileByPath:filePath];
     AVAssetExportSession *exporterSession = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetMediumQuality];
     exporterSession.outputFileType = AVFileTypeMPEG4;
     exporterSession.outputURL = [NSURL fileURLWithPath:filePath]; //如果文件已存在，将造成导出失败
@@ -208,7 +208,7 @@
         audioMix.inputParameters = @[bgmOriginAudioInputParams];
     }
     
-    [YXToolMediaManager yxRemoveMediaWithPath:mediaPath];
+    [YXToolLocalSaveBySqlite yxRemoveFileByPath:mediaPath];
     AVAssetExportSession *exporterSession = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetMediumQuality];
     exporterSession.outputFileType = AVFileTypeMPEG4;
     exporterSession.outputURL = [NSURL fileURLWithPath:mediaPath]; //如果文件已存在，将造成导出失败

@@ -10,6 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_OPTIONS(NSUInteger, YXFilterActionType) {
+    /** 替换字符串为空 */
+    YXFilterKeyWordsType = 0x001,
+    /** 限制Emoji表情 */
+    YXFilterEmojiType = 0x010,
+    /** 限制字数 */
+    YXFilterLimitType = 0x100,
+    /** 显示字数及Emoji表情 */
+    YXFilterLimitEmojiType = 0x110,
+    /** 不做控制 */
+    YXFilterNoneType = 0x000
+};
+
 @interface UIView (YXCategory)
 
 /** 视图x坐标 */
@@ -35,6 +48,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGPoint origin;
 /** 视图大小 */
 @property (nonatomic, assign) CGSize size;
+
+#pragma mark - 输入框限制
+/** 需要替换的文字数组 */
+@property (nonatomic, strong) NSArray *filterKeyWordsArray;
+/** 限制字符串总数 */
+@property (nonatomic, assign) int limitInputWords;
+/** 限制类型 */
+@property (nonatomic, assign) int filterActionType;
 
 /** 获取当前视图所在的视图控制器 */
 - (UIViewController *)viewController;
