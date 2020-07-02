@@ -74,6 +74,12 @@ static YXToolLocalSaveBySqlite *sqlites = nil;
     [NSKeyedArchiver archiveRootObject:dic toFile:[kYXToolLocalSaveDocDirectoryPath stringByAppendingString:key]];
 }
 
+#pragma mark - 解档
++ (void)yxUnarchive {
+    
+    [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:kYXToolLocalSaveDocDirectoryPath]];
+}
+
 #pragma mark - plist
 #pragma mark - 储存数据
 + (void)yxSavePlistByArr:(NSMutableArray *)mutableArr key:(NSString *)key path:(NSString *)path {

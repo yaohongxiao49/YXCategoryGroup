@@ -65,6 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)yxSaveArchiveByDic:(NSDictionary *)dic
                        key:(NSString *)key;
 
+/** 解档 */
++ (void)yxUnarchive;
+
 
 /**
  * 储存数据（plist）
