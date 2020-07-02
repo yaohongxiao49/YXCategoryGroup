@@ -60,13 +60,16 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 储存数据（归档）
  * @param dic 储存的内容
- * @param key 字典中的键值对
+ * @param key 命名
  */
 + (void)yxSaveArchiveByDic:(NSDictionary *)dic
                        key:(NSString *)key;
 
-/** 解档 */
-+ (void)yxUnarchive;
+/**
+ * 解档
+ * @param key 命名
+ */
++ (id)yxUnarchiveByKey:(NSString *)key;
 
 
 /**
