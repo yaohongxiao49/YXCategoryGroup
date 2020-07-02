@@ -71,6 +71,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (id)yxUnarchiveByKey:(NSString *)key;
 
+/**
+ * 移除文件
+ * @param path 地址
+ */
++ (void)yxRemoveFileByPath:(NSString *)path;
+
 
 /**
  * 储存数据（plist）

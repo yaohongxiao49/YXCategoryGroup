@@ -339,12 +339,4 @@
     return imgArr;
 }
 
-#pragma mark - 移除音视频地址
-+ (void)yxRemoveMediaWithPath:(NSString *)path {
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-    }
-}
-
 @end

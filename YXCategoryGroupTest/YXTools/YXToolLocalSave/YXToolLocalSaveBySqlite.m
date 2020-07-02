@@ -82,6 +82,14 @@ static YXToolLocalSaveBySqlite *sqlites = nil;
     return [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:path]];
 }
 
+#pragma mark - 移除文件
++ (void)yxRemoveFileByPath:(NSString *)path {
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    }
+}
+
 #pragma mark - plist
 #pragma mark - 储存数据
 + (void)yxSavePlistByArr:(NSMutableArray *)mutableArr key:(NSString *)key path:(NSString *)path {

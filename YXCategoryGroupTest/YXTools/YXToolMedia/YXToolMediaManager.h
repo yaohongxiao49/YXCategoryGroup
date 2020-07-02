@@ -84,12 +84,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSArray *)yxGetAnimationImagesByBundleName:(NSString *)bundleName;
 
-/**
- * 移除媒体
- * @param path 地址
- */
-+ (void)yxRemoveMediaWithPath:(NSString *)path;
-
 @end
 
 NS_ASSUME_NONNULL_END
