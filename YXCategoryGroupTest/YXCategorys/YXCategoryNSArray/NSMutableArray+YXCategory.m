@@ -44,31 +44,16 @@
 }
 
 #pragma mark - 去除重复数据
-+ (NSMutableArray *)statisticalRepeatNum:(NSMutableArray *)arr {
++ (NSMutableArray *)yxStatisticalRepeatNum:(NSMutableArray *)arr {
     
-    NSMutableArray *amountArr = [[NSMutableArray alloc] init];
     NSSet *set = [NSSet setWithArray:(NSArray *)arr];
-
-    for (NSString *setStr in set) {
-        //需要去掉的元素数组
-//        NSMutableArray *filteredArr = [[NSMutableArray alloc] initWithObjects:setStr, nil];
-
-//        NSMutableArray *dataArr = arr;
-//        NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"NOT (SELF IN %@)", filteredArr];
-        //过滤数组
-//        NSArray *reslutFilteredArr = [dataArr filteredArrayUsingPredicate:filterPredicate];
-//        int number = (int)(dataArr.count - reslutFilteredArr.count);
-//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//        [dic setObject:setStr forKey:@"title"];
-//        [dic setObject:@(number) forKey:@"count"];
-        [amountArr addObject:setStr];
-    }
     
-    return amountArr;
+    NSMutableArray *endArr = [[NSMutableArray alloc] initWithArray:[set allObjects]];
+    return endArr;
 }
 
 #pragma mark - 排序
-+ (NSArray *)sortingByArr:(NSArray *)arr type:(NSComparisonResult)type {
++ (NSArray *)yxSortingByArr:(NSArray *)arr type:(NSComparisonResult)type {
     
     NSArray *resultArray = [arr sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         
@@ -80,6 +65,22 @@
         return result == type;
     }];
     return resultArray;
+}
+
+#pragma mark - 去重并统计重复数据
+- (NSMutableArray *)yxStatisticalRepeatNum:(NSMutableArray *)arr {
+    
+    NSMutableArray *amountArr = [[NSMutableArray alloc] init];
+
+    NSCountedSet *countSet = [[NSCountedSet alloc] initWithArray:(NSArray *)arr];
+    for (id item in countSet) { //去重并统计
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:item forKey:@"naem"];
+        [dic setObject:@([countSet countForObject:item]) forKey:@"count"];
+        [amountArr addObject:dic];
+    }
+    
+    return amountArr;
 }
 
 @end

@@ -26,14 +26,20 @@ NS_ASSUME_NONNULL_BEGIN
  * 去除重复数据
  * @param arr 需要去除重复数据的数组
  */
-+ (NSMutableArray *)statisticalRepeatNum:(NSMutableArray *)arr;
++ (NSMutableArray *)yxStatisticalRepeatNum:(NSMutableArray *)arr;
 
 /**
  * 排序
  * @param arr 需要排序的数组
  * @param type 排序规则
  */
-+ (NSArray *)sortingByArr:(NSArray *)arr type:(NSComparisonResult)type;
++ (NSArray *)yxSortingByArr:(NSArray *)arr type:(NSComparisonResult)type;
+
+/**
+ * 去重并统计重复数据
+ * @param arr 需要计算的数组
+ */
+- (NSMutableArray *)yxStatisticalRepeatNum:(NSMutableArray *)arr;
 
 
 @end
