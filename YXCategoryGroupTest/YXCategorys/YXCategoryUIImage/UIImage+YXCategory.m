@@ -63,27 +63,36 @@ typedef NS_ENUM(NSUInteger, GifSize) {
 }
 
 #pragma mark - 根据时间、帧率获取视频帧图片集合
-- (void)getVideoFrameImageWithUrl:(NSURL *)videoUrl second:(CGFloat)second fps:(float)fps finishBlock:(void(^)(NSMutableArray *arr))finishBlock {
+- (void)getVideoFrameImageWithUrl:(NSURL *)videoUrl second:(CGFloat)second fps:(float)fps durationSec:(CGFloat)durationSec finishBlock:(void(^)(NSMutableArray *arr))finishBlock {
     
     if (!videoUrl) {
         return;
     }
     NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
     AVURLAsset *audioAsset = [AVURLAsset URLAssetWithURL:videoUrl options:opts];
-    CMTime cmtime = audioAsset.duration; //视频时间信息结构体
-    Float64 durationSeconds = second > CMTimeGetSeconds(cmtime) ? CMTimeGetSeconds(cmtime) : second; //视频总秒数
+    //视频总时长
+    Float64 cmtimeSecond = ceil(audioAsset.duration.value /audioAsset.duration.timescale);
+    //判断指定开始时间大于视频总时长时，则从0开始
+    Float64 begianSecond = second > cmtimeSecond ? 0 : (second *fps);
+    //视频剩余时长（总时长大于指定开始时间，则使用总时长减指定开始时间之差，否则使用总时长）
+    Float64 restTimeSecond = (cmtimeSecond - second) > 0 ? (cmtimeSecond - second) : cmtimeSecond;
+    //计算后的持续时间（剩余时间大于指定持续时间，则使用指定持续时间，否则使用剩余时间）
+    Float64 durationSeconds = restTimeSecond > durationSec ? durationSec : restTimeSecond;
+  
     NSMutableArray *times = [NSMutableArray array];
-    Float64 totalFrames = durationSeconds *fps; //获得视频总帧数
+    Float64 totalFrames = durationSeconds *fps; //获得视频持续帧数
+    
     CMTime timeFrame;
     for (int i = 1; i <= totalFrames; i++) {
-        timeFrame = CMTimeMake(i, fps); //第i帧 帧率
+        timeFrame = CMTimeMake(i + begianSecond, fps); //第i帧 帧率
         NSValue *timeValue = [NSValue valueWithCMTime:timeFrame];
         [times addObject:timeValue];
     }
     
-    NSInteger timesCount = [times count];
+    NSInteger timesCount = [times count] + begianSecond;
     NSMutableArray *imgArr = [[NSMutableArray alloc] init];
     
+    //指定获取视频帧动画的图片
     AVAssetImageGenerator *imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:audioAsset];
     imageGenerator.appliesPreferredTrackTransform = YES;
     imageGenerator.requestedTimeToleranceAfter = kCMTimeZero;
@@ -102,6 +111,7 @@ typedef NS_ENUM(NSUInteger, GifSize) {
             case AVAssetImageGeneratorSucceeded: {
                 UIImage *frameImg = [UIImage imageWithCGImage:image];
                 [imgArr addObject:frameImg];
+//                NSLog(@"requestedTime.value == %@", @(requestedTime.value));
                 if (requestedTime.value == timesCount && finishBlock) {
                     finishBlock(imgArr);
                 }

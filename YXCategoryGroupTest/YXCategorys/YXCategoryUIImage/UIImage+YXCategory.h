@@ -31,12 +31,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 根据时间、帧率获取视频帧图片集合
  * @param videoUrl 视频地址
- * @param second 持续时间
+ * @param second 指定开始时间
  * @param fps 帧率
+ * @param durationSec 指定持续时间
  */
 - (void)getVideoFrameImageWithUrl:(NSURL *)videoUrl
                            second:(CGFloat)second
                               fps:(float)fps
+                      durationSec:(CGFloat)durationSec
                       finishBlock:(void(^)(NSMutableArray *arr))finishBlock;
 
 /**
