@@ -18,7 +18,7 @@ typedef NS_OPTIONS(NSUInteger, YXFilterActionType) {
     /** 限制字数 */
     YXFilterLimitType = 0x100,
     /** 显示字数及Emoji表情 */
-    YXFilterLimitEmojiType = 0x110,
+    YXFilterLimitEmojiType = 0x003,
     /** 不做控制 */
     YXFilterNoneType = 0x000
 };
