@@ -132,6 +132,14 @@ NS_ASSUME_NONNULL_BEGIN
                filleName:(NSString *)filleName
          completionBlock:(void(^)(NSString *gifPath))completionBlock;
 
+/**
+ * 缓存图片（存入沙盒）
+ * @param name 缓存命名
+ * @param img 图片
+ */
++ (NSString *)cacheImgByName:(NSString *)name
+                         img:(UIImage *)img;
+
 @end
 
 NS_ASSUME_NONNULL_END

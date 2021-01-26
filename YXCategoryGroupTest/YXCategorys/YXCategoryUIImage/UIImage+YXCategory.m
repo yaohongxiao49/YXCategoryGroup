@@ -425,6 +425,28 @@ typedef NS_ENUM(NSUInteger, GifSize) {
     });
 }
 
+#pragma mark - 图片缓存
++ (NSString *)cacheImgByName:(NSString *)name img:(UIImage *)img {
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *dirPath = [NSString stringWithFormat:@"%@/%@/%@", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject], @"circleCache", @""];
+    
+    BOOL isDir = NO;
+    BOOL existed = [fileManager fileExistsAtPath:dirPath isDirectory:&isDir];
+    if (!(isDir && existed)) {
+        [fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    NSString *imgPath = [[NSURL fileURLWithPath:[dirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@.png", name]]] path];
+    
+    @autoreleasepool {
+        NSData *data = UIImageJPEGRepresentation(img, 0.5);
+        [data writeToFile:imgPath atomically:YES];
+    }
+    
+    return imgPath;
+}
+
 #pragma mark - 创建gif
 + (NSString *)createGifByTimePoints:(NSArray *)timePoints url:(NSURL *)url fileProperties:(NSDictionary *)fileProperties frameProperties:(NSDictionary *)frameProperties frameCount:(int)frameCount gifSize:(GifSize)gifSize boolNeedCompression:(BOOL)boolNeedCompression compressionWidth:(float)compressionWidth compressionHight:(float)compressionHight filleName:(NSString *)filleName {
     

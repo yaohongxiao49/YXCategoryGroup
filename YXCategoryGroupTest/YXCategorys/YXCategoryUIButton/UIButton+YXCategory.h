@@ -27,10 +27,11 @@ typedef void(^YXStartWithTimeIsEndBlock)(id);
 
 @interface UIButton (YXCategory)
 
-@property(nonatomic, copy) YXBtnTapActionBlock yxBtnTapActionBlock;
+@property (nonatomic, copy) YXBtnTapActionBlock yxBtnTapActionBlock;
 
 /** 防止按钮重复点击 */
-@property (nonatomic, assign) NSTimeInterval repeatClickEventInterval; //重复点击的间隔
+@property (nonatomic, assign) NSTimeInterval repeatClickEventInterval;
+/** 重复点击的间隔 */
 @property (nonatomic, assign) NSTimeInterval acceptEventTime;
 
 /**
@@ -114,6 +115,7 @@ typedef void(^YXStartWithTimeIsEndBlock)(id);
                                 bgCorner:(NSString *__nullable)bgCorner
                                  boolSel:(BOOL)boolSel
                                   action:(YXBtnTapActionBlock)action;
+
 @property (nonatomic, copy) NSString *norTitle; //普通标题
 @property (nonatomic, strong) UIColor *norTitleColor; //普通标题颜色
 @property (nonatomic, strong) UIFont *norTitleFont; //普通标题字号
