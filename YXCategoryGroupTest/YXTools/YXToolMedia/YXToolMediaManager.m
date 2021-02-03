@@ -14,7 +14,8 @@
 + (NSInteger)yxGetMediaTimeByPath:(NSString *)path {
     
     NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:path] options:opts];
+    NSURL *url = [path containsString:@"http"] ? [NSURL URLWithString:path] : [NSURL fileURLWithPath:path];
+    AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:opts];
     CMTime audioDuration = urlAsset.duration;
     int audioDurationSeconds = ceil(audioDuration.value /audioDuration.timescale);
     return (NSInteger)audioDurationSeconds;
@@ -26,13 +27,7 @@
     if (!videoUrl) {
         return nil;
     }
-    NSURL *url;
-    if ([videoUrl containsString:@"http"]) {
-        url = [NSURL URLWithString:videoUrl];
-    }
-    else {
-        url = [NSURL fileURLWithPath:videoUrl];
-    }
+    NSURL *url = [videoUrl containsString:@"http"] ? [NSURL URLWithString:videoUrl] : [NSURL fileURLWithPath:videoUrl];
     NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
     AVURLAsset *audioAsset = [AVURLAsset URLAssetWithURL:url options:opts];
     AVAssetImageGenerator *imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:audioAsset];
