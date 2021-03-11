@@ -15,6 +15,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, YXVideoGravityType) {
+    /** 等比例 */
+    YXVideoGravityTypeEqualProportions,
+    /** 铺满 */
+    YXVideoGravityTypeCovered,
+};
+
 @interface YXToolMediaManager : NSObject
 
 /**
@@ -30,6 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIImage *)yxGetVideoThumbnailWithVideoUrl:(NSString *)videoUrl
                                       second:(CGFloat)second;
+
+/** 获取视频缩放类型，0等比例 1铺满 */
++ (YXVideoGravityType)yxGetVideoGravityWithVideoUrl:(NSString *)videoUrl;
++ (YXVideoGravityType)yxGetVideoGravityWithAsset:(AVAsset *)asset;
 
 /**
  * 合并音视频

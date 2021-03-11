@@ -54,6 +54,49 @@
     return image;
 }
 
+#pragma mark - 获取视频缩放类型
++ (YXVideoGravityType)yxGetVideoGravityWithVideoUrl:(NSString *)videoUrl {
+    
+    AVAsset *asset = [AVAsset assetWithURL:[NSURL URLWithString:videoUrl]];
+    return [self getVideoGravityWithAsset:asset];
+}
++ (YXVideoGravityType)getVideoGravityWithAsset:(AVAsset *)asset {
+    
+    NSInteger videoGravity = 0;
+    NSInteger degress = 0;
+    NSArray *tracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+    if (tracks.count > 0) {
+        AVAssetTrack *videoTrack = [tracks firstObject];
+        CGAffineTransform t = videoTrack.preferredTransform;
+        if (t.a == 1.0 && t.b == 0.0 && t.c == 0.0 && t.d == 1.0) {
+            degress = 0;
+        }
+        else if (t.a == 0.0 && t.b == 1.0 && t.c == -1.0 && t.d == 0.0) {
+            degress = 90;
+        }
+        else if (t.a == -1.0 && t.b == 0.0 && t.c == 0.0 && t.d == -1.0) {
+            degress = 180;
+        }
+        else if (t.a == 0.0 && t.b == -1.0 && t.c == 1.0 && t.d == 0.0) {
+            degress = 270;
+        }
+        
+        CGFloat videoScale = 1;
+        if (degress == 0 || degress == 180) {
+            videoScale = videoTrack.naturalSize.width / videoTrack.naturalSize.height;
+        }
+        else if (degress == 90 || degress == 270) {
+            videoScale = videoTrack.naturalSize.height / videoTrack.naturalSize.width;
+        }
+        
+        //9:16左右的视频铺满
+        if (videoScale >= 0.5 && videoScale <= 0.6) {
+            videoGravity = 1;
+        }
+    }
+    return videoGravity == 0 ? YXVideoGravityTypeEqualProportions : YXVideoGravityTypeCovered;
+}
+
 #pragma mark - 合并音视频
 + (void)yxMergeMediaWithPath:(NSString *)path mediaArr:(NSMutableArray *)mediaArr bgmUrl:(NSString *)bgmUrl muteName:(NSString *)muteName boolMixing:(BOOL)boolMixing successBlock:(void(^)(id success))successBlock failBlock:(void(^)(id fail))failBlock {
     

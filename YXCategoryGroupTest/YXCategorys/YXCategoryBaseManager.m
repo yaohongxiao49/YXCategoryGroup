@@ -317,4 +317,27 @@
     [vc.navigationController setViewControllers:vcArr animated:YES];
 }
 
+#pragma mark - 移除控制器
+- (UIViewController *)yxRemoveVCByVCNameArr:(NSArray *)vcNameArr currentVC:(UIViewController *)currentVC animated:(BOOL)animated {
+    
+    UINavigationController *naVC = currentVC.navigationController;
+    NSMutableArray *vcArr = naVC.viewControllers.mutableCopy;
+    NSMutableIndexSet *deleteIndexs = [NSMutableIndexSet indexSet];
+    for (NSInteger i = 0; i < vcArr.count; ++i) {
+        UIViewController *vc = vcArr[i];
+        NSString *vcName = NSStringFromClass([vc class]);
+        if ([vcNameArr containsObject:vcName]) {
+            [deleteIndexs addIndex:i];
+        }
+    }
+    
+    if (deleteIndexs.count > 0) {
+        [vcArr removeObjectsAtIndexes:deleteIndexs];
+        [naVC setViewControllers:vcArr animated:animated];
+    }
+    
+    UIViewController *lastVC = [vcArr lastObject];
+    return lastVC;
+}
+
 @end

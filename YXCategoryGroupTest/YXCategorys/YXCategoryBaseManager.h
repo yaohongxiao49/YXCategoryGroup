@@ -107,6 +107,14 @@ NS_ASSUME_NONNULL_BEGIN
               toReplace:(UIViewController *)toReplace
         beReplaceVCName:(NSString *)beReplaceVCName;
 
+/**
+ * 移除控制器
+ * @param vcNameArr 需要移除的控制器数组
+ * @param currentVC 当前所在控制器
+ * @param animated 是否包含动画
+ */
+- (UIViewController *)yxRemoveVCByVCNameArr:(NSArray *)vcNameArr currentVC:(UIViewController *)currentVC animated:(BOOL)animated;
+
 @end
 
 NS_ASSUME_NONNULL_END
