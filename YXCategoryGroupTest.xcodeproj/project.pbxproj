@@ -46,6 +46,7 @@
 		84AD560024442B7400004B7E /* TYAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD55F524442B7400004B7E /* TYAlertController.m */; };
 		84AD560424442BC000004B7E /* YXToolAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560224442BC000004B7E /* YXToolAlert.m */; };
 		84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560624442BDF00004B7E /* YXToolAlertVC.m */; };
+		84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,8 @@
 		84AD560324442BC000004B7E /* YXToolAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXToolAlert.h; sourceTree = "<group>"; };
 		84AD560524442BDF00004B7E /* YXToolAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXToolAlertVC.h; sourceTree = "<group>"; };
 		84AD560624442BDF00004B7E /* YXToolAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolAlertVC.m; sourceTree = "<group>"; };
+		84E92ADB260349F400CCF2C3 /* YXEvaluationStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEvaluationStarView.h; sourceTree = "<group>"; };
+		84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEvaluationStarView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,7 @@
 				84AD55DB2444016D00004B7E /* YXToolMedia */,
 				844E19D52440552C009FE378 /* YXToolLocalSave */,
 				844E19CE244051C5009FE378 /* YXToolLogs */,
+				84E92AD1260344BD00CCF2C3 /* YXToolMallEvaluation */,
 			);
 			path = YXTools;
 			sourceTree = "<group>";
@@ -415,6 +419,15 @@
 			path = YXToolAlertView;
 			sourceTree = "<group>";
 		};
+		84E92AD1260344BD00CCF2C3 /* YXToolMallEvaluation */ = {
+			isa = PBXGroup;
+			children = (
+				84E92ADB260349F400CCF2C3 /* YXEvaluationStarView.h */,
+				84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */,
+			);
+			path = YXToolMallEvaluation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -575,6 +588,7 @@
 				844E19ED24407B56009FE378 /* YXToolAppBaseMessage.m in Sources */,
 				844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */,
 				84AD55FF24442B7400004B7E /* TYBaseAnimation.m in Sources */,
+				84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */,
 				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,
 				844E19EA24407990009FE378 /* YXToolGetSandbox.m in Sources */,
 				846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */,
