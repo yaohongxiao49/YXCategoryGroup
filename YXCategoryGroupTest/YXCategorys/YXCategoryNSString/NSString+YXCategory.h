@@ -82,74 +82,25 @@ NS_ASSUME_NONNULL_BEGIN
                              size:(CGSize)size;
 
 /**
- * 设置三变属性文字
- * @param text 整体文字
- * @param font 整体字体
- * @param color 整体色值
- * @param subString 第一种不同的文字
- * @param subFont 第一种不同的字体
- * @param subColor 第一种不同的色值
- * @param thirdString 第二种不同的文字
- * @param thirdFont 第二种不同的字体
- * @param thirdColor 第二种不同的色值
- * @param lineSpaceValue 文字间距（如不需要，可不填）
- * @param alignment 对齐方式
- * @param underLineColor 下划线色值（如不需要，可不填）
- * @param strikethroughColor 删除线色值（如不需要，可不填）
- */
-+ (NSMutableAttributedString *)yxAttributedStringThirdByText:(NSString *)text
-                                                        font:(UIFont *)font
-                                                       color:(UIColor *)color
-                                                   subString:(NSString *)subString
-                                                     subFont:(UIFont *)subFont
-                                                    subColor:(UIColor *)subColor
-                                                 thirdString:(NSString *)thirdString
-                                                   thirdFont:(UIFont *)thirdFont
-                                                  thirdColor:(UIColor *)thirdColor
-                                              lineSpaceValue:(NSString *)lineSpaceValue
-                                                   alignment:(NSTextAlignment)alignment
-                                              underLineColor:(UIColor *)underLineColor
-                                          strikethroughColor:(UIColor *)strikethroughColor;
-
-
-/**
  * 设置属性文字
- * @param text 整体文字
- * @param font 整体字体
- * @param color 整体色值
- * @param subStringArr 显示不同的文字
- * @param subFontArr 显示不同的字体
- * @param subColorArr 显示不同的色值
- * @param lineSpaceValue 文字间距（如不需要设置，可不填）
+ * @param baseText 基础文字（显示的全部文字）
+ * @param baseFont 基础字体
+ * @param baseColor 基础色值
+ * @param changeTextArr 需要改变的文字数组集合
+ * @param changeFontArr 需要改变的字体数组集合
+ * @param changeColorArr 需要改变的色值数组集合
+ * @param lineSpaceValue 行间距
  * @param alignment 对齐方式
- * @param underLineColor 下划线色值（如不需要，可不填）
- * @param strikethroughColor 删除线色值（如不需要，可不填）
+ * @param underLineColor 下划线
+ * @param strikethroughColor 删除线
  */
-+ (NSMutableAttributedString *)yxAttributedStringSecondByText:(NSString *)text
-                                                         font:(UIFont *)font
-                                                        color:(UIColor *)color
-                                                    subString:(NSArray *)subStringArr
-                                                      subFont:(NSArray *)subFontArr
-                                                     subColor:(NSArray *)subColorArr
-                                               lineSpaceValue:(NSString *)lineSpaceValue
-                                                    alignment:(NSTextAlignment)alignment
-                                               underLineColor:(UIColor *)underLineColor
-                                           strikethroughColor:(UIColor *)strikethroughColor;
-
-/**
- * 设置文字行间距
- * @param text 整体文字
- * @param lineSpace 间距
- * @param font 字体
- * @param color 色值
- * @param alignment 对齐方式
- * @param underLineColor 下划线色值（如不需要，可不填）
- * @param strikethroughColor 删除线色值（如不需要，可不填）
- */
-+ (NSMutableAttributedString *)yxAttributedStringLineByText:(NSString *)text
-                                                  lineSpace:(CGFloat)lineSpace
-                                                       font:(UIFont *)font
-                                                      color:(UIColor *)color
++ (NSMutableAttributedString *)yxAttributedStringByBaseText:(NSString *)baseText
+                                                   baseFont:(UIFont *)baseFont
+                                                  baseColor:(UIColor *)baseColor
+                                              changeTextArr:(NSArray *)changeTextArr
+                                              changeFontArr:(NSArray *)changeFontArr
+                                             changeColorArr:(NSArray *)changeColorArr
+                                             lineSpaceValue:(NSString *)lineSpaceValue
                                                   alignment:(NSTextAlignment)alignment
                                              underLineColor:(UIColor *)underLineColor
                                          strikethroughColor:(UIColor *)strikethroughColor;

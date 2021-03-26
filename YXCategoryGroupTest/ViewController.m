@@ -27,7 +27,7 @@
     imgV.animationDuration = 5;
     [self.view addSubview:imgV];
     
-    [[UIImage alloc] getVideoFrameImageWithUrl:url second:3 fps:20 finishBlock:^(NSMutableArray * _Nonnull arr) {
+    [[UIImage alloc] getVideoFrameImageWithUrl:url second:3 fps:20 durationSec:1 finishBlock:^(NSMutableArray * _Nonnull arr) {
         
         NSString *path = [[UIImage alloc] yxSyntheticGifByImgArr:arr gifNamed:@"test" targetSize:CGSizeMake(100, 100)];
         UIImage *img = [UIImage imageWithContentsOfFile:path];

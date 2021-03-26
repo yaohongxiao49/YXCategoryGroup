@@ -203,124 +203,53 @@
     return newSize;
 }
 
-#pragma mark - 设置三变属性文字
-+ (NSMutableAttributedString *)yxAttributedStringThirdByText:(NSString *)text font:(UIFont *)font color:(UIColor *)color subString:(NSString *)subString subFont:(UIFont *)subFont subColor:(UIColor *)subColor thirdString:(NSString *)thirdString thirdFont:(UIFont *)thirdFont thirdColor:(UIColor *)thirdColor lineSpaceValue:(NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(UIColor *)underLineColor strikethroughColor:(UIColor *)strikethroughColor {
+#pragma mark - 设置属性文字
++ (NSMutableAttributedString *)yxAttributedStringByBaseText:(NSString *)baseText baseFont:(UIFont *)baseFont baseColor:(UIColor *)baseColor changeTextArr:(NSArray *)changeTextArr changeFontArr:(NSArray *)changeFontArr changeColorArr:(NSArray *)changeColorArr lineSpaceValue:(NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(UIColor *)underLineColor strikethroughColor:(UIColor *)strikethroughColor {
     
-    if (text.length == 0) {
+    if (baseText.length == 0) {
         return nil;
     }
     
     //设置字符串
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:baseText];
     //整个字符串的范围
-    NSRange range = [text rangeOfString:text];
+    NSRange range = [baseText rangeOfString:baseText];
     //整个字符串字体类型和大小
-    [attString addAttribute:NSFontAttributeName value:font range:range];
+    [attString addAttribute:NSFontAttributeName value:baseFont range:range];
     //整个字符串字体颜色
-    [attString addAttribute:NSForegroundColorAttributeName value:color range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:baseColor range:range];
     
     //改变某段字符串
-    if (subString.length > 0) {
-        //计算要改变的范围
-        NSRange subRange = [text rangeOfString:subString];
-        //改某段字体类型和大小
-        [attString addAttribute:NSFontAttributeName value:subFont range:subRange];
-        //改某段字体颜色
-        [attString addAttribute:NSForegroundColorAttributeName value:subColor range:subRange];
+    if (changeTextArr.count == changeFontArr.count && changeTextArr.count == changeColorArr.count) {
+        for (int i = 0; i < changeTextArr.count; i++) {
+            NSString *changeText = changeTextArr[i];
+            //计算要改变的范围
+            NSRange subRange = [baseText rangeOfString:changeText];
+            //改某段字体类型和大小
+            [attString addAttribute:NSFontAttributeName value:changeFontArr[i] range:subRange];
+            //改某段字体颜色
+            [attString addAttribute:NSForegroundColorAttributeName value:changeColorArr[i] range:subRange];
+        }
     }
     
-    if (thirdString.length > 0) {
-        //计算要改变的范围
-        NSRange thirdRange = [text rangeOfString:thirdString];
-        //改某段字体类型和大小
-        [attString addAttribute:NSFontAttributeName value:thirdFont range:thirdRange];
-        //改某段字体颜色
-        [attString addAttribute:NSForegroundColorAttributeName value:thirdColor range:thirdRange];
-    }
-    
-    if (lineSpaceValue.yxHasValue) { //间距
+    //间距
+    if (lineSpaceValue.yxHasValue) {
         CGFloat lineSpace = [lineSpaceValue floatValue];
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineSpacing = lineSpace - (font.lineHeight - font.pointSize);
+        paragraphStyle.lineSpacing = lineSpace - (baseFont.lineHeight - baseFont.pointSize);
         paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
         paragraphStyle.alignment = alignment;
         [attString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
     }
-    if (underLineColor) { //下划线
+    
+    //下划线
+    if (underLineColor) {
         [attString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
         [attString addAttribute:NSUnderlineColorAttributeName value:underLineColor range:range];
     }
-    if (strikethroughColor) { //删除线
-        [attString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
-        [attString addAttribute:NSStrikethroughColorAttributeName value:strikethroughColor range:range];
-    }
     
-    return attString;
-}
-
-#pragma mark - 设置两变属性文字
-+ (NSMutableAttributedString *)yxAttributedStringSecondByText:(NSString *)text font:(UIFont *)font color:(UIColor *)color subString:(NSArray *)subStringArr subFont:(NSArray *)subFontArr subColor:(NSArray *)subColorArr lineSpaceValue:(NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(UIColor *)underLineColor strikethroughColor:(UIColor *)strikethroughColor {
-    
-    if (text.length == 0) {
-        return nil;
-    }
-    
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
-    NSRange range = [text rangeOfString:text];
-    [attString addAttribute:NSFontAttributeName value:font range:range];
-    [attString addAttribute:NSForegroundColorAttributeName value:color range:range];
-    
-    for (int i = 0; i < subStringArr.count; i++) {
-        NSString *subString = subStringArr[i];
-        NSRange subRange = [text rangeOfString:subString];
-        [attString addAttribute:NSFontAttributeName value:subFontArr[i] range:subRange];
-        [attString addAttribute:NSForegroundColorAttributeName value:subColorArr[i] range:subRange];
-    }
-    
-    if (lineSpaceValue.yxHasValue) { //间距
-        CGFloat lineSpace = [lineSpaceValue floatValue];
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineSpacing = lineSpace - (font.lineHeight - font.pointSize);
-        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-        paragraphStyle.alignment = alignment;
-        [attString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
-    }
-    if (underLineColor) { //下划线
-        [attString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
-        [attString addAttribute:NSUnderlineColorAttributeName value:underLineColor range:range];
-    }
-    if (strikethroughColor) { //删除线
-        [attString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
-        [attString addAttribute:NSStrikethroughColorAttributeName value:strikethroughColor range:range];
-    }
-    
-    return attString;
-}
-
-#pragma mark - 设置行间距属性文字
-+ (NSMutableAttributedString *)yxAttributedStringLineByText:(NSString *)text lineSpace:(CGFloat)lineSpace font:(UIFont *)font color:(UIColor *)color alignment:(NSTextAlignment)alignment underLineColor:(UIColor *)underLineColor strikethroughColor:(UIColor *)strikethroughColor {
-    
-    if (text.length == 0) {
-        return nil;
-    }
-    
-    NSRange range = [text rangeOfString:text];
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
-    [attString addAttribute:NSFontAttributeName value:font range:range];
-    [attString addAttribute:NSForegroundColorAttributeName value:color range:range];
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = lineSpace - (font.lineHeight - font.pointSize);
-    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-    paragraphStyle.alignment = alignment;
-    [attString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
-    
-    if (underLineColor) { //下划线
-        [attString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
-        [attString addAttribute:NSUnderlineColorAttributeName value:underLineColor range:range];
-        
-    }
-    if (strikethroughColor) { //删除线
+    //删除线
+    if (strikethroughColor) {
         [attString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
         [attString addAttribute:NSStrikethroughColorAttributeName value:strikethroughColor range:range];
     }
