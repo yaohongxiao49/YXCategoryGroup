@@ -99,6 +99,21 @@ NS_ASSUME_NONNULL_BEGIN
                          tensileRight:(NSString *__nullable)tensileRight;
 
 /**
+ * 使用CoreImage，分离图片并与指定背景图片合成一张图片（分离图片需要纯色背景，不含黑白灰）
+ * @param segmentationImg 需要分离的图片
+ * @param bgImg 背景图片
+ */
++ (UIImage *)yxSegmentationAndCompositionImgBySegmentationImg:(UIImage *)segmentationImg
+                                                           bgImg:(UIImage *)bgImg;
+
+/**
+ * 使用Quarz 2D，移除图片纯色背景（黑/白）
+ * @param colorType YES/NO 黑/白
+ * @param segmentationImg 图片
+ */
++ (UIImage *)yxRemoveColorByColorType:(BOOL)colorType segmentationImg:(UIImage *)segmentationImg;
+
+/**
  * 动态填充/更改图片颜色（如需要看到原图与更改后的差别，需在底部增加一个原图显示控件）
  * @param img 需要填充/更改图片
  * @param showSize 显示范围

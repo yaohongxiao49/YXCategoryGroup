@@ -23,6 +23,42 @@ typedef NS_ENUM(NSUInteger, GifSize) {
 
 @implementation UIImage (YXCategory)
 
+void yxProviderReleaseData(void *info, const void *data, size_t size) {
+    
+    free((void *)data);
+}
+void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
+    
+    float min, max, delta;
+    min = MIN(r, MIN(g, b));
+    max = MAX(r, MAX(g, b));
+    *v = max; //v
+    delta = max - min;
+    if (max != 0) {
+        *s = delta /max; //s
+    }
+    else {
+        //r = g = b = 0 //s = 0, v is undefined
+        *s = 0;
+        *h = -1;
+        return;
+    }
+    if (r == max) { //between yellow & magenta
+        *h = (g - b) /delta;
+    }
+    else if (g == max) { //between cyan & yellow
+        *h = 2 + (b - r) /delta;
+    }
+    else { //between magenta & cyan
+        *h = 4 + (r - g) /delta;
+    }
+    
+    *h *= 60; //degrees
+    if (*h < 0) {
+        *h += 360;
+    }
+}
+
 #pragma mark - 获取视频缩略图
 + (UIImage *)yxGetVideoThumbnailWithVideoUrl:(NSString *)videoUrl second:(CGFloat)second {
 
@@ -365,6 +401,112 @@ typedef NS_ENUM(NSUInteger, GifSize) {
     UIImage *newImage = [img resizableImageWithCapInsets:edgeInsets resizingMode:mode];
     
     return newImage;
+}
+
+#pragma mark - 使用CoreImage，分离图片并与指定背景图片合成一张图片（分离图片需要纯色背景）
++ (UIImage *)yxSegmentationAndCompositionImgBySegmentationImg:(UIImage *)segmentationImg bgImg:(UIImage *)bgImg {
+    
+    CIFilter *colorCubeFilter = [CIFilter filterWithName:@"CIColorCube"];
+    
+    //Allocate memory
+    const unsigned int size = 64;
+    float *cubeData = (float *)malloc (size *size *size *sizeof(float) *4);
+    [colorCubeFilter setValue:@(size) forKey:@"inputCubeDimension"];
+    
+    CIImage *myImg = [[CIImage alloc] initWithImage:segmentationImg];
+    [colorCubeFilter setValue:myImg forKey:@"inputImage"];
+    
+    float rgb[3], hsv[3], *c = cubeData;
+    //Populate cube with a simple gradient going from 0 to 1
+    for (int z = 0; z < size; z++) {
+        rgb[2] = ((double)z) /(size - 1); //Blue value
+        for (int y = 0; y < size; y++) {
+            rgb[1] = ((double)y) /(size - 1); //Green value
+            for (int x = 0; x < size; x ++) {
+                rgb[0] = ((double)x) /(size - 1); //Red value
+                //Convert RGB to HSV
+                //You can find publicly available rgbToHSV functions on the Internet
+                yxRGBToHSV(rgb[0], rgb[1], rgb[2], &hsv[0], &hsv[1], &hsv[2]);
+                //颜色判断
+                float alpha = (hsv[0] >= 50 && hsv[0] <= 170) ? 0.0f : 1.0f;
+                //饱和度
+                if (hsv[1] < 0.2) {
+                    alpha = 1.0f;
+                }
+                //亮度
+                if (hsv[2] < 0.2) {
+                    alpha = 1.0f;
+                }
+
+                //Calculate premultiplied alpha values for the cube
+                c[0] = rgb[0] *alpha;
+                c[1] = rgb[1] *alpha;
+                c[2] = rgb[2] *alpha;
+                c[3] = alpha;
+                c += 4;
+            }
+        }
+    }
+    
+    //Create memory with the cube data
+    NSData *data = [NSData dataWithBytesNoCopy:cubeData length:size *size *size *sizeof(float) *4 freeWhenDone:YES];
+    [colorCubeFilter setValue:data forKey:@"inputCubeData"];
+    myImg = [colorCubeFilter outputImage];
+    
+    //组合
+    CIImage *backgroundCIImg = [[CIImage alloc] initWithImage:bgImg];
+    CIImage *resultImg = [[CIFilter filterWithName:@"CISourceOverCompositing" keysAndValues:kCIInputImageKey, myImg, kCIInputBackgroundImageKey, backgroundCIImg, nil] valueForKey:kCIOutputImageKey];
+
+    return [[UIImage imageWithCIImage:resultImg] copy];
+}
+
+#pragma mark - 使用Quarz 2D，移除图片纯色背景（黑/白）
++ (UIImage *)yxRemoveColorByColorType:(BOOL)colorType segmentationImg:(UIImage *)segmentationImg {
+    
+    CGFloat imgWidth = segmentationImg.size.width;
+    CGFloat imgHeight = segmentationImg.size.height;
+    size_t bytesPerRow = imgWidth *4;
+    uint32_t *rgbImageBuf = (uint32_t *)malloc(bytesPerRow *imgHeight);
+    
+    //创建context
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); //色彩范围的容器
+    CGContextRef context = CGBitmapContextCreate(rgbImageBuf, imgWidth, imgHeight, 8, bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaNoneSkipLast);
+    CGContextDrawImage(context, CGRectMake(0, 0, imgWidth, imgHeight), segmentationImg.CGImage);
+    
+    //遍历像素
+    int pixelNum = imgWidth *imgHeight;
+    uint32_t *pCurPtr = rgbImageBuf;
+    CGFloat minR = colorType ? 0 : 250;
+    CGFloat maxR = colorType ? 15 : 255;
+    CGFloat minG = colorType ? 0 : 240;
+    CGFloat maxG = colorType ? 15 : 255;
+    CGFloat minB = colorType ? 0 : 240;
+    CGFloat maxB = colorType ? 15 : 255;
+    for (int i = 0; i < pixelNum; i++, pCurPtr++) {
+        uint8_t *ptr = (uint8_t *)pCurPtr;
+        if (ptr[3] >= minR && ptr[3] <= maxR &&
+            ptr[2] >= minG && ptr[2] <= maxG &&
+            ptr[1] >= minB && ptr[1] <= maxB) {
+            ptr[0] = 0;
+        }
+        else {
+            printf("\n---->ptr0:%d ptr1:%d ptr2:%d ptr3:%d<----\n", ptr[0], ptr[1], ptr[2], ptr[3]);
+        }
+    }
+    
+    //将内存转成image
+    CGDataProviderRef dataProvider = CGDataProviderCreateWithData(NULL, rgbImageBuf, bytesPerRow *imgHeight, nil);
+    CGImageRef imageRef = CGImageCreate(imgWidth, imgHeight, 8, 32, bytesPerRow, colorSpace, kCGImageAlphaLast | kCGBitmapByteOrder32Little, dataProvider, NULL, true, kCGRenderingIntentDefault);
+    CGDataProviderRelease(dataProvider);
+    
+    UIImage *resultUIImage = [UIImage imageWithCGImage:imageRef];
+    
+    //释放
+    CGImageRelease(imageRef);
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    
+    return resultUIImage;
 }
 
 #pragma mark - 动态填充图片色值
