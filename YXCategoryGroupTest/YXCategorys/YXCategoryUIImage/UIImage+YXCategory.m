@@ -5,6 +5,7 @@
 //  Created by ios on 2020/4/8.
 //  Copyright © 2020 August. All rights reserved.
 //
+//TODO hue值网址 http://www.color-blindness.com/color-name-hue/
 
 #import "UIImage+YXCategory.h"
 #import <sys/utsname.h>
@@ -428,7 +429,7 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
                 //You can find publicly available rgbToHSV functions on the Internet
                 yxRGBToHSV(rgb[0], rgb[1], rgb[2], &hsv[0], &hsv[1], &hsv[2]);
                 //颜色判断
-                float alpha = (hsv[0] >= 50 && hsv[0] <= 170) ? 0.0f : 1.0f;
+                float alpha = (hsv[0] >= 50 && hsv[0] <= 170) ? 0.0f : 1.0f; //绿色
                 //饱和度
                 if (hsv[1] < 0.2) {
                     alpha = 1.0f;
