@@ -42,6 +42,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)yxCheackPassByMax:(NSInteger)max
                       min:(NSInteger)min;
 
+/** 编码 */
+- (NSString *)yxUrlEncoded;
+- (NSString *)yxUrlEncodeByUrl:(NSString *)url;
+
+/** 解码 */
+- (NSString *)yxUrlDecoded;
+
 /**
  * 判断是否能打开第三方平台
  * @param platformId 如（weixin://，sinaweibo://）

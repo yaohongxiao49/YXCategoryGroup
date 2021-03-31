@@ -126,6 +126,22 @@
     return isMatch;
 }
 
+#pragma mark - 编码
+- (NSString *)yxUrlEncoded {
+    
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
+- (NSString *)yxUrlEncodeByUrl:(NSString *)url {
+    
+    return [url stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"?!@#$^&%*+,:;='\"`<>()[]{}/\\| "] invertedSet]];
+}
+
+#pragma mark - 解码
+- (NSString *)yxUrlDecoded {
+    
+    return [self stringByRemovingPercentEncoding];
+}
+
 #pragma mark - 判断是否能打开第三方平台
 + (BOOL)yxJudgeCanOpenUrlByPlatformId:(NSString *)platformId {
     
