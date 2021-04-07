@@ -207,7 +207,7 @@ static const char kFilterActionTypeAddressKey;
 }
 
 #pragma mark - 输入框限制
-- (void)setYXFilterActionType:(int)filterActionType {
+- (void)setFilterActionType:(int)filterActionType {
     
     objc_setAssociatedObject(self, &kFilterActionTypeAddressKey, [NSString stringWithFormat:@"%d", filterActionType], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (filterActionType == YXFilterNoneType) {
