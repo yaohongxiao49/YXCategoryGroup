@@ -465,6 +465,73 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
     return newImage;
 }
 
+#pragma mark - 更改照片方向
+- (UIImage *)fixOrientation:(UIImageOrientation)orientation {
+
+    UIImageOrientation imgOrientation = orientation == UIImageOrientationUp ? self.imageOrientation : orientation;
+    if (imgOrientation == UIImageOrientationUp) {
+        return self;
+    }
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    switch (imgOrientation) {
+        case UIImageOrientationDown:
+        case UIImageOrientationDownMirrored: {
+            transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+        }
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored: {
+            transform = CGAffineTransformTranslate(transform, self.size.width, 0);
+            transform = CGAffineTransformRotate(transform, M_PI_2);
+            break;
+        }
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored: {
+            transform = CGAffineTransformTranslate(transform, 0, self.size.height);
+            transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+        }
+        default:
+            break;
+    }
+    switch (imgOrientation) {
+        case UIImageOrientationUpMirrored:
+        case UIImageOrientationDownMirrored: {
+            transform = CGAffineTransformTranslate(transform, self.size.width, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        }
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, self.size.height, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        default:
+            break;
+    }
+    
+    CGContextRef ctx = CGBitmapContextCreate(NULL, self.size.width, self.size.height, CGImageGetBitsPerComponent(self.CGImage), 0, CGImageGetColorSpace(self.CGImage), CGImageGetBitmapInfo(self.CGImage));
+    CGContextConcatCTM(ctx, transform);
+    
+    switch(imgOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage);
+            break;
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.width, self.size.height), self.CGImage);
+            break;
+    }
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *endImg = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return endImg;
+}
+
 #pragma mark - 使用CoreImage，分离图片并与指定背景图片合成一张图片（分离图片需要纯色背景）
 + (UIImage *)yxSegmentationAndCompositionImgBySegmentationImg:(UIImage *)segmentationImg bgImg:(UIImage *)bgImg {
     
