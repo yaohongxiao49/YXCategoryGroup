@@ -123,8 +123,10 @@ typedef NS_ENUM(NSUInteger, YXGradientDirectionType) {
 /**
  * 人脸位置检测，并裁剪包含五官的人脸
  * @param img 包含人脸的图片
+ * @param boolOnlyOriginalFace 是否返回原人像大小
  */
 + (void)yxDetectingAndCuttingFaceByImg:(UIImage *)img
+                  boolOnlyOriginalFace:(BOOL)boolOnlyOriginalFace
                               finished:(void(^)(BOOL success, UIImage *img))finished;
 
 
