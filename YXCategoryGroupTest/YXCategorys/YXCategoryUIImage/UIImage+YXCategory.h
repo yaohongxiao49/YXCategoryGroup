@@ -121,12 +121,14 @@ typedef NS_ENUM(NSUInteger, YXGradientDirectionType) {
                directionType:(YXGradientDirectionType)directionType;
 
 /**
- * 人脸位置检测，并裁剪包含五官的人脸
+ * 人脸位置检测，并裁剪包含五官的人脸（一般使用boolAccurate == NO）
  * @param img 包含人脸的图片
  * @param boolOnlyOriginalFace 是否返回原人像大小
+ * @param boolAccurate 是否使用精确面容定位
  */
 + (void)yxDetectingAndCuttingFaceByImg:(UIImage *)img
                   boolOnlyOriginalFace:(BOOL)boolOnlyOriginalFace
+                          boolAccurate:(BOOL)boolAccurate
                               finished:(void(^)(BOOL success, UIImage *img))finished;
 
 

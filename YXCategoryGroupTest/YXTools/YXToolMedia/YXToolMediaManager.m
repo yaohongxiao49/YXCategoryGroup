@@ -58,9 +58,9 @@
 + (YXVideoGravityType)yxGetVideoGravityWithVideoUrl:(NSString *)videoUrl {
     
     AVAsset *asset = [AVAsset assetWithURL:[NSURL URLWithString:videoUrl]];
-    return [self getVideoGravityWithAsset:asset];
+    return [self yxGetVideoGravityWithAsset:asset];
 }
-+ (YXVideoGravityType)getVideoGravityWithAsset:(AVAsset *)asset {
++ (YXVideoGravityType)yxGetVideoGravityWithAsset:(AVAsset *)asset {
     
     NSInteger videoGravity = 0;
     NSInteger degress = 0;

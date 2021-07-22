@@ -38,7 +38,13 @@
             [imgV startAnimating];
         });
         
-        [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[img CGImage] orientation:(ALAssetOrientation)[img imageOrientation] completionBlock:nil];
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                    
+            PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:img];
+        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            
+            NSLog(@"success = %d, error = %@", success, error);
+        }];
     }];
 }
 
