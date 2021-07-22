@@ -38,14 +38,13 @@
             [imgV startAnimating];
         });
         
-        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                    
-            PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:img];
-        } completionHandler:^(BOOL success, NSError * _Nullable error) {
-            
-            NSLog(@"success = %d, error = %@", success, error);
-        }];
+        UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
     }];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    
+    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
 }
 
 @end
