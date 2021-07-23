@@ -430,14 +430,14 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
 }
 
 #pragma mark - 人脸位置检测，并裁剪包含五官的人脸
-+ (void)yxDetectingAndCuttingFaceByImg:(UIImage *)img pointSize:(CGRect)pointSize boolOnlyOriginalFace:(BOOL)boolOnlyOriginalFace boolAccurate:(BOOL)boolAccurate finished:(void(^)(BOOL success, UIImage *img))finished {
++ (void)yxDetectingAndCuttingFaceByImg:(UIImage *)img boolOnlyDetectionFace:(BOOL)boolOnlyDetectionFace pointSize:(CGRect)pointSize boolOnlyOriginalFace:(BOOL)boolOnlyOriginalFace boolAccurate:(BOOL)boolAccurate finished:(void(^)(BOOL success, UIImage *img))finished {
     
     if (img) {
         BOOL face = NO;
         CGRect faceBounds;
         CIImage *cgImg;
         CIContext *context = [CIContext contextWithOptions:nil];
-        if (pointSize.size.width != 0) {
+        if (pointSize.size.width != 0 && boolOnlyDetectionFace != YES) {
             face = YES;
             faceBounds = pointSize;
         }
@@ -450,6 +450,10 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
             //检测到人脸时获取最后一次监测到的人脸
             CIFeature *faceFeature = [faceArr lastObject];
             faceBounds = faceFeature.bounds;
+            if (boolOnlyDetectionFace) {
+                finished(YES, nil);
+                return;
+            }
         }
         
         if (face) {
