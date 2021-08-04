@@ -207,8 +207,22 @@ typedef NS_ENUM(NSUInteger, YXGradientDirectionType) {
  * @param name 缓存命名
  * @param img 图片
  */
-+ (NSString *)cacheImgByName:(NSString *)name
-                         img:(UIImage *)img;
++ (NSString *)yxCacheImgByName:(NSString *)name
+                           img:(UIImage *)img;
+
+/**
+ * 全屏截图
+ * @param view 基础视图
+ * @param pointRect 指定截取范围（只有大小有作用）
+ * @param finishedBlock 成功结果
+ */
++ (void)yxScreenShotByView:(UIView *)view
+                 pointRect:(CGRect)pointRect
+             finishedBlock:(void(^)(UIImage *img))finishedBlock;
+
+/** 内容截图 */
++ (void)yxScreenShotsByScrollView:(UIScrollView *)scrollView
+                    finishedBlock:(void(^)(UIImage *img))finishedBlock;
 
 @end
 

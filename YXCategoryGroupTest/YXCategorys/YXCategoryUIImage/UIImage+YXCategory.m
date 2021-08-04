@@ -761,7 +761,7 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
 }
 
 #pragma mark - 图片缓存
-+ (NSString *)cacheImgByName:(NSString *)name img:(UIImage *)img {
++ (NSString *)yxCacheImgByName:(NSString *)name img:(UIImage *)img {
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *dirPath = [NSString stringWithFormat:@"%@/%@/%@", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject], @"circleCache", @""];
@@ -780,6 +780,59 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
     }
     
     return imgPath;
+}
+
+#pragma mark - 全屏截图
++ (void)yxScreenShotByView:(UIView *)view pointRect:(CGRect)pointRect finishedBlock:(void(^)(UIImage *img))finishedBlock {
+    
+    CGRect rect = view.frame;
+    if (pointRect.size.width != 0) rect = pointRect;
+    
+    //开启图片上下文
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:ctx];
+    //获取截图
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    //关闭图片上下文
+    UIGraphicsEndImageContext();
+    //保存相册
+    UIImageWriteToSavedPhotosAlbum(image, NULL, NULL, NULL);
+    if (finishedBlock) {
+        finishedBlock(image);
+    }
+}
+
+#pragma mark - 内容截图
++ (void)yxScreenShotsByScrollView:(UIScrollView *)scrollView finishedBlock:(void(^)(UIImage *img))finishedBlock {
+    
+    UIScrollView *shadowView = scrollView;
+    //开启图片上下文
+    UIGraphicsBeginImageContextWithOptions(shadowView.contentSize, NO, 0.f);
+    //保存现在视图的位置偏移信息
+    CGPoint saveContentOffset = shadowView.contentOffset;
+    //保存现在视图的frame信息
+    CGRect saveFrame = shadowView.frame;
+    //把要截图的视图偏移量设置为0
+    shadowView.contentOffset = CGPointZero;
+    //设置要截图的视图的frame为内容尺寸大小
+    shadowView.frame = CGRectMake(0, 0, shadowView.contentSize.width, shadowView.contentSize.height);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [scrollView.layer renderInContext:ctx];
+//    [shadowView drawViewHierarchyInRect:shadowView.frame afterScreenUpdates:YES];
+    //获取截图
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    //关闭图片上下文
+    UIGraphicsEndImageContext();
+    //将视图的偏移量设置回原来的状态
+    shadowView.contentOffset = saveContentOffset;
+    //将视图的frame信息设置回原来的状态
+    shadowView.frame = saveFrame;
+    //保存相册
+    UIImageWriteToSavedPhotosAlbum(image, NULL, NULL, NULL);
+    if (finishedBlock) {
+        finishedBlock(image);
+    }
 }
 
 #pragma mark - 创建gif
