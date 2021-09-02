@@ -170,23 +170,23 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
     
     switch (style) {
         case YXBtnEdgeInsetsStyleTop: {
-            imgEdgeInsets = UIEdgeInsetsMake(-labHeight - imgTitleSpace /2.0, 0, 0, -labWidth);
-            labEdgeInsets = UIEdgeInsetsMake(0, -imgWith, -imgHeight - imgTitleSpace /2.0, 0);
+            imgEdgeInsets = UIEdgeInsetsMake(-labHeight - imgTitleSpace / 2.0, 0, 0, -labWidth);
+            labEdgeInsets = UIEdgeInsetsMake(0, -imgWith, -imgHeight - imgTitleSpace /  2.0, 0);
         }
             break;
         case YXBtnEdgeInsetsStyleLeft: {
-            imgEdgeInsets = UIEdgeInsetsMake(0, -imgTitleSpace /2.0, 0, imgTitleSpace /2.0);
-            labEdgeInsets = UIEdgeInsetsMake(0, imgTitleSpace /2.0, 0, -imgTitleSpace /2.0);
+            imgEdgeInsets = UIEdgeInsetsMake(0, -imgTitleSpace / 2.0, 0, imgTitleSpace / 2.0);
+            labEdgeInsets = UIEdgeInsetsMake(0, imgTitleSpace / 2.0, 0, -imgTitleSpace / 2.0);
         }
             break;
         case YXBtnEdgeInsetsStyleBottom: {
-            imgEdgeInsets = UIEdgeInsetsMake(0, 0, -labHeight - imgTitleSpace /2.0, -labWidth);
-            labEdgeInsets = UIEdgeInsetsMake(-imgHeight - imgTitleSpace /2.0, -imgWith, 0, 0);
+            imgEdgeInsets = UIEdgeInsetsMake(0, 0, -labHeight - imgTitleSpace / 2.0, -labWidth);
+            labEdgeInsets = UIEdgeInsetsMake(-imgHeight - imgTitleSpace / 2.0, -imgWith, 0, 0);
         }
             break;
         case YXBtnEdgeInsetsStyleRight: {
-            imgEdgeInsets = UIEdgeInsetsMake(0, labWidth + imgTitleSpace /2.0, 0, -labWidth - imgTitleSpace /2.0);
-            labEdgeInsets = UIEdgeInsetsMake(0, -imgWith - imgTitleSpace /2.0, 0, imgWith + imgTitleSpace /2.0);
+            imgEdgeInsets = UIEdgeInsetsMake(0, labWidth + imgTitleSpace / 2.0, 0, -labWidth - imgTitleSpace / 2.0);
+            labEdgeInsets = UIEdgeInsetsMake(0, -imgWith - imgTitleSpace / 2.0, 0, imgWith + imgTitleSpace / 2.0);
         }
             break;
         default:
