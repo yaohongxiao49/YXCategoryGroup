@@ -14,7 +14,7 @@
 - (UIEdgeInsets)yxSafeAreaInsets {
     
     if (@available(iOS 11.0, *)) {
-        return [[[UIApplication sharedApplication] delegate] window].safeAreaInsets;
+        return [[UIApplication sharedApplication] windows].firstObject.safeAreaInsets;
     }
     
     return UIEdgeInsetsZero;
