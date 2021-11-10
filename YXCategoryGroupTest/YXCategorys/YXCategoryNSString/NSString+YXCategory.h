@@ -107,10 +107,10 @@ NS_ASSUME_NONNULL_BEGIN
                                               changeTextArr:(NSArray *)changeTextArr
                                               changeFontArr:(NSArray *)changeFontArr
                                              changeColorArr:(NSArray *)changeColorArr
-                                             lineSpaceValue:(NSString *)lineSpaceValue
+                                             lineSpaceValue:(nullable NSString *)lineSpaceValue
                                                   alignment:(NSTextAlignment)alignment
-                                             underLineColor:(UIColor *)underLineColor
-                                         strikethroughColor:(UIColor *)strikethroughColor;
+                                             underLineColor:(nullable UIColor *)underLineColor
+                                         strikethroughColor:(nullable UIColor *)strikethroughColor;
 
 /**
  * 图文混排

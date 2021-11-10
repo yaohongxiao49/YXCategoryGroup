@@ -220,7 +220,7 @@
 }
 
 #pragma mark - 设置属性文字
-+ (NSMutableAttributedString *)yxAttributedStringByBaseText:(NSString *)baseText baseFont:(UIFont *)baseFont baseColor:(UIColor *)baseColor changeTextArr:(NSArray *)changeTextArr changeFontArr:(NSArray *)changeFontArr changeColorArr:(NSArray *)changeColorArr lineSpaceValue:(NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(UIColor *)underLineColor strikethroughColor:(UIColor *)strikethroughColor {
++ (NSMutableAttributedString *)yxAttributedStringByBaseText:(NSString *)baseText baseFont:(UIFont *)baseFont baseColor:(UIColor *)baseColor changeTextArr:(NSArray *)changeTextArr changeFontArr:(NSArray *)changeFontArr changeColorArr:(NSArray *)changeColorArr lineSpaceValue:(nullable NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(nullable UIColor *)underLineColor strikethroughColor:(nullable UIColor *)strikethroughColor {
     
     if (baseText.length == 0) {
         return nil;
