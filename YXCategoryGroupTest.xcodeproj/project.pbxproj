@@ -47,6 +47,7 @@
 		84AD560424442BC000004B7E /* YXToolAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560224442BC000004B7E /* YXToolAlert.m */; };
 		84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560624442BDF00004B7E /* YXToolAlertVC.m */; };
 		84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */; };
+		B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,8 @@
 		84AD560624442BDF00004B7E /* YXToolAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolAlertVC.m; sourceTree = "<group>"; };
 		84E92ADB260349F400CCF2C3 /* YXEvaluationStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEvaluationStarView.h; sourceTree = "<group>"; };
 		84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEvaluationStarView.m; sourceTree = "<group>"; };
+		B1D8C0C0273CED0C008B6903 /* NSDictionary+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YXCategory.h"; sourceTree = "<group>"; };
+		B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YXCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +336,8 @@
 			children = (
 				846E559A243EF2D200CB7233 /* NSMutableDictionary+YXCategory.h */,
 				846E559B243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m */,
+				B1D8C0C0273CED0C008B6903 /* NSDictionary+YXCategory.h */,
+				B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */,
 			);
 			path = YXCategoryNSDictionary;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 				84AD55F824442B7400004B7E /* UIView+TYAlertView.m in Sources */,
 				846E55A4243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m in Sources */,
 				84AD55FA24442B7400004B7E /* TYAlertFadeAnimation.m in Sources */,
+				B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */,
 				846E55A5243EF2D200CB7233 /* YXCategoryBaseManager.m in Sources */,
 				84AD55F924442B7400004B7E /* TYAlertScaleFadeAnimation.m in Sources */,
 				84AD55FC24442B7400004B7E /* UIView+TYAutoLayout.m in Sources */,

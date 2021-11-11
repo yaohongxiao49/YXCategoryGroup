@@ -18,5 +18,6 @@
 #import "NSString+YXCategory.h"
 #import "NSMutableArray+YXCategory.h"
 #import "NSMutableDictionary+YXCategory.h"
+#import "NSDictionary+YXCategory.h"
 
 #endif /* YXCategorysPCH_pch */
