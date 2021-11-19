@@ -34,41 +34,29 @@ static UIWindow *_alertWindow = nil;
     // Do any additional setup after loading the view.
 }
 
-#pragma mark - 状态栏设置
-- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle {
-    
-    _statusBarStyle = statusBarStyle;
-    
-    YXToolAlertVC *alertVC = (YXToolAlertVC *)_alertWindow.rootViewController;
-    alertVC.statusBarStyle = statusBarStyle;
-    [alertVC setNeedsStatusBarAppearanceUpdate];
-}
-
 #pragma mark - 初始化默认弹窗
-+ (YXToolAlert *)yxShowAlertWithTitle:(NSString *)title message:(NSString *)message buttonTitles:(NSArray *)buttonTitles tapBlock:(YXToolAlertBlock)tapBlock {
++ (YXToolAlert *)yxShowAlertWithTitle:(NSString *)title message:(NSString *)message buttonTitles:(NSArray *)buttonTitles buttonTypes:(NSArray *)buttonTypes preferredStyle:(UIAlertControllerStyle)preferredStyle tapBlock:(YXToolAlertBlock)tapBlock {
     
-    return [self yxShowAlertWithTitle:title message:message style:YXToolAlertTypeDefault buttonTitles:buttonTitles tapBlock:tapBlock];
+    return [self yxShowAlertWithTitle:title message:message style:YXToolAlertTypeDefault buttonTitles:buttonTitles buttonTypes:buttonTypes preferredStyle:preferredStyle tapBlock:tapBlock];
 }
 
 #pragma mark - 初始化弹窗（可选类型）
-+ (YXToolAlert *)yxShowAlertWithTitle:(NSString *)title message:(NSString *)message style:(YXToolAlertType)style buttonTitles:(NSArray *)buttonTitles tapBlock:(YXToolAlertBlock)tapBlock {
++ (YXToolAlert *)yxShowAlertWithTitle:(NSString *)title message:(NSString *)message style:(YXToolAlertType)style buttonTitles:(NSArray *)buttonTitles buttonTypes:(NSArray *)buttonTypes preferredStyle:(UIAlertControllerStyle)preferredStyle tapBlock:(YXToolAlertBlock)tapBlock {
     
-    return [self yxShowAlertWithTitle:title message:message style:style buttonTitles:buttonTitles isShow:YES tapBlock:tapBlock];
+    return [self yxShowAlertWithTitle:title message:message style:style buttonTitles:buttonTitles buttonTypes:buttonTypes preferredStyle:preferredStyle isShow:YES tapBlock:tapBlock];
 }
 
 #pragma mark - 初始化弹窗（可选类型，是否弹出）
-+ (YXToolAlert *)yxShowAlertWithTitle:(NSString *)title message:(NSString *)message style:(YXToolAlertType)style buttonTitles:(NSArray *)buttonTitles isShow:(BOOL)isShow tapBlock:(YXToolAlertBlock)tapBlock {
++ (YXToolAlert *)yxShowAlertWithTitle:(NSString *)title message:(NSString *)message style:(YXToolAlertType)style buttonTitles:(NSArray *)buttonTitles buttonTypes:(NSArray *)buttonTypes preferredStyle:(UIAlertControllerStyle)preferredStyle isShow:(BOOL)isShow tapBlock:(YXToolAlertBlock)tapBlock {
     
     if (_alertWindow == nil) {
-        _alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _alertWindow.backgroundColor = [UIColor clearColor];
-        _alertWindow.rootViewController = [[YXToolAlertVC alloc] init];
+        _alertWindow = [[UIApplication sharedApplication] keyWindow];
     }
     
-    YXToolAlert *alertView = [YXToolAlert alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    alertView.statusBarStyle = UIStatusBarStyleDefault;
+    YXToolAlert *alertView = [YXToolAlert alertControllerWithTitle:title message:message preferredStyle:preferredStyle];
     alertView.alertViewStyle = style;
     alertView.buttonTitles = [NSMutableArray arrayWithArray:buttonTitles];
+    alertView.buttonTypes = [NSMutableArray arrayWithArray:buttonTypes];
     alertView.tapBlock = tapBlock;
     
     //设置内容
@@ -93,7 +81,21 @@ static UIWindow *_alertWindow = nil;
 
     //设置按钮
     for (NSInteger i = 0; i < _buttonTitles.count; ++i) {
-        [self yxAddButtonTitle:_buttonTitles[i] style:UIAlertActionStyleDefault];
+        UIAlertActionStyle type = UIAlertActionStyleDefault;
+        switch ([_buttonTypes[i] integerValue]) {
+            case 0:
+                type = UIAlertActionStyleDefault;
+                break;
+            case 1:
+                type = UIAlertActionStyleCancel;
+                break;
+            case 2:
+                type = UIAlertActionStyleDestructive;
+                break;
+            default:
+                break;
+        }
+        [self yxAddButtonTitle:_buttonTitles[i] style:type];
     }
 }
 
@@ -101,8 +103,8 @@ static UIWindow *_alertWindow = nil;
 - (void)yxShowAlert {
     
     _alertWindow.hidden = NO;
-    _alertWindow.windowLevel = UIWindowLevelAlert;
-    [_alertWindow makeKeyAndVisible];
+//    _alertWindow.windowLevel = UIWindowLevelAlert;
+//    [_alertWindow makeKeyAndVisible];
     [_alertWindow.rootViewController presentViewController:self animated:YES completion:nil];
 }
 
@@ -112,8 +114,8 @@ static UIWindow *_alertWindow = nil;
     __weak typeof(self) alertVC = self;
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:title style:style handler:^(UIAlertAction * _Nonnull action) {
         
-        _alertWindow.hidden = YES;
-        [_alertWindow resignKeyWindow];
+//        _alertWindow.hidden = YES;
+//        [_alertWindow resignKeyWindow];
         
         NSUInteger index = [alertVC.actions indexOfObject:action];
         if (alertVC.tapBlock) {

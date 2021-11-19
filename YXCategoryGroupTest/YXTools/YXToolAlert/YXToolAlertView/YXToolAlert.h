@@ -30,8 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) YXToolAlertType alertViewStyle;
 @property (nonatomic, copy) YXToolAlertBlock tapBlock;
 
-@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 @property (nonatomic, strong) NSMutableArray *buttonTitles;
+@property (nonatomic, strong) NSMutableArray *buttonTypes;
 @property (nonatomic, assign) NSInteger tag; //用来标记
 /** 进入后台关闭弹框(默认:YES) */
 @property (nonatomic, assign) BOOL isEnterBackgroundClose;
@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (YXToolAlert *)yxShowAlertWithTitle:(NSString *__nullable)title
                               message:(NSString *__nullable)message
                          buttonTitles:(NSArray *__nullable)buttonTitles
+                          buttonTypes:(NSArray *)buttonTypes
+                       preferredStyle:(UIAlertControllerStyle)preferredStyle
                              tapBlock:(YXToolAlertBlock)tapBlock;
 
 /**
@@ -60,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
                               message:(NSString *__nullable)message
                                 style:(YXToolAlertType)style
                          buttonTitles:(NSArray *__nullable)buttonTitles
+                          buttonTypes:(NSArray *)buttonTypes
+                       preferredStyle:(UIAlertControllerStyle)preferredStyle
                              tapBlock:(YXToolAlertBlock)tapBlock;
 
 /**
@@ -75,6 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
                               message:(NSString *__nullable)message
                                 style:(YXToolAlertType)style
                          buttonTitles:(NSArray *__nullable)buttonTitles
+                          buttonTypes:(NSArray *)buttonTypes
+                       preferredStyle:(UIAlertControllerStyle)preferredStyle
                                isShow:(BOOL)isShow
                              tapBlock:(YXToolAlertBlock)tapBlock;
 /** 弹出弹出（一般与控制是否弹出的初始化方法配合使用） */

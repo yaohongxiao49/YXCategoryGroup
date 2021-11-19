@@ -218,7 +218,7 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
                 [weakSelf setTitle:title forState:UIControlStateNormal];
                 weakSelf.userInteractionEnabled = YES;
                 if (startWithTimeIsEndBlock) {
-                    startWithTimeIsEndBlock(@"完");
+                    startWithTimeIsEndBlock();
                 }
             });
         }
