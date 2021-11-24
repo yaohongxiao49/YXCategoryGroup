@@ -47,6 +47,16 @@
 		84AD560424442BC000004B7E /* YXToolAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560224442BC000004B7E /* YXToolAlert.m */; };
 		84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560624442BDF00004B7E /* YXToolAlertVC.m */; };
 		84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */; };
+		B16BCA70274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5B274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m */; };
+		B16BCA71274DDB610002B606 /* YXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5D274DDB610002B606 /* YXPageControl.m */; };
+		B16BCA72274DDB610002B606 /* YXFuncCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5E274DDB610002B606 /* YXFuncCycleScrollView.m */; };
+		B16BCA73274DDB610002B606 /* YXEntertainingDiversionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA63274DDB610002B606 /* YXEntertainingDiversionsView.m */; };
+		B16BCA74274DDB610002B606 /* YXFuncScrollBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA65274DDB610002B606 /* YXFuncScrollBaseView.m */; };
+		B16BCA75274DDB610002B606 /* YXFuncScrollBaseTabSecHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA68274DDB610002B606 /* YXFuncScrollBaseTabSecHeaderView.m */; };
+		B16BCA76274DDB610002B606 /* YXFuncScrollBaseTabSecFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA6B274DDB610002B606 /* YXFuncScrollBaseTabSecFooterView.m */; };
+		B16BCA77274DDB610002B606 /* YXFuncScrollBaseTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA6D274DDB610002B606 /* YXFuncScrollBaseTabCell.m */; };
+		B16BCA78274DDB610002B606 /* YXFuncScrollBaseTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA6E274DDB610002B606 /* YXFuncScrollBaseTabView.m */; };
+		B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA7A274DDB990002B606 /* YXBadgeButton.m */; };
 		B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +158,26 @@
 		84AD560624442BDF00004B7E /* YXToolAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolAlertVC.m; sourceTree = "<group>"; };
 		84E92ADB260349F400CCF2C3 /* YXEvaluationStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEvaluationStarView.h; sourceTree = "<group>"; };
 		84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEvaluationStarView.m; sourceTree = "<group>"; };
+		B16BCA5B274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncCycleScrollViewValueModel.m; sourceTree = "<group>"; };
+		B16BCA5C274DDB610002B606 /* YXFuncCycleScrollViewValueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncCycleScrollViewValueModel.h; sourceTree = "<group>"; };
+		B16BCA5D274DDB610002B606 /* YXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPageControl.m; sourceTree = "<group>"; };
+		B16BCA5E274DDB610002B606 /* YXFuncCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncCycleScrollView.m; sourceTree = "<group>"; };
+		B16BCA5F274DDB610002B606 /* YXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPageControl.h; sourceTree = "<group>"; };
+		B16BCA60274DDB610002B606 /* YXFuncCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncCycleScrollView.h; sourceTree = "<group>"; };
+		B16BCA62274DDB610002B606 /* YXEntertainingDiversionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEntertainingDiversionsView.h; sourceTree = "<group>"; };
+		B16BCA63274DDB610002B606 /* YXEntertainingDiversionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEntertainingDiversionsView.m; sourceTree = "<group>"; };
+		B16BCA65274DDB610002B606 /* YXFuncScrollBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncScrollBaseView.m; sourceTree = "<group>"; };
+		B16BCA67274DDB610002B606 /* YXFuncScrollBaseTabSecFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncScrollBaseTabSecFooterView.h; sourceTree = "<group>"; };
+		B16BCA68274DDB610002B606 /* YXFuncScrollBaseTabSecHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncScrollBaseTabSecHeaderView.m; sourceTree = "<group>"; };
+		B16BCA69274DDB610002B606 /* YXFuncScrollBaseTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncScrollBaseTabCell.h; sourceTree = "<group>"; };
+		B16BCA6A274DDB610002B606 /* YXFuncScrollBaseTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncScrollBaseTabView.h; sourceTree = "<group>"; };
+		B16BCA6B274DDB610002B606 /* YXFuncScrollBaseTabSecFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncScrollBaseTabSecFooterView.m; sourceTree = "<group>"; };
+		B16BCA6C274DDB610002B606 /* YXFuncScrollBaseTabSecHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncScrollBaseTabSecHeaderView.h; sourceTree = "<group>"; };
+		B16BCA6D274DDB610002B606 /* YXFuncScrollBaseTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncScrollBaseTabCell.m; sourceTree = "<group>"; };
+		B16BCA6E274DDB610002B606 /* YXFuncScrollBaseTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncScrollBaseTabView.m; sourceTree = "<group>"; };
+		B16BCA6F274DDB610002B606 /* YXFuncScrollBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncScrollBaseView.h; sourceTree = "<group>"; };
+		B16BCA7A274DDB990002B606 /* YXBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBadgeButton.m; sourceTree = "<group>"; };
+		B16BCA7B274DDB990002B606 /* YXBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBadgeButton.h; sourceTree = "<group>"; };
 		B1D8C0C0273CED0C008B6903 /* NSDictionary+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YXCategory.h"; sourceTree = "<group>"; };
 		B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YXCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				848794202446D9FF0010B23B /* YXToolsPCH.pch */,
+				B16BCA79274DDB990002B606 /* YXBadgeButton */,
+				B16BCA58274DDB610002B606 /* YXFuncScrollView */,
 				84AD55DF24442B1F00004B7E /* YXToolAlert */,
 				84AD55DB2444016D00004B7E /* YXToolMedia */,
 				844E19D52440552C009FE378 /* YXToolLocalSave */,
@@ -433,6 +465,80 @@
 			path = YXToolMallEvaluation;
 			sourceTree = "<group>";
 		};
+		B16BCA58274DDB610002B606 /* YXFuncScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				B16BCA61274DDB610002B606 /* YXEntertainingDiversionsView */,
+				B16BCA59274DDB610002B606 /* YXFuncCycleScrollView */,
+				B16BCA64274DDB610002B606 /* YXFuncPinScrollView */,
+			);
+			path = YXFuncScrollView;
+			sourceTree = "<group>";
+		};
+		B16BCA59274DDB610002B606 /* YXFuncCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				B16BCA5A274DDB610002B606 /* YXFuncCycleScrollViewValueModel */,
+				B16BCA60274DDB610002B606 /* YXFuncCycleScrollView.h */,
+				B16BCA5E274DDB610002B606 /* YXFuncCycleScrollView.m */,
+				B16BCA5F274DDB610002B606 /* YXPageControl.h */,
+				B16BCA5D274DDB610002B606 /* YXPageControl.m */,
+			);
+			path = YXFuncCycleScrollView;
+			sourceTree = "<group>";
+		};
+		B16BCA5A274DDB610002B606 /* YXFuncCycleScrollViewValueModel */ = {
+			isa = PBXGroup;
+			children = (
+				B16BCA5C274DDB610002B606 /* YXFuncCycleScrollViewValueModel.h */,
+				B16BCA5B274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m */,
+			);
+			path = YXFuncCycleScrollViewValueModel;
+			sourceTree = "<group>";
+		};
+		B16BCA61274DDB610002B606 /* YXEntertainingDiversionsView */ = {
+			isa = PBXGroup;
+			children = (
+				B16BCA62274DDB610002B606 /* YXEntertainingDiversionsView.h */,
+				B16BCA63274DDB610002B606 /* YXEntertainingDiversionsView.m */,
+			);
+			path = YXEntertainingDiversionsView;
+			sourceTree = "<group>";
+		};
+		B16BCA64274DDB610002B606 /* YXFuncPinScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				B16BCA66274DDB610002B606 /* YXFuncScrollBaseTabView */,
+				B16BCA6F274DDB610002B606 /* YXFuncScrollBaseView.h */,
+				B16BCA65274DDB610002B606 /* YXFuncScrollBaseView.m */,
+			);
+			path = YXFuncPinScrollView;
+			sourceTree = "<group>";
+		};
+		B16BCA66274DDB610002B606 /* YXFuncScrollBaseTabView */ = {
+			isa = PBXGroup;
+			children = (
+				B16BCA69274DDB610002B606 /* YXFuncScrollBaseTabCell.h */,
+				B16BCA6D274DDB610002B606 /* YXFuncScrollBaseTabCell.m */,
+				B16BCA67274DDB610002B606 /* YXFuncScrollBaseTabSecFooterView.h */,
+				B16BCA6B274DDB610002B606 /* YXFuncScrollBaseTabSecFooterView.m */,
+				B16BCA6C274DDB610002B606 /* YXFuncScrollBaseTabSecHeaderView.h */,
+				B16BCA68274DDB610002B606 /* YXFuncScrollBaseTabSecHeaderView.m */,
+				B16BCA6A274DDB610002B606 /* YXFuncScrollBaseTabView.h */,
+				B16BCA6E274DDB610002B606 /* YXFuncScrollBaseTabView.m */,
+			);
+			path = YXFuncScrollBaseTabView;
+			sourceTree = "<group>";
+		};
+		B16BCA79274DDB990002B606 /* YXBadgeButton */ = {
+			isa = PBXGroup;
+			children = (
+				B16BCA7A274DDB990002B606 /* YXBadgeButton.m */,
+				B16BCA7B274DDB990002B606 /* YXBadgeButton.h */,
+			);
+			path = YXBadgeButton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -566,6 +672,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				84AD55F824442B7400004B7E /* UIView+TYAlertView.m in Sources */,
+				B16BCA73274DDB610002B606 /* YXEntertainingDiversionsView.m in Sources */,
+				B16BCA75274DDB610002B606 /* YXFuncScrollBaseTabSecHeaderView.m in Sources */,
 				846E55A4243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m in Sources */,
 				84AD55FA24442B7400004B7E /* TYAlertFadeAnimation.m in Sources */,
 				B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */,
@@ -573,26 +681,34 @@
 				84AD55F924442B7400004B7E /* TYAlertScaleFadeAnimation.m in Sources */,
 				84AD55FC24442B7400004B7E /* UIView+TYAutoLayout.m in Sources */,
 				84AD55F724442B7400004B7E /* TYAlertView.m in Sources */,
+				B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */,
 				84AD560424442BC000004B7E /* YXToolAlert.m in Sources */,
+				B16BCA74274DDB610002B606 /* YXFuncScrollBaseView.m in Sources */,
 				846E555D243EF2BE00CB7233 /* ViewController.m in Sources */,
 				846E55A3243EF2D200CB7233 /* UIView+YXCategory.m in Sources */,
 				84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */,
+				B16BCA76274DDB610002B606 /* YXFuncScrollBaseTabSecFooterView.m in Sources */,
 				846E5557243EF2BE00CB7233 /* AppDelegate.m in Sources */,
 				84AD55DE2444018700004B7E /* YXToolMediaManager.m in Sources */,
+				B16BCA77274DDB610002B606 /* YXFuncScrollBaseTabCell.m in Sources */,
 				84AD55FE24442B7400004B7E /* TYShowAlertView.m in Sources */,
 				844E19E724406F3D009FE378 /* YXToolLocalSaveBySqlite.m in Sources */,
 				84AD560024442B7400004B7E /* TYAlertController.m in Sources */,
+				B16BCA78274DDB610002B606 /* YXFuncScrollBaseTabView.m in Sources */,
 				846E55A1243EF2D200CB7233 /* NSMutableArray+YXCategory.m in Sources */,
 				84AD55FB24442B7400004B7E /* TYAlertController+TransitionAnimate.m in Sources */,
 				844E19E4244057D4009FE378 /* YXToolLocalSaveByKeychain.m in Sources */,
 				846E5568243EF2C000CB7233 /* main.m in Sources */,
 				846E55A2243EF2D200CB7233 /* NSString+YXCategory.m in Sources */,
 				846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */,
+				B16BCA70274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m in Sources */,
 				846E55A0243EF2D200CB7233 /* UIColor+YXCategory.m in Sources */,
+				B16BCA71274DDB610002B606 /* YXPageControl.m in Sources */,
 				84AD55FD24442B7400004B7E /* TYAlertDropDownAnimation.m in Sources */,
 				846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */,
 				844E19ED24407B56009FE378 /* YXToolAppBaseMessage.m in Sources */,
 				844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */,
+				B16BCA72274DDB610002B606 /* YXFuncCycleScrollView.m in Sources */,
 				84AD55FF24442B7400004B7E /* TYBaseAnimation.m in Sources */,
 				84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */,
 				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,

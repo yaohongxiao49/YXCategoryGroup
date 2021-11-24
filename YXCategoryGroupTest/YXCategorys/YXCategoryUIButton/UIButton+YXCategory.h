@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, YXBtnEdgeInsetsStyle) {
 };
 
 typedef void(^YXBtnTapActionBlock)(UIButton *button, BOOL boolSelected);
-typedef void(^YXStartWithTimeIsEndBlock)(id);
+typedef void(^YXStartWithTimeIsEndBlock)(void);
 
 @interface UIButton (YXCategory)
 
