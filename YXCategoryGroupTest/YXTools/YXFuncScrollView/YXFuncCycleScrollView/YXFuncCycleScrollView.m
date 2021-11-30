@@ -382,7 +382,8 @@
         [_pageBtn setTitle:[NSString stringWithFormat:@" %@/%@ ", @(_pageControl.currentPage + 1), @(self.imgValueArr.count)] forState:UIControlStateNormal];
     }
     else {
-        if (offsetOrigin >= judgeBigCount *_rollingDistance) { //滑动到右边视图
+        NSInteger offset = judgeBigCount *_rollingDistance;
+        if (offsetOrigin >= offset) { //滑动到右边视图
             [self updateLastValue];
             _pageControl.currentPage = _pageControl.currentPage == self.imgValueArr.count - 1 ? 0 : _pageControl.currentPage + 1;
             _alreadCurrent = (judgeShowCount - 1) > 0 ? (judgeShowCount - 1) : 0;
@@ -469,7 +470,10 @@
         CGFloat proportion = distance == 0 ? _zoomRadio : (imgSizeOrigin /distance);
         //放大比例（如果移动比例大于指定比例，则使用指定比例，最小比例为1）
         CGFloat scale = proportion >= _zoomRadio ? _zoomRadio : proportion <= 1 ? 1 : proportion;
-        view.transform = CGAffineTransformMakeScale(scale, scale);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            view.transform = CGAffineTransformMakeScale(scale, scale);
+        });
     }
     else {
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
