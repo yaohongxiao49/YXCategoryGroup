@@ -85,12 +85,12 @@
 #pragma mark - 打开app商店
 - (void)yxOpenAppStoreByIdent:(NSString *)ident boolDetail:(BOOL)boolDetail {
     
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=%@", ident];
+    NSString *str = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@?mt=8", ident];
     if (boolDetail) str = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa /wa/viewContentsUserReviews?type=Purple+Software&id=%@", ident];
     
     NSURL *urls = [NSURL URLWithString:str];
     if ([[UIApplication sharedApplication] canOpenURL:urls]) {
-        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@YES};
+        NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@NO};
         [[UIApplication sharedApplication] openURL:urls options:options completionHandler:nil];
     }
 }

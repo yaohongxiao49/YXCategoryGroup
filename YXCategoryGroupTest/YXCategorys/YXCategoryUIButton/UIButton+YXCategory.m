@@ -274,6 +274,7 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
 
 - (void)cs_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
     
+    self.repeatClickEventInterval = 1;
     if ([NSDate date].timeIntervalSince1970 - self.acceptEventTime < self.repeatClickEventInterval) {
         return;
     }
