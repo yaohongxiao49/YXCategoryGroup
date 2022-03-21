@@ -143,7 +143,7 @@ static const char kFilterActionTypeAddressKey;
             return (UIViewController *)nextResponder;
         }
     }
-    return nil;
+    return [UIViewController new];
 }
 
 #pragma mark - 添加点击手势

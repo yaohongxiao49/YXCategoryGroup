@@ -44,7 +44,7 @@
 - (NSString *)yxPhoneNumHiddenCenter {
     
     if (![self yxBoolVaildMobile]) {
-        return nil;
+        return @"";
     }
     NSString *startStr = [self substringWithRange:NSMakeRange(0, 3)];
     NSString *endStr = [self substringWithRange:NSMakeRange(self.length - 4, 4)];
@@ -223,7 +223,7 @@
 + (NSMutableAttributedString *)yxAttributedStringByBaseText:(NSString *)baseText baseFont:(UIFont *)baseFont baseColor:(UIColor *)baseColor changeTextArr:(NSArray *)changeTextArr changeFontArr:(NSArray *)changeFontArr changeColorArr:(NSArray *)changeColorArr lineSpaceValue:(nullable NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(nullable UIColor *)underLineColor strikethroughColor:(nullable UIColor *)strikethroughColor {
     
     if (baseText.length == 0) {
-        return nil;
+        return [NSMutableAttributedString new];
     }
     
     //设置字符串
@@ -355,9 +355,8 @@
     
     NSString *week;
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
     NSInteger unitFlags = NSCalendarUnitWeekday;
-    comps = [calendar components:unitFlags fromDate:day];
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:day];
     NSInteger weekInt = [comps weekday];
     switch (weekInt) {
         case 1:
@@ -396,11 +395,9 @@
     NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
     [dateformater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
-    NSDate *aDate = [[NSDate alloc] init];
-    NSDate *bDate = [[NSDate alloc] init];
-    
-    aDate = [dateformater dateFromString:aDateStr];
-    bDate = [dateformater dateFromString:bDateStr];
+    NSDate *aDate = [dateformater dateFromString:aDateStr];
+    NSDate *bDate = [dateformater dateFromString:bDateStr];
+
     NSComparisonResult result = [aDate compare:bDate];
     if (result == NSOrderedSame) {
         isOk = NO;
@@ -420,8 +417,7 @@
     
     NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
     [dateformater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *date = [[NSDate alloc] init];
-    date = [dateformater dateFromString:dateStr];
+    NSDate *date = [dateformater dateFromString:dateStr];
     double beTime = [date timeIntervalSince1970];
     
     NSTimeInterval now = [[NSDate date]timeIntervalSince1970];

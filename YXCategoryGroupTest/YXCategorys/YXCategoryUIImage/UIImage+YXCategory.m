@@ -241,7 +241,7 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
 + (UIImage *)yxComposeImgWithBgImgValue:(id)bgImgValue bgImgFrame:(CGRect)bgImgFrame topImgValue:(id)topImgValue topImgFrame:(CGRect)topImgFrame saveToFileWithName:(NSString *)saveToFileWithName boolByBgView:(BOOL)boolByBgView {
     
     //底图
-    UIImage *bgImg = [[UIImage alloc] init];
+    UIImage *bgImg;
     if ([bgImgValue isKindOfClass:[UIImage class]]) {
         bgImg = bgImgValue;
     }
@@ -255,7 +255,7 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
     CGFloat bgImgH = CGImageGetWidth(bgImgRef) > width ? CGImageGetHeight(bgImgRef) *(width /CGImageGetWidth(bgImgRef)) : CGImageGetHeight(bgImgRef);
     
     //顶图
-    UIImage *topImg = [[UIImage alloc] init];
+    UIImage *topImg;
     if ([topImgValue isKindOfClass:[UIImage class]]) {
         topImg = topImgValue;
     }
@@ -302,7 +302,7 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
 #pragma mark - 按比例缩放/压缩图片
 + (UIImage *)yxImgCompressForSizeImg:(id)imgValue targetSize:(CGSize)targetSize {
     
-    UIImage *img = [[UIImage alloc] init];
+    UIImage *img;
     if ([imgValue isKindOfClass:[UIImage class]]) {
         img = imgValue;
     }

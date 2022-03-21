@@ -43,6 +43,7 @@
         self.titleLab.textColor = selTextColor;
         self.lineView.backgroundColor = [UIColor clearColor];
     }
+    NSLog(@"isSelected == %@", @(isSelected));
 }
 
 #pragma mark - 懒加载

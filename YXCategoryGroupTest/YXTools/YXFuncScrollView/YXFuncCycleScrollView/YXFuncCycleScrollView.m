@@ -288,8 +288,7 @@
 - (void)singleTapAction:(UITapGestureRecognizer *)gesture {
     
     if (self.yxFuncCycleScrollViewBlock) {
-        YXFuncCycleScrollViewValueInfoModel *infoModel = [[YXFuncCycleScrollViewValueInfoModel alloc] init];
-        infoModel = self.imgValueArr[gesture.view.tag];
+        YXFuncCycleScrollViewValueInfoModel *infoModel = self.imgValueArr[gesture.view.tag];
         self.yxFuncCycleScrollViewBlock(infoModel);
     }
 }

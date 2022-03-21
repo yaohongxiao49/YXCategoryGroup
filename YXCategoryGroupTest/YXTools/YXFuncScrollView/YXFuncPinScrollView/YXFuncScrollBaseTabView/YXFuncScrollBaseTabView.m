@@ -218,6 +218,7 @@
     if (self.lineType == YXFuncScrollBaseTabVSelTypeSpecifiedLine || self.lineWidth == YXFuncScrollBaseTabVSelTypeWidthLine || self.lineWidth == YXFuncScrollBaseTabVSelTypeTextLine) {
         bottom = self.edgeInsets.bottom + kScrollBaseTabCellLineHeight;
     }
+    NSLog(@"bottom == %@", @(bottom));
      
     self.edgeInsets = UIEdgeInsetsMake(self.edgeInsets.top, self.edgeInsets.left, self.edgeInsets.bottom, self.edgeInsets.right);
     return self.edgeInsets;

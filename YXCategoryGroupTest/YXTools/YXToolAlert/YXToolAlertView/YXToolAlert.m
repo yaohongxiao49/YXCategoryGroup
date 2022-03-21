@@ -170,7 +170,7 @@ static UIWindow *_alertWindow = nil;
         return self.textFields[1];
     }
     
-    return nil;
+    return [UITextField new];
 }
 
 #pragma mark - 监听进入后台
