@@ -64,6 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)yxGetAppVersion:(BOOL)boolSpecific;
 
+/** 版本号比较 */
++ (BOOL)yxGetNeedUpdate:(NSString *)v2;
+
 /**
  * 字典/数组转字符串
  * @param data 字典/数组
