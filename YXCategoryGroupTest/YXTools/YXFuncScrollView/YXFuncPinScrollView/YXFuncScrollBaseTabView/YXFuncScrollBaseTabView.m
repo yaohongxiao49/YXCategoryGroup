@@ -81,7 +81,7 @@
 #pragma mark - 下划线滚动动画
 - (void)lineScrollingAnimation:(BOOL)isAnimation view:(UIView *)view {
     
-    __weak typeof(self) weakSelf = self;
+    kYXWeakSelf;
     if (isAnimation) {
         [UIView animateWithDuration:0.3 animations:^{
            

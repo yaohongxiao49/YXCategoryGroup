@@ -200,7 +200,7 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
 #pragma mark - 倒计时
 - (void)yxBtnCountdownByTimeAmount:(NSInteger)timeAmount title:(NSString *)title beforeSubTitle:(NSString *)beforeSubTitle countDownTitle:(NSString *)subTitle mainColor:(UIColor *)mColor countColor:(UIColor *)color isCerificationCode:(BOOL)isCerificationCode startWithTimeIsEndBlock:(YXStartWithTimeIsEndBlock)startWithTimeIsEndBlock {
     
-    __weak typeof(self) weakSelf = self;
+    kYXWeakSelf;
     //倒计时时间
     __block NSInteger timeOut = timeAmount;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -241,6 +241,36 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
         }
     });
     dispatch_resume(_timer);
+}
+
+#pragma mark - 加载网络图片
+- (void)st_setImageWithURLString:(NSString *)urlString forState:(UIControlState)state {
+    
+    [self yy_setImageWithURL:[NSURL URLWithString:urlString] forState:state options:YYWebImageOptionProgressiveBlur | YYWebImageOptionSetImageWithFadeAnimation];
+}
+- (void)st_setImageWithURLString:(NSString *)urlString forState:(UIControlState)state placeholderImage:(NSString *)placeholder {
+    
+    if (placeholder.length == 0) {
+        [self yy_setImageWithURL:[NSURL URLWithString:urlString] forState:state options:YYWebImageOptionProgressiveBlur | YYWebImageOptionSetImageWithFadeAnimation];
+    }
+    else {
+        [self yy_setImageWithURL:[NSURL URLWithString:urlString] forState:state placeholder:[UIImage imageNamed:placeholder] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    }
+}
+
+#pragma mark - 加载网络背景图片
+- (void)st_setBackgroundImageWithURLString:(NSString *)urlString forState:(UIControlState)state {
+    
+    [self yy_setBackgroundImageWithURL:[NSURL URLWithString:urlString] forState:state options:YYWebImageOptionProgressiveBlur | YYWebImageOptionSetImageWithFadeAnimation];
+}
+- (void)st_setBackgroundImageWithURLString:(NSString *)urlString forState:(UIControlState)state placeholderImage:(NSString *)placeholder {
+    
+    if (placeholder.length == 0) {
+        [self yy_setBackgroundImageWithURL:[NSURL URLWithString:urlString] forState:state options:YYWebImageOptionProgressiveBlur | YYWebImageOptionSetImageWithFadeAnimation];
+    }
+    else {
+        [self yy_setBackgroundImageWithURL:[NSURL URLWithString:urlString] forState:state placeholder:[UIImage imageNamed:placeholder] options:YYWebImageOptionProgressiveBlur | YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    }
 }
 
 #pragma mark - 在load时执行hook

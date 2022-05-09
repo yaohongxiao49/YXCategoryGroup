@@ -95,6 +95,8 @@ typedef NS_ENUM(NSUInteger, YXVideoGravityType) {
  */
 + (NSArray *)yxGetAnimationImagesByBundleName:(NSString *)bundleName;
 
++ (NSMutableArray *)yxGetGifPngPathByBundleName:(NSString *)bundleName;
+
 @end
 
 NS_ASSUME_NONNULL_END

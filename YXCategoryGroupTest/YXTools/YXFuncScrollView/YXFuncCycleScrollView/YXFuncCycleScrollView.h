@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YXFuncCycleScrollViewValueModel.h"
+#import "YXShoppingMallAdvertingModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, YXFuncCycleScrollViewDirectionType) {
 };
 
 /** 点击 */
-typedef void(^YXFuncCycleScrollViewBlock)(YXFuncCycleScrollViewValueInfoModel *model);
+typedef void(^YXFuncCycleScrollViewBlock)(YXShoppingMallAdvertingModel *model);
 /** 滚动 */
 typedef void(^YXFuncCycleScrollViewMoveBlock)(NSInteger page);
 
@@ -107,6 +107,8 @@ typedef void(^YXFuncCycleScrollViewMoveBlock)(NSInteger page);
 - (void)closeTimer;
 /** 开启timer */
 - (void)openTimer;
+/** 移除Timer */
+- (void)stopTimer;
 
 @end
 

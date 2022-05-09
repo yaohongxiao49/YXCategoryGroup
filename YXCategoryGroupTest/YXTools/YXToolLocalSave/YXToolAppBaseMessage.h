@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL rememberLogin;
 /** 首次启动是否未进入首页 */
 @property (nonatomic, assign) BOOL boolNotInHomeFirstUse;
+/** 是否未首次进入箱内宝贝 */
+@property (nonatomic, assign) BOOL boolNotInBoxAllGoodsFirstUse;
 
 + (id)instanceManager;
 + (void)synchronize;

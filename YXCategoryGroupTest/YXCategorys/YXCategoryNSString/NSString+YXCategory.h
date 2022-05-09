@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)yxHasValue;
 
 /** 判断手机号有效性 */
+- (BOOL)yxBoolMobileNumber;
+/** 判断手机号分区 */
 - (BOOL)yxBoolVaildMobile;
 
 /** 隐藏手机号中间四位 */
@@ -48,6 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 解码 */
 - (NSString *)yxUrlDecoded;
+
+/** 转换成请求本地服务器的url */
++ (NSString *)convertToProxyUrlString:(NSString *)urlString;
 
 /**
  * 判断是否能打开第三方平台
@@ -183,6 +188,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)yxTimeStampTurnsTimeByTimeStamp:(NSString *)timeStamp
                                        format:(NSString *)format;
+
+/**
+ * 判断间隔时间
+ * @param logo 页面标识
+ * @param boolIn 是否进入
+ */
++ (NSInteger)yxJudgeTimeIntervalByLogo:(NSString *)logo
+                                boolIn:(BOOL)boolIn;
 
 /** 获取设备名称 */
 + (NSString *)yxGetDeviceName;

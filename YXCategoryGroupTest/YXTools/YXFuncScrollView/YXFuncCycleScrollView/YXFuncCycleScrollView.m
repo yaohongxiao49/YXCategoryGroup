@@ -71,8 +71,8 @@
         [self initImgVByCount:self.imgValueArr.count];
         
         for (UIImageView *imageView in _imgViewsArr) {
-            YXFuncCycleScrollViewValueInfoModel *infoModel = self.imgValueArr[i];
-            [imageView setImage:[UIImage imageNamed:infoModel.imgUrl]];
+            YXShoppingMallAdvertingModel *infoModel = self.imgValueArr[i];
+            [imageView st_setImageWithURLString:infoModel.advertisementImgUrl];
             imageView.tag = i;
             imageView.transform = CGAffineTransformIdentity;
             
@@ -99,15 +99,15 @@
             
             if (self.imgValueArr.count < judgeCount && i > judgeShowCount) { //只有两张图片时，将最后一张视图的图片，以第一张图片进行设置。
                 if (j == self.imgValueArr.count) j = 0;
-                YXFuncCycleScrollViewValueInfoModel *infoModel = self.imgValueArr[j];
-                [imageView setImage:[UIImage imageNamed:infoModel.imgUrl]];
+                YXShoppingMallAdvertingModel *infoModel = self.imgValueArr[j];
+                [imageView st_setImageWithURLString:infoModel.advertisementImgUrl];
                 imageView.tag = j;
                 
                 j++;
             }
             else {
-                YXFuncCycleScrollViewValueInfoModel *infoModel = self.imgValueArr[i];
-                [imageView setImage:[UIImage imageNamed:infoModel.imgUrl]];
+                YXShoppingMallAdvertingModel *infoModel = self.imgValueArr[i];
+                [imageView st_setImageWithURLString:infoModel.advertisementImgUrl];
                 imageView.tag = i;
             }
             i++;
@@ -287,8 +287,8 @@
 #pragma mark - 单击图片
 - (void)singleTapAction:(UITapGestureRecognizer *)gesture {
     
-    if (self.yxFuncCycleScrollViewBlock) {
-        YXFuncCycleScrollViewValueInfoModel *infoModel = self.imgValueArr[gesture.view.tag];
+    if (self.yxFuncCycleScrollViewBlock && self.imgValueArr.count != 0) {
+        YXShoppingMallAdvertingModel *infoModel = self.imgValueArr[gesture.view.tag];
         self.yxFuncCycleScrollViewBlock(infoModel);
     }
 }
@@ -312,7 +312,7 @@
     if (!boolFirst) judgeCount = 1;
     
     for (NSInteger i = 0; i < judgeCount; i ++) {
-        YXFuncCycleScrollViewValueInfoModel *infoModel = self.imgValueArr.lastObject;
+        YXShoppingMallAdvertingModel *infoModel = self.imgValueArr.lastObject;
         [self.imgValueArr removeLastObject];
         [self.imgValueArr insertObject:infoModel atIndex:0];
     }
@@ -321,7 +321,7 @@
 #pragma mark - 更新最后一条数据
 - (void)updateLastValue {
     
-    YXFuncCycleScrollViewValueInfoModel *infoModel = self.imgValueArr.firstObject;
+    YXShoppingMallAdvertingModel *infoModel = self.imgValueArr.firstObject;
     [self.imgValueArr removeObjectAtIndex:0];
     [self.imgValueArr addObject:infoModel];
 }
@@ -340,7 +340,9 @@
 #pragma mark - 开启Timer
 - (void)openTimer {
     
-    [_timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:self.timeInterval]];
+    if (self.imgValueArr.count > 1) {
+        [_timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:self.timeInterval]];
+    }
 }
 
 #pragma mark - 滚动切换
@@ -381,8 +383,7 @@
         [_pageBtn setTitle:[NSString stringWithFormat:@" %@/%@ ", @(_pageControl.currentPage + 1), @(self.imgValueArr.count)] forState:UIControlStateNormal];
     }
     else {
-        NSInteger offset = judgeBigCount *_rollingDistance;
-        if (offsetOrigin >= offset) { //滑动到右边视图
+        if (offsetOrigin >= judgeBigCount *_rollingDistance) { //滑动到右边视图
             [self updateLastValue];
             _pageControl.currentPage = _pageControl.currentPage == self.imgValueArr.count - 1 ? 0 : _pageControl.currentPage + 1;
             _alreadCurrent = (judgeShowCount - 1) > 0 ? (judgeShowCount - 1) : 0;
@@ -469,10 +470,7 @@
         CGFloat proportion = distance == 0 ? _zoomRadio : (imgSizeOrigin /distance);
         //放大比例（如果移动比例大于指定比例，则使用指定比例，最小比例为1）
         CGFloat scale = proportion >= _zoomRadio ? _zoomRadio : proportion <= 1 ? 1 : proportion;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            view.transform = CGAffineTransformMakeScale(scale, scale);
-        });
+        view.transform = CGAffineTransformMakeScale(scale, scale);
     }
     else {
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
@@ -515,6 +513,7 @@
         [self closeTimer];
         _pageBackView.hidden = YES;
         _boolOpenTimer = NO;
+        _scrollView.scrollEnabled = NO;
         return;
     }
     else if (_imgValueArr.count == 1) {
@@ -757,7 +756,6 @@
     if (_imgViewsArr.count != count) {
         for (int i = 0; i < count; i ++) {
             UIImageView *imgV = [[UIImageView alloc] init];
-            imgV.backgroundColor = [UIColor whiteColor];
             imgV.tag = i;
             if (_boolHorizontal) {
                 imgV.frame = CGRectMake(_scrollView.frame.size.width *i, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
@@ -767,6 +765,7 @@
             }
             imgV.contentMode = UIViewContentModeScaleAspectFill;
             imgV.userInteractionEnabled = YES;
+            imgV.backgroundColor = [UIColor clearColor];
             [_scrollView addSubview:imgV];
             [_imgViewsArr addObject:imgV];
             

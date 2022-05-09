@@ -73,8 +73,16 @@
     _isCellScroll = NO;
     
     if (!_boolHasNavi) {
-        self.baseScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        if (@available(iOS 11.0, *)) {
+            self.baseScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+        }
+        if (@available(iOS 11.0, *)) {
+            self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
 
@@ -262,7 +270,7 @@
         _tabView.norTitleFont = [UIFont systemFontOfSize:14];
         _tabView.norTextColor = [UIColor blackColor];
         _tabView.selTitleFont = [UIFont systemFontOfSize:14];
-        _tabView.selTextColor = [UIColor whiteColor];
+        _tabView.selTextColor = kYXThemeColor;
         _tabView.selLineColor = [UIColor blueColor];
 //        _tabView.lineWidth = 10;
         _tabView.boolLineAnimation = YES;

@@ -155,6 +155,14 @@ typedef void(^YXStartWithTimeIsEndBlock)(void);
                 isCerificationCode:(BOOL)isCerificationCode
            startWithTimeIsEndBlock:(YXStartWithTimeIsEndBlock)startWithTimeIsEndBlock;
 
+/** 加载网络图片 */
+- (void)st_setImageWithURLString:(NSString *)urlString forState:(UIControlState)state;
+- (void)st_setImageWithURLString:(NSString *)urlString forState:(UIControlState)state placeholderImage:(NSString *)placeholder;
+
+/** 加载网络背景图片 */
+- (void)st_setBackgroundImageWithURLString:(NSString *)urlString forState:(UIControlState)state;
+- (void)st_setBackgroundImageWithURLString:(NSString *)urlString forState:(UIControlState)state placeholderImage:(NSString *)placeholder;
+
 @end
 
 NS_ASSUME_NONNULL_END

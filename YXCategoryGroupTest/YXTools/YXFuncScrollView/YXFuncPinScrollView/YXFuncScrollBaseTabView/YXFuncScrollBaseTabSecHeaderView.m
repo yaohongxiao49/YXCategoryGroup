@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = kYXThemeColor;
     }
     return self;
 }

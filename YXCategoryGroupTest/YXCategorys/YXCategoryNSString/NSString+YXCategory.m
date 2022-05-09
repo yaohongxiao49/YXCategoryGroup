@@ -18,7 +18,7 @@
     return ([self isKindOfClass:[NSString class]] && self.length > 0);
 }
 
-#pragma mark - 判断手机号有效性
+#pragma mark - 判断手机号分区
 - (BOOL)yxBoolVaildMobile {
     
     NSString *CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d|705)\\d{7}$"; //移动
@@ -33,6 +33,17 @@
     
     return (CMRex || CURex || CTRex || PHSRex);
 }
+#pragma mark - 手机号有效性
+- (BOOL)yxBoolMobileNumber {
+    
+    NSString *mobileNoRegex = @"^1((3\\d|5[0-35-9]|8[025-9])\\d|70[059]|)\\d{7}$";
+    NSString *phsRegex = @"^0(10|2[0-57-9]|\\d{3})\\d{7,8}$";
+    
+    BOOL ret = [self yxBoolValidateByRegex:mobileNoRegex];
+    BOOL ret1 = [self yxBoolValidateByRegex:phsRegex];
+    
+    return (ret || ret1);
+}
 - (BOOL)yxBoolValidateByRegex:(NSString *)regex {
     
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -43,7 +54,7 @@
 #pragma mark - 手机号隐藏中间四位
 - (NSString *)yxPhoneNumHiddenCenter {
     
-    if (![self yxBoolVaildMobile]) {
+    if (![self yxBoolMobileNumber]) {
         return @"";
     }
     NSString *startStr = [self substringWithRange:NSMakeRange(0, 3)];
@@ -140,6 +151,14 @@
 - (NSString *)yxUrlDecoded {
     
     return [self stringByRemovingPercentEncoding];
+}
+
+#pragma mark - 转换成请求本地服务器的url
++ (NSString *)convertToProxyUrlString:(NSString *)urlString {
+    
+    NSString *urlStr = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSURL *url = [KTVHTTPCache proxyURLWithOriginalURL:[NSURL URLWithString:urlStr]];
+    return url.absoluteString;
 }
 
 #pragma mark - 判断是否能打开第三方平台
@@ -534,6 +553,27 @@
     [dateFormatter setDateFormat:format];
     NSString *currentDateStr = [dateFormatter stringFromDate:detailDate];
     return currentDateStr;
+}
+
+#pragma mark - 判断间隔时间
++ (NSInteger)yxJudgeTimeIntervalByLogo:(NSString *)logo boolIn:(BOOL)boolIn {
+    
+    NSString *defaultsStr = [NSString stringWithFormat:@"%@lastTimeSave", logo];
+    NSString *lastTime = [[NSUserDefaults standardUserDefaults] objectForKey:defaultsStr];
+    NSString *nowTime = [NSString yxGetCurrentTheTimeStamp];
+    NSInteger intervalTime = 0;
+    
+    if (boolIn) {
+        [[NSUserDefaults standardUserDefaults] setObject:nowTime forKey:defaultsStr];
+    }
+    else {
+        if (lastTime.yxHasValue) {
+            intervalTime = [nowTime integerValue] - [lastTime integerValue];
+            [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:defaultsStr];
+        }
+    }
+    
+    return intervalTime;
 }
 
 #pragma mark - 获取设备名称

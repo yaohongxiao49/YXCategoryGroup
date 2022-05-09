@@ -105,4 +105,15 @@
     [kYXToolSqliteUserDefaultHandle setBool:boolNotInHomeFirstUse forKey:@"BoolNotInHomeFirstUse"];
 }
 
+#pragma mark - boolNotInBoxAllGoodsFirstUse
+- (BOOL)boolNotInBoxAllGoodsFirstUse {
+    
+    return [kYXToolSqliteUserDefaultHandle boolForKey:@"BoolNotInBoxAllGoodsFirstUse"];;
+}
+
+- (void)setBoolNotInBoxAllGoodsFirstUse:(BOOL)boolNotInBoxAllGoodsFirstUse {
+    
+    [kYXToolSqliteUserDefaultHandle setBool:boolNotInBoxAllGoodsFirstUse forKey:@"BoolNotInBoxAllGoodsFirstUse"];
+}
+
 @end

@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, YXGradientDirectionType) {
  * @param gifNamed gif名称
  * @param targetSize 根据尺寸压缩
  */
-- (NSString *)yxSyntheticGifByImgArr:(NSMutableArray *)imagePathArray
++ (NSString *)yxSyntheticGifByImgArr:(NSMutableArray *)imagePathArray
                             gifNamed:(NSString *)gifNamed
                           targetSize:(CGSize)targetSize;
 

@@ -60,6 +60,30 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
     }
 }
 
++ (void)load {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        // When swizzling a class method, use the following:
+        // Class class = object_getClass((id)self);
+        
+        Method imageNamed = class_getClassMethod(self, @selector(imageNamed:));
+        Method swiz_imageNamed = class_getClassMethod(self, @selector(swiz_imageNamed:));
+        method_exchangeImplementations(imageNamed, swiz_imageNamed);
+    });
+}
+
++ (instancetype)swiz_imageNamed:(NSString *)name {
+ 
+    if (name.yxHasValue) {
+        return [self swiz_imageNamed:name];
+    }
+    else {
+        return nil;
+    }
+}
+
 #pragma mark - 获取视频缩略图
 + (UIImage *)yxGetVideoThumbnailWithVideoUrl:(NSString *)videoUrl second:(CGFloat)second {
 
@@ -161,7 +185,7 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
 }
 
 #pragma mark - 合成gif
-- (NSString *)yxSyntheticGifByImgArr:(NSMutableArray *)imagePathArray gifNamed:(NSString *)gifNamed targetSize:(CGSize)targetSize {
++ (NSString *)yxSyntheticGifByImgArr:(NSMutableArray *)imagePathArray gifNamed:(NSString *)gifNamed targetSize:(CGSize)targetSize {
     
     //创建储存路径
     NSString *savePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
@@ -197,6 +221,7 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
     CGImageDestinationFinalize(destination);
     
     CFRelease(destination);
+    CFRelease(url);
     
     return gifPath;
 }
@@ -291,10 +316,10 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
         NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
         NSString *filePath = [NSString stringWithFormat:@"%@/%@%@", path, saveToFileWithName, @".png"];
         [UIImagePNGRepresentation(resultImg) writeToFile:filePath atomically:YES]; //保存图片到沙盒
-        //TODO 如果崩溃，则删除一下代码。
-        CGImageRelease(bgImgRef);
-        CGImageRelease(topImgRef);
     }
+    //TODO 如果崩溃，则删除一下代码。
+    CGImageRelease(bgImgRef);
+    CGImageRelease(topImgRef);
     
     return resultImg;
 }
@@ -938,6 +963,7 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
             NSLog(@"开始add，%@", time);
             CGImageDestinationAddImage(destination, imageRef1, (CFDictionaryRef)frameProperties);
             NSLog(@"当此add完成，%@", time);
+            CGImageRelease(imageRef1);
         }
         else {
             CGImageDestinationAddImage(destination, imageRef, (CFDictionaryRef)frameProperties);

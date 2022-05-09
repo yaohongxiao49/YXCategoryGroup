@@ -340,10 +340,10 @@
         NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
         NSString *filePath = [NSString stringWithFormat:@"%@/%@%@", path, saveToFileWithName, @".png"];
         [UIImagePNGRepresentation(resultImg) writeToFile:filePath atomically:YES]; //保存图片到沙盒
-        //TODO 如果崩溃，则删除一下代码。
-        CGImageRelease(bgImgRef);
-        CGImageRelease(topImgRef);
     }
+    //TODO 如果崩溃，则删除一下代码。
+    CGImageRelease(bgImgRef);
+    CGImageRelease(topImgRef);
     
     return resultImg;
 }
