@@ -30,6 +30,14 @@ typedef NS_ENUM(NSUInteger, YXGradientDirectionType) {
     YXGradientDirectionTypeRight,
 };
 
+/** 拼接方向 */
+typedef NS_ENUM(NSUInteger, YXJoiningImgDirectionType) {
+    /** 水平 */
+    YXJoiningImgDirectionHorizontalType,
+    /** 垂直 */
+    YXJoiningImgDirectionVerticalType,
+};
+
 @interface UIImage (YXCategory)
 
 /**
@@ -87,6 +95,24 @@ typedef NS_ENUM(NSUInteger, YXGradientDirectionType) {
                             topImgFrame:(CGRect)topImgFrame
                      saveToFileWithName:(NSString *)saveToFileWithName
                            boolByBgView:(BOOL)boolByBgView;
+
+/**
+ * 拼接图片
+ * @param arr 需要拼接的图片数组
+ * @param contextSize 画布整体宽高
+ * @param sonWidth 单个图片宽（默认为平均分）
+ * @param sonHeight 单个图片高
+ * @param spacing 间距（默认为0）
+ * @param direction 拼接方向
+ * @param endImgBlock 拼接回调
+ */
++ (void)joiningImgByArr:(NSMutableArray *)arr
+            contextSize:(CGSize)contextSize
+               sonWidth:(CGFloat)sonWidth
+              sonHeight:(CGFloat)sonHeight
+                spacing:(CGFloat)spacing
+              direction:(YXJoiningImgDirectionType)direction
+            endImgBlock:(void(^)(UIImage *endImg))endImgBlock;
 
 /**
  * 按比例缩放/压缩图片
