@@ -10,6 +10,9 @@
 #import <objc/runtime.h>
 
 static const char *kTapGestureRecognizerBlockAddress;
+//因category不能添加属性，只能通过关联对象的方式。
+static const char *UIControlAcceptEventInterval = "UIControl_acceptEventInterval";
+static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
 
 #pragma mark - 输入框限制
 static const char kLimitInputWordsCountAddressKey;
@@ -172,6 +175,25 @@ static const char kFilterActionTypeAddressKey;
     }
     void(^touchUpBlock)(UIView *) = block;
     touchUpBlock(self);
+}
+
+#pragma mark - 使用runtime 防止按钮被重复点击
+- (NSTimeInterval)repeatClickEventInterval {
+    
+    return [objc_getAssociatedObject(self, UIControlAcceptEventInterval) doubleValue];
+}
+- (void)setRepeatClickEventInterval:(NSTimeInterval)repeatClickEventInterval {
+    
+    objc_setAssociatedObject(self, UIControlAcceptEventInterval, @(repeatClickEventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSTimeInterval)acceptEventTime {
+    
+    return [objc_getAssociatedObject(self, UIControlAcceptEventTime) doubleValue];
+}
+- (void)setAcceptEventTime:(NSTimeInterval)acceptEventTime {
+    
+    objc_setAssociatedObject(self, UIControlAcceptEventTime, @(acceptEventTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - 指定圆角

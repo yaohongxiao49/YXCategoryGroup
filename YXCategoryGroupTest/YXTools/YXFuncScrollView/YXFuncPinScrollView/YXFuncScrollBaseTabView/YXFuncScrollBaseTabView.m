@@ -11,6 +11,9 @@
 #import "YXFuncScrollBaseTabSecFooterView.h"
 #import "YXFuncScrollBaseTabCell.h"
 
+/** 弱引用 */
+#define kYXWeakSelf __weak typeof(self) weakSelf = self;
+
 @interface YXFuncScrollBaseTabView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, assign) YXFuncScrollBaseTabVSuckType suckType; //吸顶类型

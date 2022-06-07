@@ -65,6 +65,10 @@ typedef NS_OPTIONS(NSUInteger, YXFilterActionType) {
  * @param block 点击回调
  */
 - (void)yxTapUpWithBlock:(void(^)(UIView *view))block;
+/** 防止按钮重复点击 */
+@property (nonatomic, assign) NSTimeInterval repeatClickEventInterval;
+/** 重复点击的间隔 */
+@property (nonatomic, assign) NSTimeInterval acceptEventTime;
 
 /**
  * 指定圆角

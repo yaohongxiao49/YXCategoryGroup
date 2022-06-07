@@ -47,7 +47,8 @@
 		84AD560424442BC000004B7E /* YXToolAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560224442BC000004B7E /* YXToolAlert.m */; };
 		84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560624442BDF00004B7E /* YXToolAlertVC.m */; };
 		84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */; };
-		B16BCA70274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5B274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m */; };
+		B15EF777284F02180042018B /* YXShoppingMallAdvertingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */; };
+		B15EF77B284F02530042018B /* YXShoppingMallCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF779284F02530042018B /* YXShoppingMallCategoryModel.m */; };
 		B16BCA71274DDB610002B606 /* YXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5D274DDB610002B606 /* YXPageControl.m */; };
 		B16BCA72274DDB610002B606 /* YXFuncCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5E274DDB610002B606 /* YXFuncCycleScrollView.m */; };
 		B16BCA73274DDB610002B606 /* YXEntertainingDiversionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA63274DDB610002B606 /* YXEntertainingDiversionsView.m */; };
@@ -158,8 +159,10 @@
 		84AD560624442BDF00004B7E /* YXToolAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolAlertVC.m; sourceTree = "<group>"; };
 		84E92ADB260349F400CCF2C3 /* YXEvaluationStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEvaluationStarView.h; sourceTree = "<group>"; };
 		84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEvaluationStarView.m; sourceTree = "<group>"; };
-		B16BCA5B274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncCycleScrollViewValueModel.m; sourceTree = "<group>"; };
-		B16BCA5C274DDB610002B606 /* YXFuncCycleScrollViewValueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncCycleScrollViewValueModel.h; sourceTree = "<group>"; };
+		B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXShoppingMallAdvertingModel.m; sourceTree = "<group>"; };
+		B15EF776284F02180042018B /* YXShoppingMallAdvertingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXShoppingMallAdvertingModel.h; sourceTree = "<group>"; };
+		B15EF779284F02530042018B /* YXShoppingMallCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXShoppingMallCategoryModel.m; sourceTree = "<group>"; };
+		B15EF77A284F02530042018B /* YXShoppingMallCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXShoppingMallCategoryModel.h; sourceTree = "<group>"; };
 		B16BCA5D274DDB610002B606 /* YXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPageControl.m; sourceTree = "<group>"; };
 		B16BCA5E274DDB610002B606 /* YXFuncCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFuncCycleScrollView.m; sourceTree = "<group>"; };
 		B16BCA5F274DDB610002B606 /* YXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPageControl.h; sourceTree = "<group>"; };
@@ -465,6 +468,24 @@
 			path = YXToolMallEvaluation;
 			sourceTree = "<group>";
 		};
+		B15EF774284F02180042018B /* YXShoppingMallAdvertingModel */ = {
+			isa = PBXGroup;
+			children = (
+				B15EF776284F02180042018B /* YXShoppingMallAdvertingModel.h */,
+				B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */,
+			);
+			path = YXShoppingMallAdvertingModel;
+			sourceTree = "<group>";
+		};
+		B15EF778284F02530042018B /* YXShoppingMallCategoryModel */ = {
+			isa = PBXGroup;
+			children = (
+				B15EF77A284F02530042018B /* YXShoppingMallCategoryModel.h */,
+				B15EF779284F02530042018B /* YXShoppingMallCategoryModel.m */,
+			);
+			path = YXShoppingMallCategoryModel;
+			sourceTree = "<group>";
+		};
 		B16BCA58274DDB610002B606 /* YXFuncScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,22 +499,14 @@
 		B16BCA59274DDB610002B606 /* YXFuncCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				B16BCA5A274DDB610002B606 /* YXFuncCycleScrollViewValueModel */,
+				B15EF778284F02530042018B /* YXShoppingMallCategoryModel */,
+				B15EF774284F02180042018B /* YXShoppingMallAdvertingModel */,
 				B16BCA60274DDB610002B606 /* YXFuncCycleScrollView.h */,
 				B16BCA5E274DDB610002B606 /* YXFuncCycleScrollView.m */,
 				B16BCA5F274DDB610002B606 /* YXPageControl.h */,
 				B16BCA5D274DDB610002B606 /* YXPageControl.m */,
 			);
 			path = YXFuncCycleScrollView;
-			sourceTree = "<group>";
-		};
-		B16BCA5A274DDB610002B606 /* YXFuncCycleScrollViewValueModel */ = {
-			isa = PBXGroup;
-			children = (
-				B16BCA5C274DDB610002B606 /* YXFuncCycleScrollViewValueModel.h */,
-				B16BCA5B274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m */,
-			);
-			path = YXFuncCycleScrollViewValueModel;
 			sourceTree = "<group>";
 		};
 		B16BCA61274DDB610002B606 /* YXEntertainingDiversionsView */ = {
@@ -684,6 +697,7 @@
 				B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */,
 				84AD560424442BC000004B7E /* YXToolAlert.m in Sources */,
 				B16BCA74274DDB610002B606 /* YXFuncScrollBaseView.m in Sources */,
+				B15EF777284F02180042018B /* YXShoppingMallAdvertingModel.m in Sources */,
 				846E555D243EF2BE00CB7233 /* ViewController.m in Sources */,
 				846E55A3243EF2D200CB7233 /* UIView+YXCategory.m in Sources */,
 				84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */,
@@ -701,7 +715,6 @@
 				846E5568243EF2C000CB7233 /* main.m in Sources */,
 				846E55A2243EF2D200CB7233 /* NSString+YXCategory.m in Sources */,
 				846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */,
-				B16BCA70274DDB610002B606 /* YXFuncCycleScrollViewValueModel.m in Sources */,
 				846E55A0243EF2D200CB7233 /* UIColor+YXCategory.m in Sources */,
 				B16BCA71274DDB610002B606 /* YXPageControl.m in Sources */,
 				84AD55FD24442B7400004B7E /* TYAlertDropDownAnimation.m in Sources */,
@@ -715,6 +728,7 @@
 				844E19EA24407990009FE378 /* YXToolGetSandbox.m in Sources */,
 				846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */,
 				844E19DE24405707009FE378 /* YXToolLocalSave.m in Sources */,
+				B15EF77B284F02530042018B /* YXShoppingMallCategoryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
