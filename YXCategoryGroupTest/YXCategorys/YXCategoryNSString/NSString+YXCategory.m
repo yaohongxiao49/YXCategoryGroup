@@ -290,7 +290,7 @@
 }
 
 #pragma mark - 设置属性文字
-+ (NSMutableAttributedString *)yxAttributedStringByBaseText:(NSString *)baseText baseFont:(UIFont *)baseFont baseColor:(UIColor *)baseColor changeTextArr:(NSArray *)changeTextArr changeFontArr:(NSArray *)changeFontArr changeColorArr:(NSArray *)changeColorArr lineSpaceValue:(nullable NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment underLineColor:(nullable UIColor *)underLineColor strikethroughColor:(nullable UIColor *)strikethroughColor {
++ (NSMutableAttributedString *)yxAttributedStringByBaseText:(NSString *)baseText baseFont:(UIFont *)baseFont baseColor:(UIColor *)baseColor changeTextArr:(NSArray *)changeTextArr changeFontArr:(NSArray *)changeFontArr changeColorArr:(NSArray *)changeColorArr lineSpaceValue:(nullable NSString *)lineSpaceValue alignment:(NSTextAlignment)alignment lineOffset:(CGFloat)lineOffset underLineColor:(nullable UIColor *)underLineColor strikethroughColor:(nullable UIColor *)strikethroughColor {
     
     if (baseText.length == 0) {
         return [NSMutableAttributedString new];
@@ -315,6 +315,7 @@
             [attString addAttribute:NSFontAttributeName value:changeFontArr[i] range:subRange];
             //改某段字体颜色
             [attString addAttribute:NSForegroundColorAttributeName value:changeColorArr[i] range:subRange];
+            if (lineOffset != 0) [attString addAttribute:NSBaselineOffsetAttributeName value:@(lineOffset) range:subRange];
         }
     }
     

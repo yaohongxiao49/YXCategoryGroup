@@ -108,6 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param alignment 对齐方式
  * @param underLineColor 下划线
  * @param strikethroughColor 删除线
+ * @param lineOffset 对齐基准线数值
  */
 + (NSMutableAttributedString *)yxAttributedStringByBaseText:(NSString *)baseText
                                                    baseFont:(UIFont *)baseFont
@@ -117,6 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
                                              changeColorArr:(NSArray *)changeColorArr
                                              lineSpaceValue:(nullable NSString *)lineSpaceValue
                                                   alignment:(NSTextAlignment)alignment
+                                                 lineOffset:(CGFloat)lineOffset
                                              underLineColor:(nullable UIColor *)underLineColor
                                          strikethroughColor:(nullable UIColor *)strikethroughColor;
 
