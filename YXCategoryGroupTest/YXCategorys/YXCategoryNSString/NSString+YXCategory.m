@@ -559,20 +559,11 @@
 #pragma mark - 时间转时间戳
 + (NSString *)yxTimeTurnsTimeStampByTime:(NSString *)time format:(NSString *)format {
 
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateFormat:format];
-    
-    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
-    [formatter setTimeZone:timeZone];
-    //将字符串按format转成nsdate
-    NSDate *date = [formatter dateFromString:format];
-    
-    //时间转时间戳的方法:
-    NSInteger timeSp = [[NSNumber numberWithDouble:[date timeIntervalSince1970]] integerValue];
-    
-    return [NSString stringWithFormat:@"%ld", timeSp];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; //创建一个时间格式化对象
+    [dateFormatter setDateFormat:format]; //设定时间的格式
+    NSDate *tempDate = [dateFormatter dateFromString:time]; //将字符串转换为时间对象
+    NSString *timeStr = [NSString stringWithFormat:@"%ld", (long)[tempDate timeIntervalSince1970] *1000]; //字符串转成时间戳,精确到毫秒*1000
+    return timeStr;
 }
 
 #pragma mark - 判断间隔时间
