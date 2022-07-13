@@ -207,7 +207,7 @@ static const char kFilterActionTypeAddressKey;
 }
 
 #pragma mark - 指定圆角带边框
-+ (void)getSpecifiedFilletWithBorder:(UIView *)view corners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor {
++ (void)yxGetSpecifiedFilletWithBorder:(UIView *)view corners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii lineWidth:(CGFloat)lineWidth lineColor:(UIColor *)lineColor {
     
     [self yxSpecifiedCornerFilletByView:view corners:corners cornerRadii:cornerRadii];
     [view.layer.sublayers enumerateObjectsUsingBlock:^(__kindof CALayer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

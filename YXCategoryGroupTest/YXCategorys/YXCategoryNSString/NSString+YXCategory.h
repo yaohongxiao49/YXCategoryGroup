@@ -190,8 +190,16 @@ NS_ASSUME_NONNULL_BEGIN
  * @param timeStamp 时间戳
  * @param format 格式（yyyy-MM-dd HH:mm:ss）
  */
-- (NSString *)yxTimeStampTurnsTimeByTimeStamp:(NSString *)timeStamp
++ (NSString *)yxTimeStampTurnsTimeByTimeStamp:(NSString *)timeStamp
                                        format:(NSString *)format;
+
+/**
+ * 时间转时间戳
+ * @param time 时间
+ * @param format 格式（yyyy-MM-dd HH:mm:ss）
+ */
++ (NSString *)yxTimeTurnsTimeStampByTime:(NSString *)time
+                                 format:(NSString *)format;
 
 /**
  * 判断间隔时间

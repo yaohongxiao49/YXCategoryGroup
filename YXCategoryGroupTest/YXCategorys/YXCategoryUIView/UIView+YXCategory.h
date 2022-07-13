@@ -88,11 +88,11 @@ typedef NS_OPTIONS(NSUInteger, YXFilterActionType) {
  * @param lineWidth 边框宽度
  * @param lineColor 边框色值
  */
-+ (void)getSpecifiedFilletWithBorder:(UIView *)view
-                             corners:(UIRectCorner)corners
-                         cornerRadii:(CGSize)cornerRadii
-                           lineWidth:(CGFloat)lineWidth
-                           lineColor:(UIColor *)lineColor;
++ (void)yxGetSpecifiedFilletWithBorder:(UIView *)view
+                               corners:(UIRectCorner)corners
+                           cornerRadii:(CGSize)cornerRadii
+                             lineWidth:(CGFloat)lineWidth
+                             lineColor:(UIColor *)lineColor;
 
 @end
 
