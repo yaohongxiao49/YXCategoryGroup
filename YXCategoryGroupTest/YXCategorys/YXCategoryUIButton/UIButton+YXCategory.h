@@ -29,7 +29,7 @@ typedef void(^YXStartWithTimeIsEndBlock)(void);
 
 @property (nonatomic, copy) YXBtnTapActionBlock yxBtnTapActionBlock;
 
-/** 防止按钮重复点击 */
+/** 防止按钮重复点击（设置为-1时，则代表不设置防止重复点击，为0时，默认为防止1秒内重复点击） */
 @property (nonatomic, assign) NSTimeInterval repeatClickEventInterval;
 /** 重复点击的间隔 */
 @property (nonatomic, assign) NSTimeInterval acceptEventTime;
