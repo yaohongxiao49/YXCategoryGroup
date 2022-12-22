@@ -587,6 +587,18 @@
     return intervalTime;
 }
 
+#pragma mark - 使用oss自动设置尺寸
++ (NSString *)ossSetImgSizeByUrl:(NSString *)url {
+    
+    NSRange found = [url rangeOfString:@"?"];
+    if (found.location != NSNotFound) {
+        return [NSString stringWithFormat:@"%@&x-oss-process=image/resize,m_mfit,w_360,h_360,limit_0/crop,x_0,y_0,w_360,h_360,g_north", url];
+    }
+    else {
+        return [NSString stringWithFormat:@"%@?x-oss-process=image/resize,m_mfit,w_360,h_360,limit_0/crop,x_0,y_0,w_360,h_360,g_north", url];
+    }
+}
+
 #pragma mark - 获取设备名称
 + (NSString *)yxGetDeviceName {
     

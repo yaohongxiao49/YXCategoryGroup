@@ -209,6 +209,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSInteger)yxJudgeTimeIntervalByLogo:(NSString *)logo
                                 boolIn:(BOOL)boolIn;
 
+/** 使用oss自动设置尺寸 */
+- (NSString *)ossSetImgSizeByUrl:(NSString *)url;
+
 /** 获取设备名称 */
 + (NSString *)yxGetDeviceName;
 
