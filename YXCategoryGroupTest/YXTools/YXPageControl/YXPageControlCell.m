@@ -18,12 +18,27 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.imageView.frame = self.contentView.bounds;
+}
+
 #pragma mark - 初始化视图
 - (void)initView {
     
-    self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [self.contentView addSubview:self.imageView];
+    self.imageView.hidden = NO;
+}
+
+#pragma mark - 懒加载
+- (UIImageView *)imageView {
+    
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self.contentView addSubview:_imageView];
+    }
+    return _imageView;
 }
 
 @end
