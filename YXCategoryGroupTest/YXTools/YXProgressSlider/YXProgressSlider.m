@@ -37,6 +37,14 @@
     }
     return self;
 }
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
 - (void)initialize {
     
     [self initView];
@@ -172,6 +180,16 @@
     _maximumView.backgroundColor = maximumColor;
 }
 
+#pragma mark - 设置最小值渐变色
+- (void)setBoolHorizontal:(BOOL)boolHorizontal {
+    
+    _boolHorizontal = boolHorizontal;
+}
+- (void)setMinimumGradientColorArr:(NSArray *)minimumGradientColorArr {
+    
+    _minimumGradientColorArr = minimumGradientColorArr;
+}
+
 #pragma mark - 设置是否隐藏滑块
 - (void)setIsHiddenSlider:(BOOL)isHiddenSlider {
 
@@ -275,6 +293,11 @@
     
     _minimumView.frame = CGRectMake(0, (self.height - _progressHeight) / 2.f, self.width * ratio, _progressHeight);
     _maximumView.frame = CGRectMake(0, (self.height - _progressHeight) / 2.f, self.width, _progressHeight);
+    
+    if (_minimumGradientColorArr.count != 0) {
+        CAGradientLayer *gradientLayer = [UIColor yxDrawGradient:_minimumView colorArr:@[(__bridge id)((UIColor *)[_minimumGradientColorArr firstObject]).CGColor, (__bridge id)((UIColor *)[_minimumGradientColorArr lastObject]).CGColor] startPoint:CGPointMake(0, 0) endPoint:self.boolHorizontal ? CGPointMake(1, 0) : CGPointMake(0, 1) locations:@[@0.5]];
+        [_minimumView.layer insertSublayer:gradientLayer atIndex:0];
+    }
 }
 
 #pragma mark - 初始化视图
@@ -282,7 +305,7 @@
     
     //滑块底视图
     _sliderBaseView = [[UIView alloc] init];
-    _sliderBaseView.backgroundColor = [UIColor clearColor];
+    _sliderBaseView.backgroundColor = kYXCleanColor;
     [self addSubview:_sliderBaseView];
     
     //滑块视图
@@ -306,7 +329,7 @@
 #pragma mark - 初始化数据
 - (void)initData {
     
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = kYXCleanColor;
     self.sliderColor = [UIColor whiteColor];
     self.minimumColor = [UIColor whiteColor];
     self.maximumColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];

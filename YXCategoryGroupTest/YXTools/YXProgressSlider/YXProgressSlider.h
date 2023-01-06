@@ -29,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *minimumColor;
 /** 最大值颜色，默认白色半透明 */
 @property (nonatomic, strong) UIColor *maximumColor;
+/** 最小值渐变色(与minimumColor互斥，默认为垂直渐变色) */
+@property (nonatomic, strong) NSArray *minimumGradientColorArr;
+/** 是否是水平渐变色 */
+@property (nonatomic, assign) BOOL boolHorizontal;
 
 /** 是否隐藏滑块，默认NO */
 @property (nonatomic, assign) BOOL isHiddenSlider;
