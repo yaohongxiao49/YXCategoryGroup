@@ -295,8 +295,14 @@
     _maximumView.frame = CGRectMake(0, (self.height - _progressHeight) / 2.f, self.width, _progressHeight);
     
     if (_minimumGradientColorArr.count != 0) {
-        CAGradientLayer *gradientLayer = [UIColor yxDrawGradient:_minimumView colorArr:@[(__bridge id)((UIColor *)[_minimumGradientColorArr firstObject]).CGColor, (__bridge id)((UIColor *)[_minimumGradientColorArr lastObject]).CGColor] startPoint:CGPointMake(0, 0) endPoint:self.boolHorizontal ? CGPointMake(1, 0) : CGPointMake(0, 1) locations:@[@0.5]];
-        [_minimumView.layer insertSublayer:gradientLayer atIndex:0];
+        if (_minimumView.layer.sublayers.count != 0) {
+            CAGradientLayer *gradientLayer = [UIColor yxDrawGradient:_minimumView colorArr:@[(__bridge id)((UIColor *)[_minimumGradientColorArr firstObject]).CGColor, (__bridge id)((UIColor *)[_minimumGradientColorArr lastObject]).CGColor] startPoint:CGPointMake(0, 0) endPoint:self.boolHorizontal ? CGPointMake(1, 0) : CGPointMake(0, 1) locations:@[@0.5]];
+            [_minimumView.layer replaceSublayer:[_minimumView.layer.sublayers firstObject] with:gradientLayer];
+        }
+        else {
+            CAGradientLayer *gradientLayer = [UIColor yxDrawGradient:_minimumView colorArr:@[(__bridge id)((UIColor *)[_minimumGradientColorArr firstObject]).CGColor, (__bridge id)((UIColor *)[_minimumGradientColorArr lastObject]).CGColor] startPoint:CGPointMake(0, 0) endPoint:self.boolHorizontal ? CGPointMake(1, 0) : CGPointMake(0, 1) locations:@[@0.5]];
+            [_minimumView.layer insertSublayer:gradientLayer atIndex:0];
+        }
     }
 }
 
