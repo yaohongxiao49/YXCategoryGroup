@@ -310,26 +310,34 @@
 - (void)initView {
     
     //滑块底视图
-    _sliderBaseView = [[UIView alloc] init];
-    _sliderBaseView.backgroundColor = kYXCleanColor;
-    [self addSubview:_sliderBaseView];
+    if (!_sliderBaseView) {
+        _sliderBaseView = [[UIView alloc] init];
+        _sliderBaseView.backgroundColor = kYXCleanColor;
+        [self addSubview:_sliderBaseView];
+    }
     
     //滑块视图
-    _sliderView = [[UIImageView alloc] init];
-    _sliderView.layer.masksToBounds = YES;
-    [_sliderBaseView addSubview:_sliderView];
+    if (!_sliderView) {
+        _sliderView = [[UIImageView alloc] init];
+        _sliderView.layer.masksToBounds = YES;
+        [_sliderBaseView addSubview:_sliderView];
+    }
     
     //最小值视图
-    _minimumView = [[UIView alloc] init];
-    _minimumView.layer.masksToBounds = YES;
-    [self addSubview:_minimumView];
+    if (!_minimumView) {
+        _minimumView = [[UIView alloc] init];
+        _minimumView.layer.masksToBounds = YES;
+        [self addSubview:_minimumView];
+    }
     
     //最大值视图
-    _maximumView = [[UIView alloc] init];
-    _maximumView.layer.masksToBounds = YES;
-    [self addSubview:_maximumView];
-    [self sendSubviewToBack:_maximumView];
-    [self bringSubviewToFront:_sliderBaseView];
+    if (!_maximumView) {
+        _maximumView = [[UIView alloc] init];
+        _maximumView.layer.masksToBounds = YES;
+        [self addSubview:_maximumView];
+        [self sendSubviewToBack:_maximumView];
+        [self bringSubviewToFront:_sliderBaseView];
+    }
 }
 
 #pragma mark - 初始化数据
