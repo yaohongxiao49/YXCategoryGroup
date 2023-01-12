@@ -924,6 +924,35 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
     }
 }
 
+#pragma mark - 生成二维码
++ (UIImage *)yxCreateQRCoreImageWithCodeUrl:(NSString *)codeUrl pointColor:(UIColor *)pointColor bgColor:(UIColor *)bgColor {
+    
+    CIColor *pointCIColor = [CIColor colorWithCGColor:pointColor.CGColor];
+    CIColor *bgCIColor = [CIColor colorWithCGColor:bgColor.CGColor];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [filter setDefaults];
+    
+    [filter setValue:[codeUrl dataUsingEncoding:NSUTF8StringEncoding] forKey:@"inputMessage"];
+    
+    CIImage *ciImg = filter.outputImage;
+
+    CIFilter *colorFilter = [CIFilter filterWithName:@"CIFalseColor"];
+    [colorFilter setDefaults];
+    [colorFilter setValue:ciImg forKey:@"inputImage"];
+    [colorFilter setValue:pointCIColor forKey:@"inputColor0"];
+    [colorFilter setValue:bgCIColor forKey:@"inputColor1"];
+    ciImg = colorFilter.outputImage;
+    
+    CGAffineTransform scale = CGAffineTransformMakeScale(10, 10);
+    ciImg = [ciImg imageByApplyingTransform:scale];
+    UIImage *finalImg = [UIImage imageWithCIImage:ciImg];
+    
+    UIGraphicsEndImageContext();
+    
+    return finalImg;
+}
+
 #pragma mark - 创建gif
 + (NSString *)createGifByTimePoints:(NSArray *)timePoints url:(NSURL *)url fileProperties:(NSDictionary *)fileProperties frameProperties:(NSDictionary *)frameProperties frameCount:(int)frameCount gifSize:(GifSize)gifSize boolNeedCompression:(BOOL)boolNeedCompression compressionWidth:(float)compressionWidth compressionHight:(float)compressionHight filleName:(NSString *)filleName {
     
