@@ -58,7 +58,7 @@
 		B16BCA77274DDB610002B606 /* YXFuncScrollBaseTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA6D274DDB610002B606 /* YXFuncScrollBaseTabCell.m */; };
 		B16BCA78274DDB610002B606 /* YXFuncScrollBaseTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA6E274DDB610002B606 /* YXFuncScrollBaseTabView.m */; };
 		B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA7A274DDB990002B606 /* YXBadgeButton.m */; };
-		B1787C4728869FC400AFCBFB /* YXListCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = B1787C4628869FC400AFCBFB /* YXListCountDown.m */; };
+		B174F04C298CAD9D006D6761 /* YXListCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = B174F04B298CAD9D006D6761 /* YXListCountDown.m */; };
 		B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */; };
 /* End PBXBuildFile section */
 
@@ -182,8 +182,8 @@
 		B16BCA6F274DDB610002B606 /* YXFuncScrollBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFuncScrollBaseView.h; sourceTree = "<group>"; };
 		B16BCA7A274DDB990002B606 /* YXBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBadgeButton.m; sourceTree = "<group>"; };
 		B16BCA7B274DDB990002B606 /* YXBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBadgeButton.h; sourceTree = "<group>"; };
-		B1787C4528869FC400AFCBFB /* YXListCountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXListCountDown.h; sourceTree = "<group>"; };
-		B1787C4628869FC400AFCBFB /* YXListCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXListCountDown.m; sourceTree = "<group>"; };
+		B174F04A298CAD9D006D6761 /* YXListCountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXListCountDown.h; sourceTree = "<group>"; };
+		B174F04B298CAD9D006D6761 /* YXListCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXListCountDown.m; sourceTree = "<group>"; };
 		B1D8C0C0273CED0C008B6903 /* NSDictionary+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YXCategory.h"; sourceTree = "<group>"; };
 		B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YXCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				848794202446D9FF0010B23B /* YXToolsPCH.pch */,
-				B1787C4428869FC400AFCBFB /* YXListCountDown */,
+				B174F049298CAD9D006D6761 /* YXListCountDown */,
 				B16BCA79274DDB990002B606 /* YXBadgeButton */,
 				B16BCA58274DDB610002B606 /* YXFuncScrollView */,
 				84AD55DF24442B1F00004B7E /* YXToolAlert */,
@@ -556,14 +556,13 @@
 			path = YXBadgeButton;
 			sourceTree = "<group>";
 		};
-		B1787C4428869FC400AFCBFB /* YXListCountDown */ = {
+		B174F049298CAD9D006D6761 /* YXListCountDown */ = {
 			isa = PBXGroup;
 			children = (
-				B1787C4528869FC400AFCBFB /* YXListCountDown.h */,
-				B1787C4628869FC400AFCBFB /* YXListCountDown.m */,
+				B174F04A298CAD9D006D6761 /* YXListCountDown.h */,
+				B174F04B298CAD9D006D6761 /* YXListCountDown.m */,
 			);
-			name = YXListCountDown;
-			path = "../../../../../项目/NFT/MuchProj/Common/YXCommon/YXTools/YXListCountDown";
+			path = YXListCountDown;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -710,7 +709,7 @@
 				84AD55F724442B7400004B7E /* TYAlertView.m in Sources */,
 				B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */,
 				84AD560424442BC000004B7E /* YXToolAlert.m in Sources */,
-				B1787C4728869FC400AFCBFB /* YXListCountDown.m in Sources */,
+				B174F04C298CAD9D006D6761 /* YXListCountDown.m in Sources */,
 				B16BCA74274DDB610002B606 /* YXFuncScrollBaseView.m in Sources */,
 				B15EF777284F02180042018B /* YXShoppingMallAdvertingModel.m in Sources */,
 				846E555D243EF2BE00CB7233 /* ViewController.m in Sources */,

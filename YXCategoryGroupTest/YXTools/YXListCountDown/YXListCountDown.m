@@ -13,6 +13,7 @@
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, assign) CGFloat passTime;
 @property (nonatomic, assign) BOOL boolSec;
+@property (nonatomic, assign) BOOL boolSecCell;
 @property (nonatomic, strong) NSTimer *timer;
 
 @end
@@ -46,10 +47,11 @@
 }
 
 #pragma mark - 创建定时器
-- (void)initTimerByTableView:(UITableView *)tableView boolSec:(BOOL)boolSec {
+- (void)initTimerByTableView:(UITableView *)tableView boolSec:(BOOL)boolSec boolSecCell:(BOOL)boolSecCell {
     
     _tableView = tableView;
     _boolSec = boolSec;
+    _boolSecCell = boolSecCell;
     _passTime = 0.0f;
     
     [self.timer setFireDate:[NSDate distantPast]];
@@ -63,34 +65,17 @@
     if (_boolSec) {
         for (NSInteger i = 0; i < _tableView.numberOfSections; i ++) {
             NSInteger remainTime = [_timeArr[i] integerValue];
-            
-            NSString *hour = @"00";
-            NSString *minute = @"00";
-            NSString *second = @"00";
-            NSString *millisecondValue = @"00";
-            
+
             if (remainTime - _passTime >= 0) {
-                hour = [NSString stringWithFormat:@"%d", (int)((remainTime - _passTime) / 1000 / 60 / 60) % 60];
-                minute = [NSString stringWithFormat:@"%d", (int)((remainTime - _passTime) / 1000 / 60) % 60];
-                second = [NSString stringWithFormat:@"%d", ((int)(remainTime - _passTime)) / 1000 % 60];
+                NSString *date = [NSString stringWithFormat:@"%d", (int)((remainTime - _passTime) / 1000 / 60 / 60) / 24];
+                NSString *hour = [NSString stringWithFormat:@"%02d", (int)((remainTime - _passTime) / 1000 / 60 / 60) % 24];
+                NSString *minute = [NSString stringWithFormat:@"%02d", (int)((remainTime - _passTime) / 1000 / 60) % 60];
+                NSString *second = [NSString stringWithFormat:@"%02d", ((int)(remainTime - _passTime)) / 1000 % 60];
                 CGFloat millisecond = ((int)((remainTime - _passTime))) % 1000 / 10;
-                millisecondValue = [NSString stringWithFormat:@"%.lf", millisecond];
+                NSString *millisecondValue = [NSString stringWithFormat:@"%.2f", millisecond];
                 
-                if (hour.integerValue < 10) {
-                    hour = [NSString stringWithFormat:@"0%@", hour];
-                }
-                if (minute.integerValue < 10) {
-                    minute = [NSString stringWithFormat:@"0%@", minute];
-                }
-                if (second.integerValue < 10) {
-                    second = [NSString stringWithFormat:@"0%@", second];
-                }
-                if (millisecondValue.integerValue < 10) {
-                    millisecondValue = [NSString stringWithFormat:@"0%@", millisecondValue];
-                }
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(yxTimeChangeByView:index:hour:minute:second:millisecondValue:)]) {
-                    [self.delegate yxTimeChangeByView:[_tableView headerViewForSection:i] index:i hour:hour minute:minute second:second millisecondValue:millisecondValue];
+                if (self.delegate && [self.delegate respondsToSelector:@selector(yxTimeChangeByView:index:date:hour:minute:second:millisecondValue:)]) {
+                    [self.delegate yxTimeChangeByView:[_tableView headerViewForSection:i] index:i date:date hour:hour minute:minute second:second millisecondValue:millisecondValue];
                 }
             }
         }
@@ -98,36 +83,19 @@
     else {
         for (UITableViewCell *cell in cells) {
             NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
-            NSInteger index = indexPath.row;
+            NSInteger index = _boolSecCell ? indexPath.section : indexPath.row;
             NSInteger remainTime = [_timeArr[index] integerValue];
             
-            NSString *hour = @"00";
-            NSString *minute = @"00";
-            NSString *second = @"00";
-            NSString *millisecondValue = @"00";
-            
             if (remainTime - _passTime >= 0) {
-                hour = [NSString stringWithFormat:@"%d", (int)((remainTime - _passTime) / 1000 / 60 / 60) % 60];
-                minute = [NSString stringWithFormat:@"%d", (int)((remainTime - _passTime) / 1000 / 60) % 60];
-                second = [NSString stringWithFormat:@"%d", ((int)(remainTime - _passTime)) / 1000 % 60];
+                NSString *date = [NSString stringWithFormat:@"%d", (int)((remainTime - _passTime) / 1000 / 60 / 60) / 24];
+                NSString *hour = [NSString stringWithFormat:@"%02d", (int)((remainTime - _passTime) / 1000 / 60 / 60) % 24];
+                NSString *minute = [NSString stringWithFormat:@"%02d", (int)((remainTime - _passTime) / 1000 / 60) % 60];
+                NSString *second = [NSString stringWithFormat:@"%02d", ((int)(remainTime - _passTime)) / 1000 % 60];
                 CGFloat millisecond = ((int)((remainTime - _passTime))) % 1000 / 10;
-                millisecondValue = [NSString stringWithFormat:@"%.lf", millisecond];
+                NSString *millisecondValue = [NSString stringWithFormat:@"%.2f", millisecond];
                 
-                if (hour.integerValue < 10) {
-                    hour = [NSString stringWithFormat:@"0%@", hour];
-                }
-                if (minute.integerValue < 10) {
-                    minute = [NSString stringWithFormat:@"0%@", minute];
-                }
-                if (second.integerValue < 10) {
-                    second = [NSString stringWithFormat:@"0%@", second];
-                }
-                if (millisecondValue.integerValue < 10) {
-                    millisecondValue = [NSString stringWithFormat:@"0%@", millisecondValue];
-                }
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(yxTimeChangeByCell:hour:minute:second:millisecondValue:)]) {
-                    [self.delegate yxTimeChangeByCell:cell hour:hour minute:minute second:second millisecondValue:millisecondValue];
+                if (self.delegate && [self.delegate respondsToSelector:@selector(yxTimeChangeByCell:date:hour:minute:second:millisecondValue:)]) {
+                    [self.delegate yxTimeChangeByCell:cell date:date hour:hour minute:minute second:second millisecondValue:millisecondValue];
                 }
             }
         }

@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** cell定时器 */
 @optional
-- (void)yxTimeChangeByCell:(UITableViewCell *)cell hour:(NSString *)hour minute:(NSString *)minute second:(NSString *)second millisecondValue:(NSString *)millisecondValue;
+- (void)yxTimeChangeByCell:(UITableViewCell *)cell date:(NSString *)date hour:(NSString *)hour minute:(NSString *)minute second:(NSString *)second millisecondValue:(NSString *)millisecondValue;
 
 /** 组定时器 */
 @optional
-- (void)yxTimeChangeByView:(UITableViewHeaderFooterView *)view index:(NSInteger)index hour:(NSString *)hour minute:(NSString *)minute second:(NSString *)second millisecondValue:(NSString *)millisecondValue;
+- (void)yxTimeChangeByView:(UITableViewHeaderFooterView *)view index:(NSInteger)index date:(NSString *)date hour:(NSString *)hour minute:(NSString *)minute second:(NSString *)second millisecondValue:(NSString *)millisecondValue;
 
 @end
 
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (YXListCountDown *)shareManager;
 
 /** 初始化定时器落地视图 */
-- (void)initTimerByTableView:(UITableView *)tableView boolSec:(BOOL)boolSec;
+- (void)initTimerByTableView:(UITableView *)tableView boolSec:(BOOL)boolSec boolSecCell:(BOOL)boolSecCell;
 
 /** 移除所有定时器 */
 - (void)removeAllTimer;
