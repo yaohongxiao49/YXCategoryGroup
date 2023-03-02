@@ -6,16 +6,40 @@
 //
 
 #import "YXCustomURLProtocol.h"
+#import <CoreFoundation/CoreFoundation.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @implementation YXCustomURLProtocol
 
 #pragma mark - 比较地址与app名
-+ (BOOL)initWithRequest:(NSURLRequest *)theRequest {
++ (BOOL)canInitWithRequest:(NSURLRequest *)theRequest {
     
-    if ([theRequest.URL.scheme caseInsensitiveCompare:@"appName"] == NSOrderedSame) {
+    if ([theRequest.URL.scheme caseInsensitiveCompare:@"dragonIsland"] == NSOrderedSame) {
         return YES;
     }
     return NO;
+}
+
+#pragma mark - 自定义WKWebView劫持
++ (void)supportURLProtocol {
+    
+    Class cls = NSClassFromString(@"WKBrowsingContextController");
+    SEL selector = NSSelectorFromString(@"registerSchemeForCustomProtocol:");
+    if ([cls respondsToSelector:selector]) {
+        //通过http和https的请求，同理可通过其他的Scheme 但是要满足ULR Loading System
+        //以下方法类似：performSelector:withObject:
+        IMP (*func)(id, SEL, id) = (void *)[cls methodForSelector:selector];
+        func(cls, selector, @"http"); //注册http
+        func(cls, selector, @"https"); //注册https
+        func(cls, selector, @"dragonIsland"); //注册dragonIsland
+        
+//        if ([cls respondsToSelector:sel]) {
+//            // 通过http和https的请求，同理可通过其他的Scheme 但是要满足ULR Loading System
+//            [cls performSelector:sel withObject:@"http"];
+//            [cls performSelector:sel withObject:@"https"];
+//            [cls performSelector:sel withObject:@"dragonIsland"];
+//        }
+    }
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)theRequest {
@@ -31,7 +55,7 @@
     url = [url substringFromIndex:2]; //imgName.png
     
     //若是app协议 需要添加xxx
-    if ([super.request.URL.scheme caseInsensitiveCompare:@"appName"]) {
+    if ([super.request.URL.scheme caseInsensitiveCompare:@"dragonIsland"]) {
         url = [[NSString alloc] initWithFormat:@"xxx/%@", url];
     }
     

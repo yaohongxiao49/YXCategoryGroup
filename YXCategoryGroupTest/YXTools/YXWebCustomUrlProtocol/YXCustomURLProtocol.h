@@ -4,7 +4,9 @@
 //
 //  Created by Augus on 2023/3/2.
 //
-/// 通过 [NSURLProtocol registerClass:[YXNFTInteractionWebVC class]] 使用
+/// 使用方法：
+/// [NSURLProtocol registerClass:[YXCustomURLProtocol class]];
+/// [YXCustomURLProtocol supportURLProtocol];
 
 #import <Foundation/Foundation.h>
 
@@ -14,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSURLRequest *urlRequest;
 
-+ (BOOL)initWithRequest:(NSURLRequest *)theRequest;
+#pragma mark - 自定义WKWebView劫持
++ (void)supportURLProtocol;
 
 @end
 
