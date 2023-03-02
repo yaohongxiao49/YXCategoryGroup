@@ -10,9 +10,9 @@
 @implementation YXCustomURLProtocol
 
 #pragma mark - 比较地址与app名
-+ (BOOL)initWithRequest:(NSURLRequest *)theRequest appName:(NSString *)appName {
++ (BOOL)initWithRequest:(NSURLRequest *)theRequest {
     
-    if ([theRequest.URL.scheme caseInsensitiveCompare:appName] == NSOrderedSame) {
+    if ([theRequest.URL.scheme caseInsensitiveCompare:@"appName"] == NSOrderedSame) {
         return YES;
     }
     return NO;
@@ -24,12 +24,11 @@
 }
 
 #pragma mark - 开始加载
-- (void)startLoadingByImgName:(NSString *)imgName type:(NSString *)type {
+- (void)startLoading {
     
     NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[self.urlRequest URL] MIMEType:@"image/png" expectedContentLength:-1 textEncodingName:nil];
     
-//    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"image" ofType:@"png"];
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:imgName ofType:type];
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"image" ofType:@"png"];
     NSData *data = [NSData dataWithContentsOfFile:imagePath];
     
     [[self client] URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];

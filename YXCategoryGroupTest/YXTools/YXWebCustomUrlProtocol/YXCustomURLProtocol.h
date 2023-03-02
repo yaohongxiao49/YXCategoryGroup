@@ -4,6 +4,7 @@
 //
 //  Created by Augus on 2023/3/2.
 //
+/// 通过 [NSURLProtocol registerClass:[YXNFTInteractionWebVC class]] 使用
 
 #import <Foundation/Foundation.h>
 
@@ -13,9 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSURLRequest *urlRequest;
 
-/** 比较地址与app名 */
-+ (BOOL)initWithRequest:(NSURLRequest *)theRequest
-                appName:(NSString *)appName;
++ (BOOL)initWithRequest:(NSURLRequest *)theRequest;
 
 @end
 
