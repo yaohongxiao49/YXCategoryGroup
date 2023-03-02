@@ -9,12 +9,14 @@
 #import <CoreFoundation/CoreFoundation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
+#define h5ProtocolAppName @"dragonIslandIosApp"
+
 @implementation YXCustomURLProtocol
 
 #pragma mark - 比较地址与app名
 + (BOOL)canInitWithRequest:(NSURLRequest *)theRequest {
     
-    if ([theRequest.URL.scheme caseInsensitiveCompare:@"dragonIsland"] == NSOrderedSame) {
+    if ([theRequest.URL.scheme caseInsensitiveCompare:h5ProtocolAppName] == NSOrderedSame) {
         return YES;
     }
     return NO;
@@ -31,7 +33,7 @@
         IMP (*func)(id, SEL, id) = (void *)[cls methodForSelector:selector];
         func(cls, selector, @"http"); //注册http
         func(cls, selector, @"https"); //注册https
-        func(cls, selector, @"dragonIsland"); //注册dragonIsland
+        func(cls, selector, h5ProtocolAppName); //注册dragonIsland
         
 //        if ([cls respondsToSelector:sel]) {
 //            // 通过http和https的请求，同理可通过其他的Scheme 但是要满足ULR Loading System
@@ -55,7 +57,7 @@
     url = [url substringFromIndex:2]; //imgName.png
     
     //若是app协议 需要添加xxx
-    if ([super.request.URL.scheme caseInsensitiveCompare:@"dragonIsland"]) {
+    if ([super.request.URL.scheme caseInsensitiveCompare:h5ProtocolAppName]) {
         url = [[NSString alloc] initWithFormat:@"xxx/%@", url];
     }
     
