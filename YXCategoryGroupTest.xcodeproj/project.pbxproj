@@ -47,6 +47,7 @@
 		84AD560424442BC000004B7E /* YXToolAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560224442BC000004B7E /* YXToolAlert.m */; };
 		84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560624442BDF00004B7E /* YXToolAlertVC.m */; };
 		84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */; };
+		B15C400F29B0722E009130B9 /* YXCustomURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B15C400D29B0722E009130B9 /* YXCustomURLProtocol.m */; };
 		B15EF777284F02180042018B /* YXShoppingMallAdvertingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */; };
 		B15EF77B284F02530042018B /* YXShoppingMallCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF779284F02530042018B /* YXShoppingMallCategoryModel.m */; };
 		B16BCA71274DDB610002B606 /* YXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5D274DDB610002B606 /* YXPageControl.m */; };
@@ -160,6 +161,8 @@
 		84AD560624442BDF00004B7E /* YXToolAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolAlertVC.m; sourceTree = "<group>"; };
 		84E92ADB260349F400CCF2C3 /* YXEvaluationStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEvaluationStarView.h; sourceTree = "<group>"; };
 		84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEvaluationStarView.m; sourceTree = "<group>"; };
+		B15C400D29B0722E009130B9 /* YXCustomURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCustomURLProtocol.m; sourceTree = "<group>"; };
+		B15C400E29B0722E009130B9 /* YXCustomURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCustomURLProtocol.h; sourceTree = "<group>"; };
 		B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXShoppingMallAdvertingModel.m; sourceTree = "<group>"; };
 		B15EF776284F02180042018B /* YXShoppingMallAdvertingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXShoppingMallAdvertingModel.h; sourceTree = "<group>"; };
 		B15EF779284F02530042018B /* YXShoppingMallCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXShoppingMallCategoryModel.m; sourceTree = "<group>"; };
@@ -217,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				848794202446D9FF0010B23B /* YXToolsPCH.pch */,
+				B15C400C29B07209009130B9 /* YXWebCustomUrlProtocol */,
 				B174F049298CAD9D006D6761 /* YXListCountDown */,
 				B16BCA79274DDB990002B606 /* YXBadgeButton */,
 				B16BCA58274DDB610002B606 /* YXFuncScrollView */,
@@ -470,6 +474,15 @@
 				84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */,
 			);
 			path = YXToolMallEvaluation;
+			sourceTree = "<group>";
+		};
+		B15C400C29B07209009130B9 /* YXWebCustomUrlProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				B15C400E29B0722E009130B9 /* YXCustomURLProtocol.h */,
+				B15C400D29B0722E009130B9 /* YXCustomURLProtocol.m */,
+			);
+			path = YXWebCustomUrlProtocol;
 			sourceTree = "<group>";
 		};
 		B15EF774284F02180042018B /* YXShoppingMallAdvertingModel */ = {
@@ -730,6 +743,7 @@
 				846E55A2243EF2D200CB7233 /* NSString+YXCategory.m in Sources */,
 				846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */,
 				846E55A0243EF2D200CB7233 /* UIColor+YXCategory.m in Sources */,
+				B15C400F29B0722E009130B9 /* YXCustomURLProtocol.m in Sources */,
 				B16BCA71274DDB610002B606 /* YXPageControl.m in Sources */,
 				84AD55FD24442B7400004B7E /* TYAlertDropDownAnimation.m in Sources */,
 				846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */,
