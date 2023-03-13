@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -61,10 +61,10 @@
 		B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA7A274DDB990002B606 /* YXBadgeButton.m */; };
 		B174F04C298CAD9D006D6761 /* YXListCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = B174F04B298CAD9D006D6761 /* YXListCountDown.m */; };
 		B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */; };
-		B1F4710329BF0B0A00662819 /* UIImageView+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710229BF0B0A00662819 /* UIImageView+YXCategory.m */; };
 		B1F4710B29BF0E8900662819 /* YXBigFileDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710629BF0E8900662819 /* YXBigFileDownloadRequest.m */; };
 		B1F4710C29BF0E8900662819 /* YXSharedHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710829BF0E8900662819 /* YXSharedHTTPManager.m */; };
 		B1F4710D29BF0E8900662819 /* YXNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710929BF0E8900662819 /* YXNetworkRequest.m */; };
+		B1F4711529BF151600662819 /* UIImageView+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4711429BF151600662819 /* UIImageView+YXCategory.m */; };
 		ED4A898F510815808ABB49FF /* libPods-YXCategoryGroupTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DADE9BDC1F0DE5E9334AFEC /* libPods-YXCategoryGroupTest.a */; };
 /* End PBXBuildFile section */
 
@@ -195,14 +195,14 @@
 		B174F04B298CAD9D006D6761 /* YXListCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXListCountDown.m; sourceTree = "<group>"; };
 		B1D8C0C0273CED0C008B6903 /* NSDictionary+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YXCategory.h"; sourceTree = "<group>"; };
 		B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YXCategory.m"; sourceTree = "<group>"; };
-		B1F4710129BF0B0A00662819 /* UIImageView+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+YXCategory.h"; sourceTree = "<group>"; };
-		B1F4710229BF0B0A00662819 /* UIImageView+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+YXCategory.m"; sourceTree = "<group>"; };
 		B1F4710529BF0E8900662819 /* YXSharedHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSharedHTTPManager.h; sourceTree = "<group>"; };
 		B1F4710629BF0E8900662819 /* YXBigFileDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBigFileDownloadRequest.m; sourceTree = "<group>"; };
 		B1F4710729BF0E8900662819 /* YXNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNetworkRequest.h; sourceTree = "<group>"; };
 		B1F4710829BF0E8900662819 /* YXSharedHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSharedHTTPManager.m; sourceTree = "<group>"; };
 		B1F4710929BF0E8900662819 /* YXNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNetworkRequest.m; sourceTree = "<group>"; };
 		B1F4710A29BF0E8900662819 /* YXBigFileDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBigFileDownloadRequest.h; sourceTree = "<group>"; };
+		B1F4711329BF151600662819 /* UIImageView+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+YXCategory.h"; sourceTree = "<group>"; };
+		B1F4711429BF151600662819 /* UIImageView+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+YXCategory.m"; sourceTree = "<group>"; };
 		D225CE0D9892892CC4E6F4EF /* Pods-YXCategoryGroupTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXCategoryGroupTest.release.xcconfig"; path = "Target Support Files/Pods-YXCategoryGroupTest/Pods-YXCategoryGroupTest.release.xcconfig"; sourceTree = "<group>"; };
 		E1DA99164CAECFF10B886EA0 /* Pods-YXCategoryGroupTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YXCategoryGroupTest.debug.xcconfig"; path = "Target Support Files/Pods-YXCategoryGroupTest/Pods-YXCategoryGroupTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -355,7 +355,7 @@
 				8487941F2446D9E20010B23B /* YXCategorysPCH.pch */,
 				846E558E243EF2D200CB7233 /* YXCategoryBaseManager.h */,
 				846E559C243EF2D200CB7233 /* YXCategoryBaseManager.m */,
-				B1F4710029BF0B0A00662819 /* YXCategoryUIImageView */,
+				B1F4711229BF151600662819 /* YXCategoryUIImageView */,
 				846E55A7243EFBB000CB7233 /* YXCategoryNSObject */,
 				846E5595243EF2D200CB7233 /* YXCategoryUIView */,
 				846E559D243EF2D200CB7233 /* YXCategoryUIImage */,
@@ -616,16 +616,6 @@
 			path = YXListCountDown;
 			sourceTree = "<group>";
 		};
-		B1F4710029BF0B0A00662819 /* YXCategoryUIImageView */ = {
-			isa = PBXGroup;
-			children = (
-				B1F4710129BF0B0A00662819 /* UIImageView+YXCategory.h */,
-				B1F4710229BF0B0A00662819 /* UIImageView+YXCategory.m */,
-			);
-			name = YXCategoryUIImageView;
-			path = "../../../../../项目/NFT/MuchProj/Common/YXCommon/YXCategorys/YXCategoryUIImageView";
-			sourceTree = "<group>";
-		};
 		B1F4710429BF0E8900662819 /* YXNetworkBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,6 +627,15 @@
 				B1F4710629BF0E8900662819 /* YXBigFileDownloadRequest.m */,
 			);
 			path = YXNetworkBase;
+			sourceTree = "<group>";
+		};
+		B1F4711229BF151600662819 /* YXCategoryUIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				B1F4711329BF151600662819 /* UIImageView+YXCategory.h */,
+				B1F4711429BF151600662819 /* UIImageView+YXCategory.m */,
+			);
+			path = YXCategoryUIImageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -837,10 +836,10 @@
 				846E5557243EF2BE00CB7233 /* AppDelegate.m in Sources */,
 				84AD55DE2444018700004B7E /* YXToolMediaManager.m in Sources */,
 				B16BCA77274DDB610002B606 /* YXFuncScrollBaseTabCell.m in Sources */,
+				B1F4711529BF151600662819 /* UIImageView+YXCategory.m in Sources */,
 				84AD55FE24442B7400004B7E /* TYShowAlertView.m in Sources */,
 				844E19E724406F3D009FE378 /* YXToolLocalSaveBySqlite.m in Sources */,
 				84AD560024442B7400004B7E /* TYAlertController.m in Sources */,
-				B1F4710329BF0B0A00662819 /* UIImageView+YXCategory.m in Sources */,
 				B16BCA78274DDB610002B606 /* YXFuncScrollBaseTabView.m in Sources */,
 				846E55A1243EF2D200CB7233 /* NSMutableArray+YXCategory.m in Sources */,
 				84AD55FB24442B7400004B7E /* TYAlertController+TransitionAnimate.m in Sources */,

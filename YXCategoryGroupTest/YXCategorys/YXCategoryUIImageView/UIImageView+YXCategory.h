@@ -7,6 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma mark - 图片
+#define kYXImage(imageName) [UIImage imageNamed:imageName]
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImageView (YXCategory)
@@ -17,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 加载本地GIF图片(支持GIF需要继承YYAnimatedImageView)
 - (void)st_setGIFImageWithPath:(NSString *)path;
+
+#pragma mark - 使用oss自动设置尺寸
+- (NSString *)ossSetImgSizeByUrl:(NSString *)url;
 
 @end
 
