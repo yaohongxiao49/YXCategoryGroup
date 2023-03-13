@@ -63,7 +63,7 @@
     }];
 }
 
-#pragma mark - 解压缩
+#pragma mark - 解压文件
 - (void)yxOpenZipByPath:(NSString *)path unzipto:(NSString *)unzipto {
     
     //压缩文件
@@ -85,6 +85,29 @@
         NSAssert(false, @"请更换压缩路径或者解压路径");
     }
 }
+
+#pragma mark - 压缩文件
+- (void)yxZipFileByPath:(NSString *)path zipToPath:(NSString *)zipToPath {
+    
+    //压缩文件
+    ZipArchive *zip = [[ZipArchive alloc] init];
+    //压缩文件路径
+    NSString *zipFile = zipToPath;
+    //该路径创建一个压缩文件
+    BOOL isReady = [zip CreateZipFile2:zipToPath];
+    if (isReady) {
+        NSLog(@"压缩文件夹创建成功");
+        //将内容压缩至压缩文件中
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"path" ofType:nil];
+        [zip addFileToZip:path newname:@"path"];
+        //关闭压缩
+        [zip CloseZipFile2];
+    }
+    else {
+        NSAssert(false, @"请更换压缩路径");
+    }
+}
+
 
 #pragma mark - <NSURLSessionDownloadDelegate>
 #pragma mark - 下载完毕会调用，location文件临时地址

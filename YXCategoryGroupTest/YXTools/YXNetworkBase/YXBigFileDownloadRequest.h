@@ -30,6 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
 /** 暂停下载 */
 - (void)pauseDownload;
 
+/** 解压文件 */
+- (void)yxOpenZipByPath:(NSString *)path unzipto:(NSString *)unzipto;
+
+/** 压缩文件 */
+- (void)yxZipFileByPath:(NSString *)path zipToPath:(NSString *)zipToPath;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,6 +19,27 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self downloadFile];
+//    [self getVideoImgArr];
+}
+
+#pragma mark - 下载
+- (void)downloadFile {
+    
+    [[YXBigFileDownloadRequest sharedManager] startDownloadByFileUrl:@"http://220.249.115.46:18080/wav/day_by_day.mp4"];
+    [[YXBigFileDownloadRequest sharedManager] setYxBigFileDownloadRequestProgressBlock:^(double progress) {
+       
+        NSLog(@"当前进度 == %.2f", progress);
+    }];
+    [[YXBigFileDownloadRequest sharedManager] setYxBigFileDownloadRequestBlock:^(NSString * _Nonnull savePath, NSString * _Nonnull fileName) {
+
+        NSLog(@"存储地址 == %@, 文件名 == %@", fileName, savePath);
+    }];
+}
+
+#pragma mark - 生成gif
+- (void)getVideoImgArr {
+    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mov"];
     NSURL *url = [NSURL fileURLWithPath:path];
     

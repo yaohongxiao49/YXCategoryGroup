@@ -17,6 +17,7 @@
 #import "YXToolMediaManager.h"
 #import "YXToolAlert.h"
 #import "TYAlertController.h"
+#import "YXBigFileDownloadRequest.h"
 
 #pragma mark - YXCategorys
 #import "YXCategoryBaseManager.h"
