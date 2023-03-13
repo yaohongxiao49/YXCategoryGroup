@@ -270,7 +270,7 @@
         _tabView.norTitleFont = [UIFont systemFontOfSize:14];
         _tabView.norTextColor = [UIColor blackColor];
         _tabView.selTitleFont = [UIFont systemFontOfSize:14];
-        _tabView.selTextColor = kYXThemeColor;
+        _tabView.selTextColor = [UIColor whiteColor];
         _tabView.selLineColor = [UIColor blueColor];
 //        _tabView.lineWidth = 10;
         _tabView.boolLineAnimation = YES;

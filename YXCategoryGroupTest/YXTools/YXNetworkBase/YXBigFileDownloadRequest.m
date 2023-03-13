@@ -1,0 +1,133 @@
+//
+//  YXBigFileDownloadRequest.m
+//  MuchProj
+//
+//  Created by Augus on 2023/3/13.
+//
+
+#import "YXBigFileDownloadRequest.h"
+
+@interface YXBigFileDownloadRequest () <NSURLSessionDownloadDelegate>
+
+@property (nonatomic, strong) NSURLSession *session;
+/** 下载任务 */
+@property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
+/** 记录下载位置 */
+@property (nonatomic, strong) NSData *resumeData;
+
+@end
+
+@implementation YXBigFileDownloadRequest
+
+#pragma mark - 单例
++ (instancetype)sharedManager {
+    
+    static dispatch_once_t onceToken;
+    static YXBigFileDownloadRequest *instance;
+    dispatch_once(&onceToken, ^{
+        
+        instance = [[YXBigFileDownloadRequest alloc] init];
+    });
+    return instance;
+}
+
+#pragma mark - 开始下载
+- (void)startDownloadByFileUrl:(NSString *)fileUrl {
+    
+    NSURL *url = [NSURL URLWithString:fileUrl];
+    //创建任务
+    self.downloadTask = [self.session downloadTaskWithURL:url];
+    //开始任务
+    [self.downloadTask resume];
+}
+
+#pragma mark - 恢复下载
+- (void)resumeDownload {
+    
+    //传入上次暂停下载返回的数据，就可以恢复下载
+    self.downloadTask = [self.session downloadTaskWithResumeData:self.resumeData];
+    //开始任务
+    [self.downloadTask resume];
+    self.resumeData = nil;
+}
+
+#pragma mark - 暂停下载
+- (void)pauseDownload {
+    
+    __weak typeof(self) weakSelf = self;
+    [self.downloadTask cancelByProducingResumeData:^(NSData *resumeData) {
+        
+        //resumeData : 包含了继续下载的开始位置\下载的url
+        weakSelf.resumeData = resumeData;
+        weakSelf.downloadTask = nil;
+    }];
+}
+
+#pragma mark - 解压缩
+- (void)yxOpenZipByPath:(NSString *)path unzipto:(NSString *)unzipto {
+    
+    //压缩文件
+    ZipArchive *zip = [[ZipArchive alloc] init];
+    //压缩文件路径
+    NSString *zipFile = path;
+    //解压缩
+    //创建解压位置
+    NSString *unZipFile = unzipto;
+    BOOL unZipReady = [zip UnzipOpenFile:zipFile];
+    if (unZipReady) {
+        BOOL ret = [zip UnzipFileTo:unZipFile overWrite:YES];
+        if (!ret) {
+            NSLog(@"解压文件失败：%@", zipFile);
+        }
+        [zip CloseZipFile2];
+    }
+    else {
+        NSAssert(false, @"请更换压缩路径或者解压路径");
+    }
+}
+
+#pragma mark - <NSURLSessionDownloadDelegate>
+#pragma mark - 下载完毕会调用，location文件临时地址
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
+    
+    NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    //response.suggestedFilename : 建议使用的文件名，一般跟服务器端的文件名一致
+    NSString *file = [caches stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
+    //将临时文件剪切或者复制Caches文件夹
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //AtPath : 剪切前的文件路径
+    //ToPath : 剪切后的文件路径
+    [fileManager moveItemAtPath:location.path toPath:file error:nil];
+    
+    //提示下载完成
+    if (self.yxBigFileDownloadRequestBlock) {
+        self.yxBigFileDownloadRequestBlock(file, downloadTask.response.suggestedFilename);
+    }
+}
+
+#pragma mark - 每次写入沙盒完毕调用，监听下载进度，totalBytesWritten/totalBytesExpectedToWrite；bytesWritten：这次写入的大小；totalBytesWritten：已经写入沙盒的大小；totalBytesExpectedToWrite：文件总大小
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+    
+    double progressValue = (double)totalBytesWritten/totalBytesExpectedToWrite;
+    if (self.yxBigFileDownloadRequestProgressBlock) {
+        self.yxBigFileDownloadRequestProgressBlock(progressValue);
+    }
+}
+
+#pragma mark - 恢复下载后调用
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {
+    
+}
+
+#pragma mark - 懒加载
+- (NSURLSession *)session {
+    
+    if (!_session) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    }
+    return _session;
+}
+
+@end

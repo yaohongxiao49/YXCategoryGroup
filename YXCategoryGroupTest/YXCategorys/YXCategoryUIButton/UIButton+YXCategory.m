@@ -200,7 +200,7 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
 #pragma mark - 倒计时
 - (void)yxBtnCountdownByTimeAmount:(NSInteger)timeAmount title:(NSString *)title beforeSubTitle:(NSString *)beforeSubTitle countDownTitle:(NSString *)subTitle mainColor:(UIColor *)mColor countColor:(UIColor *)color isCerificationCode:(BOOL)isCerificationCode startWithTimeIsEndBlock:(YXStartWithTimeIsEndBlock)startWithTimeIsEndBlock {
     
-    kYXWeakSelf;
+    __weak typeof(self) weakSelf = self;
     //倒计时时间
     __block NSInteger timeOut = timeAmount;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);

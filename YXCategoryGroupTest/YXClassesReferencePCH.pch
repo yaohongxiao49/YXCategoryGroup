@@ -28,5 +28,19 @@
 #import "NSString+YXCategory.h"
 #import "NSMutableArray+YXCategory.h"
 #import "NSMutableDictionary+YXCategory.h"
+#import "UIImageView+YXCategory.h"
+
+#pragma mark - 三方
+/** 图片加载 */
+#import "YYWebImage.h"
+#import "SDWebImage.h"
+/** 缓存策略 */
+#import "KTVHTTPCache.h"
+/** 网络 */
+#import "AFNetworking.h"
+/** 弹窗 */
+#import "SVProgressHUD.h"
+/** 解压缩 */
+#import "ZipArchive.h"
 
 #endif /* YXClassesReferencePCH_pch */

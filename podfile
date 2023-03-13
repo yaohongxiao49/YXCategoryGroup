@@ -1,0 +1,26 @@
+platform :ios, '10.0'
+inhibit_all_warnings!
+
+target 'YXCategoryGroupTest' do
+  
+  #source 'https://github.com/CocoaPods/Specs.git'
+  source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+  
+  pod 'Masonry' #布局
+  pod 'YYWebImage' #网络图片
+  pod 'SDWebImage'
+  pod 'KTVHTTPCache' #缓存策略
+  pod 'AFNetworking' #网络请求
+  pod 'SVProgressHUD' #提示框
+  pod 'ZipArchive' #解压缩
+  
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 10.0
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+        end
+      end
+    end
+  end
+end

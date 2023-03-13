@@ -19,9 +19,9 @@
     
     if (self) {
         self.badgeLab = [[UILabel alloc] init];
-        self.badgeLab.backgroundColor = kYXDiyColor(@"#FF341D", 1);
+        self.badgeLab.backgroundColor = [UIColor redColor];
         self.badgeLab.font = [UIFont boldSystemFontOfSize:10];
-        self.badgeLab.textColor = kYXWhiteColor;
+        self.badgeLab.textColor = [UIColor greenColor];
         self.badgeLab.clipsToBounds = YES;
         self.badgeLab.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.badgeLab];
