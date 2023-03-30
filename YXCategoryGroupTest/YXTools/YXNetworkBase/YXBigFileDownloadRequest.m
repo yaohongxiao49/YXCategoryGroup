@@ -6,6 +6,7 @@
 //
 
 #import "YXBigFileDownloadRequest.h"
+#import "YXToolGetSandbox.h"
 
 @interface YXBigFileDownloadRequest () <NSURLSessionDownloadDelegate>
 
@@ -64,10 +65,14 @@
 }
 
 #pragma mark - 解压文件
-- (void)yxOpenZipByPath:(NSString *)path unzipto:(NSString *)unzipto {
+- (void)yxOpenZipByPath:(NSString *)path unzipto:(NSString *)unzipto openZipBlock:(void(^)(NSInteger progress, NSString *unzipPath))openZipBlock {
     
     //压缩文件
     ZipArchive *zip = [[ZipArchive alloc] init];
+    zip.progressBlock = ^(int percentage, int filesProcessed, unsigned long numFiles) {
+        
+        openZipBlock(percentage, unzipto);
+    };
     //压缩文件路径
     NSString *zipFile = path;
     //解压缩
@@ -108,16 +113,35 @@
     }
 }
 
+#pragma mark - 移除压缩文件
+- (void)removeZipMethodByPath:(NSString *)path {
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *fileList = [fileManager contentsOfDirectoryAtPath:path error:NULL];
+    for (NSString *file in fileList) {
+        if ([file containsString:@".zip"]) {
+            NSString *pathFile = [NSString stringWithFormat:@"%@/%@", path, file];
+            [YXToolLocalSaveBySqlite yxRemoveFileByPath:pathFile];
+            _openZipPath = [pathFile stringByReplacingOccurrencesOfString:@".zip" withString:@""];
+        }
+    }
+}
 
 #pragma mark - <NSURLSessionDownloadDelegate>
 #pragma mark - 下载完毕会调用，location文件临时地址
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
     
-    NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-    //response.suggestedFilename : 建议使用的文件名，一般跟服务器端的文件名一致
-    NSString *file = [caches stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
     //将临时文件剪切或者复制Caches文件夹
     NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //判断如果有文件夹则不创建，如果没有则创建新的文件夹，
+    NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *saveFile = [NSString stringWithFormat:@"%@/%@", caches, [infoDic objectForKey:@"CFBundleDisplayName"]];
+    [YXToolGetSandbox yxHasLive:saveFile];
+    
+    //response.suggestedFilename : 建议使用的文件名，一般跟服务器端的文件名一致
+    NSString *file = [saveFile stringByAppendingPathComponent:downloadTask.response.suggestedFilename];
     
     //AtPath : 剪切前的文件路径
     //ToPath : 剪切后的文件路径
