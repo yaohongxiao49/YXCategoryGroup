@@ -8,7 +8,7 @@
 #import "YXBigFileDownloadRequest.h"
 #import "YXToolGetSandbox.h"
 
-@interface YXBigFileDownloadRequest () <NSURLSessionDownloadDelegate>
+@interface YXBigFileDownloadRequest () <NSURLSessionDownloadDelegate, ZipArchiveDelegate>
 
 @property (nonatomic, strong) NSURLSession *session;
 /** 下载任务 */
@@ -69,6 +69,7 @@
     
     //压缩文件
     ZipArchive *zip = [[ZipArchive alloc] init];
+    zip.delegate = self;
     zip.progressBlock = ^(int percentage, int filesProcessed, unsigned long numFiles) {
         
         openZipBlock(percentage, unzipto);
@@ -165,6 +166,12 @@
 #pragma mark - 恢复下载后调用
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {
     
+}
+
+#pragma mark - <ZipArchiveDelegate>
+- (void)ErrorMessage:(NSString *)msg {
+    
+    NSLog(@"解压失败原因：%@", msg);
 }
 
 #pragma mark - 懒加载
