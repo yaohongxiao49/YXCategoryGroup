@@ -60,6 +60,17 @@
 		B16BCA78274DDB610002B606 /* YXFuncScrollBaseTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA6E274DDB610002B606 /* YXFuncScrollBaseTabView.m */; };
 		B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA7A274DDB990002B606 /* YXBadgeButton.m */; };
 		B174F04C298CAD9D006D6761 /* YXListCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = B174F04B298CAD9D006D6761 /* YXListCountDown.m */; };
+		B1A15E532AB1A0A400A68539 /* YXLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15E522AB1A0A400A68539 /* YXLocationManager.m */; };
+		B1A15EDA2AB1A0D300A68539 /* YXCardAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15ED62AB1A0D300A68539 /* YXCardAnimationView.m */; };
+		B1A15EDB2AB1A0D300A68539 /* YXCardShowImgV.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15ED72AB1A0D300A68539 /* YXCardShowImgV.m */; };
+		B1A15EE12AB1A0F700A68539 /* PaymentManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EDD2AB1A0F700A68539 /* PaymentManagerModel.m */; };
+		B1A15EE22AB1A0F700A68539 /* YXPaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EDE2AB1A0F700A68539 /* YXPaymentManager.m */; };
+		B1A15EEA2AB1A11000A68539 /* YXAliOSSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EE82AB1A11000A68539 /* YXAliOSSManager.m */; };
+		B1A15EF02AB1A11D00A68539 /* YXPublicShareManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EEE2AB1A11D00A68539 /* YXPublicShareManagerModel.m */; };
+		B1A15EF12AB1A11D00A68539 /* YXPublicShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EEF2AB1A11D00A68539 /* YXPublicShareManager.m */; };
+		B1A15EF52AB1A12D00A68539 /* YXMJRefreshNormalHomeListFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EF42AB1A12D00A68539 /* YXMJRefreshNormalHomeListFooter.m */; };
+		B1A15EF92AB1A16A00A68539 /* YXWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EF72AB1A16A00A68539 /* YXWaterFallLayout.m */; };
+		B1A15EFD2AB1A17C00A68539 /* YXProgressSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EFB2AB1A17C00A68539 /* YXProgressSlider.m */; };
 		B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */; };
 		B1F4710B29BF0E8900662819 /* YXBigFileDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710629BF0E8900662819 /* YXBigFileDownloadRequest.m */; };
 		B1F4710C29BF0E8900662819 /* YXSharedHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710829BF0E8900662819 /* YXSharedHTTPManager.m */; };
@@ -193,6 +204,28 @@
 		B16BCA7B274DDB990002B606 /* YXBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBadgeButton.h; sourceTree = "<group>"; };
 		B174F04A298CAD9D006D6761 /* YXListCountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXListCountDown.h; sourceTree = "<group>"; };
 		B174F04B298CAD9D006D6761 /* YXListCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXListCountDown.m; sourceTree = "<group>"; };
+		B1A15E512AB1A0A400A68539 /* YXLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLocationManager.h; sourceTree = "<group>"; };
+		B1A15E522AB1A0A400A68539 /* YXLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLocationManager.m; sourceTree = "<group>"; };
+		B1A15ED62AB1A0D300A68539 /* YXCardAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCardAnimationView.m; sourceTree = "<group>"; };
+		B1A15ED72AB1A0D300A68539 /* YXCardShowImgV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCardShowImgV.m; sourceTree = "<group>"; };
+		B1A15ED82AB1A0D300A68539 /* YXCardAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCardAnimationView.h; sourceTree = "<group>"; };
+		B1A15ED92AB1A0D300A68539 /* YXCardShowImgV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCardShowImgV.h; sourceTree = "<group>"; };
+		B1A15EDD2AB1A0F700A68539 /* PaymentManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentManagerModel.m; sourceTree = "<group>"; };
+		B1A15EDE2AB1A0F700A68539 /* YXPaymentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPaymentManager.m; sourceTree = "<group>"; };
+		B1A15EDF2AB1A0F700A68539 /* YXPaymentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPaymentManager.h; sourceTree = "<group>"; };
+		B1A15EE02AB1A0F700A68539 /* PaymentManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentManagerModel.h; sourceTree = "<group>"; };
+		B1A15EE82AB1A11000A68539 /* YXAliOSSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAliOSSManager.m; sourceTree = "<group>"; };
+		B1A15EE92AB1A11000A68539 /* YXAliOSSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAliOSSManager.h; sourceTree = "<group>"; };
+		B1A15EEC2AB1A11D00A68539 /* YXPublicShareManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPublicShareManagerModel.h; sourceTree = "<group>"; };
+		B1A15EED2AB1A11D00A68539 /* YXPublicShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPublicShareManager.h; sourceTree = "<group>"; };
+		B1A15EEE2AB1A11D00A68539 /* YXPublicShareManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPublicShareManagerModel.m; sourceTree = "<group>"; };
+		B1A15EEF2AB1A11D00A68539 /* YXPublicShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPublicShareManager.m; sourceTree = "<group>"; };
+		B1A15EF32AB1A12D00A68539 /* YXMJRefreshNormalHomeListFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMJRefreshNormalHomeListFooter.h; sourceTree = "<group>"; };
+		B1A15EF42AB1A12D00A68539 /* YXMJRefreshNormalHomeListFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMJRefreshNormalHomeListFooter.m; sourceTree = "<group>"; };
+		B1A15EF72AB1A16A00A68539 /* YXWaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWaterFallLayout.m; sourceTree = "<group>"; };
+		B1A15EF82AB1A16A00A68539 /* YXWaterFallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWaterFallLayout.h; sourceTree = "<group>"; };
+		B1A15EFB2AB1A17C00A68539 /* YXProgressSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProgressSlider.m; sourceTree = "<group>"; };
+		B1A15EFC2AB1A17C00A68539 /* YXProgressSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProgressSlider.h; sourceTree = "<group>"; };
 		B1D8C0C0273CED0C008B6903 /* NSDictionary+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YXCategory.h"; sourceTree = "<group>"; };
 		B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YXCategory.m"; sourceTree = "<group>"; };
 		B1F4710529BF0E8900662819 /* YXSharedHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSharedHTTPManager.h; sourceTree = "<group>"; };
@@ -246,6 +279,13 @@
 			isa = PBXGroup;
 			children = (
 				848794202446D9FF0010B23B /* YXToolsPCH.pch */,
+				B1A15EFA2AB1A17C00A68539 /* YXProgressSlider */,
+				B1A15EF22AB1A12D00A68539 /* YXMJRefresGifManager */,
+				B1A15EEB2AB1A11D00A68539 /* YXPublicShareManager */,
+				B1A15EE72AB1A11000A68539 /* YXAliOSSManager */,
+				B1A15EDC2AB1A0F700A68539 /* YXPayment */,
+				B1A15ED52AB1A0D300A68539 /* YXCardAnimationView */,
+				B1A15E502AB1A0A400A68539 /* YXLocationManager */,
 				B1F4710429BF0E8900662819 /* YXNetworkBase */,
 				B15C400C29B07209009130B9 /* YXWebCustomUrlProtocol */,
 				B174F049298CAD9D006D6761 /* YXListCountDown */,
@@ -544,6 +584,7 @@
 		B16BCA58274DDB610002B606 /* YXFuncScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				B1A15EF62AB1A16A00A68539 /* YXWaterFallLayout */,
 				B16BCA61274DDB610002B606 /* YXEntertainingDiversionsView */,
 				B16BCA59274DDB610002B606 /* YXFuncCycleScrollView */,
 				B16BCA64274DDB610002B606 /* YXFuncPinScrollView */,
@@ -614,6 +655,89 @@
 				B174F04B298CAD9D006D6761 /* YXListCountDown.m */,
 			);
 			path = YXListCountDown;
+			sourceTree = "<group>";
+		};
+		B1A15E502AB1A0A400A68539 /* YXLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				B1A15E512AB1A0A400A68539 /* YXLocationManager.h */,
+				B1A15E522AB1A0A400A68539 /* YXLocationManager.m */,
+			);
+			path = YXLocationManager;
+			sourceTree = "<group>";
+		};
+		B1A15ED52AB1A0D300A68539 /* YXCardAnimationView */ = {
+			isa = PBXGroup;
+			children = (
+				B1A15ED62AB1A0D300A68539 /* YXCardAnimationView.m */,
+				B1A15ED72AB1A0D300A68539 /* YXCardShowImgV.m */,
+				B1A15ED82AB1A0D300A68539 /* YXCardAnimationView.h */,
+				B1A15ED92AB1A0D300A68539 /* YXCardShowImgV.h */,
+			);
+			path = YXCardAnimationView;
+			sourceTree = "<group>";
+		};
+		B1A15EDC2AB1A0F700A68539 /* YXPayment */ = {
+			isa = PBXGroup;
+			children = (
+				B1A15EDD2AB1A0F700A68539 /* PaymentManagerModel.m */,
+				B1A15EDE2AB1A0F700A68539 /* YXPaymentManager.m */,
+				B1A15EDF2AB1A0F700A68539 /* YXPaymentManager.h */,
+				B1A15EE02AB1A0F700A68539 /* PaymentManagerModel.h */,
+			);
+			name = YXPayment;
+			path = "../../../../../项目/社交项目/社交-客户端/MuchProj/Common/YXCommon/YXTools/YXPayment";
+			sourceTree = "<group>";
+		};
+		B1A15EE72AB1A11000A68539 /* YXAliOSSManager */ = {
+			isa = PBXGroup;
+			children = (
+				B1A15EE82AB1A11000A68539 /* YXAliOSSManager.m */,
+				B1A15EE92AB1A11000A68539 /* YXAliOSSManager.h */,
+			);
+			name = YXAliOSSManager;
+			path = "../../../../../项目/社交项目/社交-客户端/MuchProj/Common/YXCommon/YXTools/YXAliOSSManager";
+			sourceTree = "<group>";
+		};
+		B1A15EEB2AB1A11D00A68539 /* YXPublicShareManager */ = {
+			isa = PBXGroup;
+			children = (
+				B1A15EEC2AB1A11D00A68539 /* YXPublicShareManagerModel.h */,
+				B1A15EED2AB1A11D00A68539 /* YXPublicShareManager.h */,
+				B1A15EEE2AB1A11D00A68539 /* YXPublicShareManagerModel.m */,
+				B1A15EEF2AB1A11D00A68539 /* YXPublicShareManager.m */,
+			);
+			name = YXPublicShareManager;
+			path = "../../../../../项目/社交项目/社交-客户端/MuchProj/Common/YXCommon/YXTools/YXPublicShareManager";
+			sourceTree = "<group>";
+		};
+		B1A15EF22AB1A12D00A68539 /* YXMJRefresGifManager */ = {
+			isa = PBXGroup;
+			children = (
+				B1A15EF32AB1A12D00A68539 /* YXMJRefreshNormalHomeListFooter.h */,
+				B1A15EF42AB1A12D00A68539 /* YXMJRefreshNormalHomeListFooter.m */,
+			);
+			name = YXMJRefresGifManager;
+			path = "../../../../../项目/社交项目/社交-客户端/MuchProj/Common/YXCommon/YXTools/YXMJRefresGifManager";
+			sourceTree = "<group>";
+		};
+		B1A15EF62AB1A16A00A68539 /* YXWaterFallLayout */ = {
+			isa = PBXGroup;
+			children = (
+				B1A15EF72AB1A16A00A68539 /* YXWaterFallLayout.m */,
+				B1A15EF82AB1A16A00A68539 /* YXWaterFallLayout.h */,
+			);
+			path = YXWaterFallLayout;
+			sourceTree = "<group>";
+		};
+		B1A15EFA2AB1A17C00A68539 /* YXProgressSlider */ = {
+			isa = PBXGroup;
+			children = (
+				B1A15EFB2AB1A17C00A68539 /* YXProgressSlider.m */,
+				B1A15EFC2AB1A17C00A68539 /* YXProgressSlider.h */,
+			);
+			name = YXProgressSlider;
+			path = "../../../../../项目/社交项目/社交-客户端/MuchProj/Common/YXCommon/YXTools/YXProgressSlider";
 			sourceTree = "<group>";
 		};
 		B1F4710429BF0E8900662819 /* YXNetworkBase */ = {
@@ -814,9 +938,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1A15EDB2AB1A0D300A68539 /* YXCardShowImgV.m in Sources */,
 				84AD55F824442B7400004B7E /* UIView+TYAlertView.m in Sources */,
 				B16BCA73274DDB610002B606 /* YXEntertainingDiversionsView.m in Sources */,
 				B16BCA75274DDB610002B606 /* YXFuncScrollBaseTabSecHeaderView.m in Sources */,
+				B1A15EF12AB1A11D00A68539 /* YXPublicShareManager.m in Sources */,
 				846E55A4243EF2D200CB7233 /* NSMutableDictionary+YXCategory.m in Sources */,
 				84AD55FA24442B7400004B7E /* TYAlertFadeAnimation.m in Sources */,
 				B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */,
@@ -827,16 +953,23 @@
 				B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */,
 				84AD560424442BC000004B7E /* YXToolAlert.m in Sources */,
 				B174F04C298CAD9D006D6761 /* YXListCountDown.m in Sources */,
+				B1A15EDA2AB1A0D300A68539 /* YXCardAnimationView.m in Sources */,
 				B16BCA74274DDB610002B606 /* YXFuncScrollBaseView.m in Sources */,
 				B15EF777284F02180042018B /* YXShoppingMallAdvertingModel.m in Sources */,
 				846E555D243EF2BE00CB7233 /* ViewController.m in Sources */,
+				B1A15EFD2AB1A17C00A68539 /* YXProgressSlider.m in Sources */,
 				846E55A3243EF2D200CB7233 /* UIView+YXCategory.m in Sources */,
 				84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */,
 				B16BCA76274DDB610002B606 /* YXFuncScrollBaseTabSecFooterView.m in Sources */,
+				B1A15E532AB1A0A400A68539 /* YXLocationManager.m in Sources */,
+				B1A15EEA2AB1A11000A68539 /* YXAliOSSManager.m in Sources */,
 				846E5557243EF2BE00CB7233 /* AppDelegate.m in Sources */,
+				B1A15EF02AB1A11D00A68539 /* YXPublicShareManagerModel.m in Sources */,
 				84AD55DE2444018700004B7E /* YXToolMediaManager.m in Sources */,
 				B16BCA77274DDB610002B606 /* YXFuncScrollBaseTabCell.m in Sources */,
 				B1F4711529BF151600662819 /* UIImageView+YXCategory.m in Sources */,
+				B1A15EE22AB1A0F700A68539 /* YXPaymentManager.m in Sources */,
+				B1A15EF92AB1A16A00A68539 /* YXWaterFallLayout.m in Sources */,
 				84AD55FE24442B7400004B7E /* TYShowAlertView.m in Sources */,
 				844E19E724406F3D009FE378 /* YXToolLocalSaveBySqlite.m in Sources */,
 				84AD560024442B7400004B7E /* TYAlertController.m in Sources */,
@@ -848,10 +981,12 @@
 				846E55A2243EF2D200CB7233 /* NSString+YXCategory.m in Sources */,
 				846E555A243EF2BE00CB7233 /* SceneDelegate.m in Sources */,
 				846E55A0243EF2D200CB7233 /* UIColor+YXCategory.m in Sources */,
+				B1A15EE12AB1A0F700A68539 /* PaymentManagerModel.m in Sources */,
 				B15C400F29B0722E009130B9 /* YXCustomURLProtocol.m in Sources */,
 				B1F4710D29BF0E8900662819 /* YXNetworkRequest.m in Sources */,
 				B16BCA71274DDB610002B606 /* YXPageControl.m in Sources */,
 				84AD55FD24442B7400004B7E /* TYAlertDropDownAnimation.m in Sources */,
+				B1A15EF52AB1A12D00A68539 /* YXMJRefreshNormalHomeListFooter.m in Sources */,
 				846E55AE243F153C00CB7233 /* UIButton+YXCategory.m in Sources */,
 				844E19ED24407B56009FE378 /* YXToolAppBaseMessage.m in Sources */,
 				844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */,
@@ -1036,12 +1171,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HSQ24Z864;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YXCategoryGroupTest/YXTools/YXUniappManager/UniMPSDK/Core/Libs",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCategoryGroupTest/YXClassesReferencePCH.pch";
 				INFOPLIST_FILE = YXCategoryGroupTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YXCategoryGroupTest/YXTools/YXUniappManager/UniMPSDK/Core/Libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yhx.YXCategoryGroupTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1056,12 +1199,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HSQ24Z864;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YXCategoryGroupTest/YXTools/YXUniappManager/UniMPSDK/Core/Libs",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YXCategoryGroupTest/YXClassesReferencePCH.pch";
 				INFOPLIST_FILE = YXCategoryGroupTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YXCategoryGroupTest/YXTools/YXUniappManager/UniMPSDK/Core/Libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yhx.YXCategoryGroupTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
