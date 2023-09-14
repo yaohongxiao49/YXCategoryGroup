@@ -47,6 +47,8 @@
 		84AD560424442BC000004B7E /* YXToolAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560224442BC000004B7E /* YXToolAlert.m */; };
 		84AD560724442BDF00004B7E /* YXToolAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AD560624442BDF00004B7E /* YXToolAlertVC.m */; };
 		84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */; };
+		B106FE192AB2B37D0085912A /* YXPlayAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B106FE152AB2B37D0085912A /* YXPlayAudioManager.m */; };
+		B106FE1A2AB2B37D0085912A /* YXRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B106FE182AB2B37D0085912A /* YXRecordManager.m */; };
 		B15C400F29B0722E009130B9 /* YXCustomURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B15C400D29B0722E009130B9 /* YXCustomURLProtocol.m */; };
 		B15EF777284F02180042018B /* YXShoppingMallAdvertingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */; };
 		B15EF77B284F02530042018B /* YXShoppingMallCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF779284F02530042018B /* YXShoppingMallCategoryModel.m */; };
@@ -178,6 +180,10 @@
 		84AD560624442BDF00004B7E /* YXToolAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXToolAlertVC.m; sourceTree = "<group>"; };
 		84E92ADB260349F400CCF2C3 /* YXEvaluationStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEvaluationStarView.h; sourceTree = "<group>"; };
 		84E92ADC260349F400CCF2C3 /* YXEvaluationStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEvaluationStarView.m; sourceTree = "<group>"; };
+		B106FE142AB2B37D0085912A /* YXPlayAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPlayAudioManager.h; sourceTree = "<group>"; };
+		B106FE152AB2B37D0085912A /* YXPlayAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPlayAudioManager.m; sourceTree = "<group>"; };
+		B106FE172AB2B37D0085912A /* YXRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXRecordManager.h; sourceTree = "<group>"; };
+		B106FE182AB2B37D0085912A /* YXRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRecordManager.m; sourceTree = "<group>"; };
 		B15C400D29B0722E009130B9 /* YXCustomURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCustomURLProtocol.m; sourceTree = "<group>"; };
 		B15C400E29B0722E009130B9 /* YXCustomURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCustomURLProtocol.h; sourceTree = "<group>"; };
 		B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXShoppingMallAdvertingModel.m; sourceTree = "<group>"; };
@@ -279,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				848794202446D9FF0010B23B /* YXToolsPCH.pch */,
+				B106FE122AB2B37D0085912A /* YXAudioManager */,
 				B1A15EFA2AB1A17C00A68539 /* YXProgressSlider */,
 				B1A15EF22AB1A12D00A68539 /* YXMJRefresGifManager */,
 				B1A15EEB2AB1A11D00A68539 /* YXPublicShareManager */,
@@ -552,6 +559,33 @@
 				2DADE9BDC1F0DE5E9334AFEC /* libPods-YXCategoryGroupTest.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B106FE122AB2B37D0085912A /* YXAudioManager */ = {
+			isa = PBXGroup;
+			children = (
+				B106FE132AB2B37D0085912A /* YXPlayAudioManager */,
+				B106FE162AB2B37D0085912A /* YXRecordManager */,
+			);
+			path = YXAudioManager;
+			sourceTree = "<group>";
+		};
+		B106FE132AB2B37D0085912A /* YXPlayAudioManager */ = {
+			isa = PBXGroup;
+			children = (
+				B106FE142AB2B37D0085912A /* YXPlayAudioManager.h */,
+				B106FE152AB2B37D0085912A /* YXPlayAudioManager.m */,
+			);
+			path = YXPlayAudioManager;
+			sourceTree = "<group>";
+		};
+		B106FE162AB2B37D0085912A /* YXRecordManager */ = {
+			isa = PBXGroup;
+			children = (
+				B106FE172AB2B37D0085912A /* YXRecordManager.h */,
+				B106FE182AB2B37D0085912A /* YXRecordManager.m */,
+			);
+			path = YXRecordManager;
 			sourceTree = "<group>";
 		};
 		B15C400C29B07209009130B9 /* YXWebCustomUrlProtocol */ = {
@@ -974,6 +1008,7 @@
 				844E19E724406F3D009FE378 /* YXToolLocalSaveBySqlite.m in Sources */,
 				84AD560024442B7400004B7E /* TYAlertController.m in Sources */,
 				B16BCA78274DDB610002B606 /* YXFuncScrollBaseTabView.m in Sources */,
+				B106FE192AB2B37D0085912A /* YXPlayAudioManager.m in Sources */,
 				846E55A1243EF2D200CB7233 /* NSMutableArray+YXCategory.m in Sources */,
 				84AD55FB24442B7400004B7E /* TYAlertController+TransitionAnimate.m in Sources */,
 				844E19E4244057D4009FE378 /* YXToolLocalSaveByKeychain.m in Sources */,
@@ -992,6 +1027,7 @@
 				844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */,
 				B16BCA72274DDB610002B606 /* YXFuncCycleScrollView.m in Sources */,
 				84AD55FF24442B7400004B7E /* TYBaseAnimation.m in Sources */,
+				B106FE1A2AB2B37D0085912A /* YXRecordManager.m in Sources */,
 				84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */,
 				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,
 				844E19EA24407990009FE378 /* YXToolGetSandbox.m in Sources */,
