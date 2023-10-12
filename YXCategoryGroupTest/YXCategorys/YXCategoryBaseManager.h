@@ -21,8 +21,14 @@ typedef NS_ENUM(NSUInteger, YXCategoryPermissionsType) {
     YXCategoryPermissionsTypePhoto,
     /** 相机 */
     YXCategoryPermissionsTypeCamera,
-    /** 视频 */
+    /** 麦克风 */
     YXCategoryPermissionsTypeAudio,
+    /** 定位 */
+    YXCategoryPermissionsTypeLocation,
+    /** 通知 */
+    YXCategoryPermissionsTypeNoti,
+    /** 蓝牙 */
+    YXCategoryPermissionsTypeBlue,
 };
 
 NS_ASSUME_NONNULL_BEGIN

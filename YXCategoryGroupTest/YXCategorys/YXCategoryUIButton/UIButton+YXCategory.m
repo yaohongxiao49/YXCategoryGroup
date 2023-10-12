@@ -198,7 +198,7 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
 }
 
 #pragma mark - 倒计时
-- (void)yxBtnCountdownByTimeAmount:(NSInteger)timeAmount title:(NSString *)title beforeSubTitle:(NSString *)beforeSubTitle countDownTitle:(NSString *)subTitle mainColor:(UIColor *)mColor countColor:(UIColor *)color isCerificationCode:(BOOL)isCerificationCode startWithTimeIsEndBlock:(YXStartWithTimeIsEndBlock)startWithTimeIsEndBlock {
+- (void)yxBtnCountdownByTimeAmount:(NSInteger)timeAmount title:(NSString *)title beforeSubTitle:(NSString *)beforeSubTitle subTitle:(NSString *)subTitle beforeBgColor:(UIColor *)beforeBgColor afterBgColor:(UIColor *)afterBgColor beforeTextColor:(UIColor *)beforeTextColor afterTextColor:(UIColor *)afterTextColor isCerificationCode:(BOOL)isCerificationCode startWithTimeIsEndBlock:(YXStartWithTimeIsEndBlock)startWithTimeIsEndBlock {
     
     __weak typeof(self) weakSelf = self;
     //倒计时时间
@@ -214,7 +214,8 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                weakSelf.backgroundColor = mColor;
+                weakSelf.backgroundColor = beforeBgColor;
+                [weakSelf setTitleColor:beforeTextColor forState:UIControlStateNormal];
                 [weakSelf setTitle:title forState:UIControlStateNormal];
                 weakSelf.userInteractionEnabled = YES;
                 if (startWithTimeIsEndBlock) {
@@ -228,7 +229,8 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
             NSString *timeStr = [NSString stringWithFormat:@"%2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                weakSelf.backgroundColor = color;
+                weakSelf.backgroundColor = afterBgColor;
+                [weakSelf setTitleColor:afterTextColor forState:UIControlStateNormal];
                 if (beforeSubTitle != nil) {
                     [weakSelf setTitle:[NSString stringWithFormat:@"%@%@%@", beforeSubTitle, timeStr, subTitle] forState:UIControlStateNormal];
                 }

@@ -159,22 +159,22 @@
          
            dispatch_async(dispatch_get_main_queue(), ^{
                
-               if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) { //相册权限
+               if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized && type == YXCategoryPermissionsTypePhoto) { //相册权限
                    [weakSelf yxShowAlertViewWithTitle:@"无法访问相册" message:@"请在设置-隐私-照片中允许访问相册" buttonTitles:@[@"设置", @"取消"]];
                }
-               else if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusRestricted || [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusDenied) { //相机权限
+               else if (([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusRestricted || [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusDenied) && type == YXCategoryPermissionsTypeCamera) { //相机权限
                    [weakSelf yxShowAlertViewWithTitle:@"无法访问相机" message:@"请在设置-隐私-相机中允许访问相机" buttonTitles:@[@"设置", @"取消"]];
                }
-               else if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusRestricted || [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusDenied) { //麦克风权限
+               else if (([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusRestricted || [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusDenied) && type == YXCategoryPermissionsTypeAudio) { //麦克风权限
                    [weakSelf yxShowAlertViewWithTitle:@"无法访问麦克风" message:@"请在设置-隐私-麦克风中允许访问麦克风" buttonTitles:@[@"设置", @"取消"]];
                }
-               else if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) { //定位权限
+               else if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied && type == YXCategoryPermissionsTypeLocation) { //定位权限
                    [weakSelf yxShowAlertViewWithTitle:@"无法访问定位信息" message:@"请在设置-隐私-定位服务中允许访问定位信息" buttonTitles:@[@"设置", @"取消"]];
                }
-               else if (![self yxGetNotificationPermissions]) {
+               else if (![self yxGetNotificationPermissions] && type == YXCategoryPermissionsTypeNoti) {
                    [weakSelf yxShowAlertViewWithTitle:@"无法进行消息推送" message:@"请在设置-通知-app中允许通知" buttonTitles:@[@"设置", @"取消"]];
                }
-               else if (self.cbManagerState != CBManagerStatePoweredOn) {
+               else if (self.cbManagerState != CBManagerStatePoweredOn && type == YXCategoryPermissionsTypeBlue) {
                    centralManager = nil;
                    [weakSelf yxShowAlertViewWithTitle:@"无法使用蓝牙" message:@"请在设置中检查蓝牙" buttonTitles:@[@"设置", @"取消"]];
                }

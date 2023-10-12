@@ -142,16 +142,20 @@ typedef void(^YXStartWithTimeIsEndBlock)(void);
  * @param title 还没倒计时的title
  * @param beforeSubTitle 时间之前的描述
  * @param subTitle 倒计时中的子名字，如时、分
- * @param mColor 还没倒计时的颜色
- * @param color 倒计时中的颜色
+ * @param beforeBgColor 未开始倒计时的背景颜色
+ * @param afterBgColor 倒计时中的背景颜色
+ * @param beforeTextColor 未开始倒计时的字体颜色
+ * @param afterTextColor 倒计时中的字体颜色
  * @param isCerificationCode 是否为验证码
  */
 - (void)yxBtnCountdownByTimeAmount:(NSInteger)timeAmount
                              title:(NSString *)title
                     beforeSubTitle:(NSString *)beforeSubTitle
-                    countDownTitle:(NSString *)subTitle
-                         mainColor:(UIColor *)mColor
-                        countColor:(UIColor *)color
+                          subTitle:(NSString *)subTitle
+                     beforeBgColor:(UIColor *)beforeBgColor
+                      afterBgColor:(UIColor *)afterBgColor
+                   beforeTextColor:(UIColor *)beforeTextColor
+                    afterTextColor:(UIColor *)afterTextColor
                 isCerificationCode:(BOOL)isCerificationCode
            startWithTimeIsEndBlock:(YXStartWithTimeIsEndBlock)startWithTimeIsEndBlock;
 
