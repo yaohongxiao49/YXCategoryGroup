@@ -168,7 +168,7 @@
                else if (([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusRestricted || [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio] == AVAuthorizationStatusDenied) && type == YXCategoryPermissionsTypeAudio) { //麦克风权限
                    [weakSelf yxShowAlertViewWithTitle:@"无法访问麦克风" message:@"请在设置-隐私-麦克风中允许访问麦克风" buttonTitles:@[@"设置", @"取消"]];
                }
-               else if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied && type == YXCategoryPermissionsTypeLocation) { //定位权限
+               else if (([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) && type == YXCategoryPermissionsTypeLocation) { //定位权限
                    [weakSelf yxShowAlertViewWithTitle:@"无法访问定位信息" message:@"请在设置-隐私-定位服务中允许访问定位信息" buttonTitles:@[@"设置", @"取消"]];
                }
                else if (![self yxGetNotificationPermissions] && type == YXCategoryPermissionsTypeNoti) {
