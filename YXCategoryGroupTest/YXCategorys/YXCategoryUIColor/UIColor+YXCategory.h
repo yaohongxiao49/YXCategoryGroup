@@ -42,17 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * 文字渐变色（基于视图的，如label）
- * @param view 渐变色的显示视图
- * @param bgView 显示视图的父视图
+ * @param label 渐变色的显示视图
  * @param colorArr 渐变色数组
- * @param startPoint 开始点
- * @param endPoint 结束点
  */
-+ (void)yxTextGradientByView:(UIView *)view
-                      bgView:(UIView *)bgView
-                    colorArr:(NSArray *)colorArr
-                  startPoint:(CGPoint)startPoint
-                    endPoint:(CGPoint)endPoint;
++ (UIColor *)yxTextGradientByLabel:(UILabel *)label
+                         colorArr:(NSArray *)colorArr;
 
 /**
  * 文字渐变色（基于控件的，如button）

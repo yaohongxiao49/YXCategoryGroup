@@ -441,6 +441,46 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
     return newImg;
 }
 
+#pragma mark - 按图片大小压缩
++ (UIImage *)yxImgCompressForByteImg:(UIImage *)image maxLength:(NSUInteger)maxLength {
+    
+    CGFloat compression = 1;
+    NSData *data = UIImageJPEGRepresentation(image, compression);
+    if (data.length < maxLength) return image;
+    
+    CGFloat max = 1;
+    CGFloat min = 0;
+    for (int i = 0; i < 6; ++i) {
+        compression = (max + min) / 2;
+        data = UIImageJPEGRepresentation(image, compression);
+        if (data.length < maxLength * 0.9) {
+            min = compression;
+        } else if (data.length > maxLength) {
+            max = compression;
+        } else {
+            break;
+        }
+    }
+    UIImage *resultImage = [UIImage imageWithData:data];
+    if (data.length < maxLength) return resultImage;
+    
+    // Compress by size
+    NSUInteger lastDataLength = 0;
+    while (data.length > maxLength && data.length != lastDataLength) {
+        lastDataLength = data.length;
+        CGFloat ratio = (CGFloat)maxLength / data.length;
+        CGSize size = CGSizeMake((NSUInteger)(resultImage.size.width * sqrtf(ratio)),
+                                 (NSUInteger)(resultImage.size.height * sqrtf(ratio))); // Use NSUInteger to prevent white blank
+        UIGraphicsBeginImageContext(size);
+        [resultImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        resultImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        data = UIImageJPEGRepresentation(resultImage, compression);
+    }
+    
+    return resultImage;
+}
+
 #pragma mark - 根据颜色创建图片
 + (UIImage *)yxCreateImgByColorArr:(NSArray *)colorArr imgSize:(CGSize)imgSize directionType:(YXGradientDirectionType)directionType {
     
@@ -936,6 +976,35 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
     if (finishedBlock) {
         finishedBlock(image);
     }
+}
+
+#pragma mark - 生成二维码
++ (UIImage *)yxCreateQRCoreImageWithCodeUrl:(NSString *)codeUrl pointColor:(UIColor *)pointColor bgColor:(UIColor *)bgColor {
+    
+    CIColor *pointCIColor = [CIColor colorWithCGColor:pointColor.CGColor];
+    CIColor *bgCIColor = [CIColor colorWithCGColor:bgColor.CGColor];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [filter setDefaults];
+    
+    [filter setValue:[codeUrl dataUsingEncoding:NSUTF8StringEncoding] forKey:@"inputMessage"];
+    
+    CIImage *ciImg = filter.outputImage;
+
+    CIFilter *colorFilter = [CIFilter filterWithName:@"CIFalseColor"];
+    [colorFilter setDefaults];
+    [colorFilter setValue:ciImg forKey:@"inputImage"];
+    [colorFilter setValue:pointCIColor forKey:@"inputColor0"];
+    [colorFilter setValue:bgCIColor forKey:@"inputColor1"];
+    ciImg = colorFilter.outputImage;
+    
+    CGAffineTransform scale = CGAffineTransformMakeScale(10, 10);
+    ciImg = [ciImg imageByApplyingTransform:scale];
+    UIImage *finalImg = [UIImage imageWithCIImage:ciImg];
+    
+    UIGraphicsEndImageContext();
+    
+    return finalImg;
 }
 
 #pragma mark - 创建gif

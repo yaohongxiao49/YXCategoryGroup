@@ -76,16 +76,26 @@
 }
 
 #pragma mark - 文字渐变色（基于视图的，如label）
-+ (void)yxTextGradientByView:(UIView *)view bgView:(UIView *)bgView colorArr:(NSArray *)colorArr startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
++ (UIColor *)yxTextGradientByLabel:(UILabel *)label colorArr:(NSArray *)colorArr {
     
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = view.frame;
-    gradientLayer.colors = colorArr;
-    gradientLayer.startPoint = startPoint;
-    gradientLayer.endPoint = endPoint;
-    [bgView.layer addSublayer:gradientLayer];
-    gradientLayer.mask = view.layer;
-    view.frame = gradientLayer.bounds;
+    UIGraphicsBeginImageContextWithOptions(label.bounds.size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    //绘制渐变层
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradientRef = CGGradientCreateWithColors(colorSpaceRef,
+                                                           (__bridge CFArrayRef)colorArr,
+                                                           NULL);
+    CGPoint startPoint = CGPointZero;
+    CGPoint endPoint = CGPointMake(CGRectGetMaxX(label.bounds), CGRectGetMaxY(label.bounds));
+    CGContextDrawLinearGradient(context, gradientRef, startPoint, endPoint,  kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    //取到渐变图片
+    UIImage *gradientImage = UIGraphicsGetImageFromCurrentImageContext();
+    //释放资源
+    CGColorSpaceRelease(colorSpaceRef);
+    CGGradientRelease(gradientRef);
+    UIGraphicsEndImageContext();
+    
+    return [UIColor colorWithPatternImage:gradientImage];
 }
 
 #pragma mark - 文字渐变色（基于控件的，如button）

@@ -122,6 +122,10 @@ typedef NS_ENUM(NSUInteger, YXJoiningImgDirectionType) {
 + (UIImage *)yxImgCompressForSizeImg:(id)imgValue
                           targetSize:(CGSize)targetSize;
 
+/** 按图片大小压缩 */
++ (UIImage *)yxImgCompressForByteImg:(UIImage *)image
+                           maxLength:(NSUInteger)maxLength;
+
 /**
  * 根据颜色创建图片
  * @param colorArr 颜色集合
@@ -249,6 +253,16 @@ typedef NS_ENUM(NSUInteger, YXJoiningImgDirectionType) {
 /** 内容截图 */
 + (void)yxScreenShotsByScrollView:(UIScrollView *)scrollView
                     finishedBlock:(void(^)(UIImage *img))finishedBlock;
+
+/**
+ * 生成二维码
+ * @param codeUrl 二维码内容
+ * @param pointColor 前景色
+ * @param bgColor 背景色
+ */
++ (UIImage *)yxCreateQRCoreImageWithCodeUrl:(NSString *)codeUrl
+                                 pointColor:(UIColor *)pointColor
+                                    bgColor:(UIColor *)bgColor;
 
 @end
 
