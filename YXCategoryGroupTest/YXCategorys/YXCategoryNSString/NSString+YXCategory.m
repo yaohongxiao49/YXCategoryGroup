@@ -599,6 +599,16 @@
     }
 }
 
+#pragma mark - 保留两位小数，没有时出去
++ (NSString *)yxFloatKeepTwoBitsAndRemoveAllZero:(double)floatnum {
+    
+    //保留2位小数
+    NSString *tempfloat = [NSString stringWithFormat:@"%0.2f", floatnum];
+    //末尾清零
+    return [NSString stringWithFormat:@"%@", @(tempfloat.doubleValue)];
+}
+
+
 #pragma mark - 获取设备名称
 + (NSString *)yxGetDeviceName {
     

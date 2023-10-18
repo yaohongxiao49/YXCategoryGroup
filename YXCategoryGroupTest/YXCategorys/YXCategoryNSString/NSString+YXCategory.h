@@ -212,6 +212,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 使用oss自动设置尺寸 */
 - (NSString *)ossSetImgSizeByUrl:(NSString *)url;
 
+/** 保留两位小数，没有时出去 */
++ (NSString *)yxFloatKeepTwoBitsAndRemoveAllZero:(double)floatnum;
+
 /** 获取设备名称 */
 + (NSString *)yxGetDeviceName;
 
