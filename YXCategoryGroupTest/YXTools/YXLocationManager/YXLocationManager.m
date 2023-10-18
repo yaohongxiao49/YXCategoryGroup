@@ -24,7 +24,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        location = [[YXLocationManager alloc]init];
+        location = [[YXLocationManager alloc] init];
     });
     return location;
 }
@@ -40,6 +40,11 @@
 - (void)startLocationByBoolLocationOnce:(BOOL)boolLocationOnce {
     
     _boolLocationOnce = boolLocationOnce;
+    
+    //检查隐私合规
+    [AMapLocationManager updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
+    [AMapLocationManager updatePrivacyAgree:AMapPrivacyAgreeStatusDidAgree];
+    
     //开启定位
     [self.locationManager startUpdatingLocation];
 }
@@ -73,13 +78,9 @@
     }
 }
 #pragma mark - 定位结果
-- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location {
+- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode {
     
     _userLocation = location;
-    
-    if (self.yxLocationManagerBlock) {
-        self.yxLocationManagerBlock(location, nil, nil);
-    }
     
     if (self.boolLocationOnce) [self stopLocation];
     [self locateAction];
@@ -89,7 +90,6 @@
 - (void)locateAction {
     
     __weak typeof(self) weakSelf = self;
-    
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         
         //逆地理信息
@@ -118,6 +118,8 @@
         _locationManager.locationTimeout = 30;
         //设置逆地理超时时间
         _locationManager.reGeocodeTimeout = 30;
+        //更新定位距离
+        _locationManager.distanceFilter = 200;
         
         //手动调用申请位置权限
         [self.systemLocationManager requestWhenInUseAuthorization];
