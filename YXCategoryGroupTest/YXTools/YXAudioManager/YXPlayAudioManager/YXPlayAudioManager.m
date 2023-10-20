@@ -14,7 +14,7 @@
     static YXPlayAudioManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[YXPlayAudioManager alloc]init];
+        manager = [[YXPlayAudioManager alloc] init];
     });
     return manager;
 }
@@ -49,7 +49,11 @@
     [self.audioPlayer play];
     
     _audioTimeValue = 0;
-    self.audioTimer.fireDate = [NSDate distantPast];
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      
+        weakSelf.audioTimer.fireDate = [NSDate distantPast];
+    });
 }
 
 #pragma mark - 暂停播放
@@ -109,7 +113,7 @@
         [_audioPlayer prepareToPlay];
         
         if (error) {
-            NSLog(@"创建播放器过程中发生错误，错误信息：%@",error.localizedDescription);
+            NSLog(@"创建播放器过程中发生错误，错误信息：%@", error.localizedDescription);
             return nil;
         }
     }
@@ -119,6 +123,7 @@
     
     if (!_audioTimer) {
         _audioTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:_audioTimer forMode:NSRunLoopCommonModes];
     }
     return _audioTimer;
 }

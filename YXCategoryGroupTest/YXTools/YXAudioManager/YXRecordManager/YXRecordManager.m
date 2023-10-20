@@ -202,6 +202,7 @@
     
     if (!_recordTimer) {
         _recordTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(audioPowerChange) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:_recordTimer forMode:NSRunLoopCommonModes];
     }
     return _recordTimer;
 }
