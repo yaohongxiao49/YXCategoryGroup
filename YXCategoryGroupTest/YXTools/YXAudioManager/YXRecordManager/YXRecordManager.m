@@ -136,8 +136,8 @@
     
     [[YXPlayAudioManager shareIncetance] stopPlay];
     [[YXPlayAudioManager shareIncetance] setUrl:url];
-    [[YXPlayAudioManager shareIncetance] startPlay];
     [[[YXPlayAudioManager shareIncetance] audioPlayer] setNumberOfLoops:0];
+    [[YXPlayAudioManager shareIncetance] startPlay];
 }
 
 #pragma mark - <AVAudioRecorderDelegate>

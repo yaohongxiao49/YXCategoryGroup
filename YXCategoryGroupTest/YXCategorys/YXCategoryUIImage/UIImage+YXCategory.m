@@ -914,36 +914,20 @@ void yxRGBToHSV(float r, float g, float b, float *h, float *s, float *v) {
 #pragma mark - 全屏截图
 + (void)yxScreenShotByView:(UIView *)view pointRect:(CGRect)pointRect finishedBlock:(void(^)(UIImage *img))finishedBlock {
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        
-        __block size_t width = 0;
-        __block size_t height = 0;
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            
-            width = view.bounds.size.width;
-            height = view.bounds.size.height;
-        });
-        unsigned char *imageBuffer = (unsigned char *)malloc(width * height * 4);
-        CGColorSpaceRef colourSpace = CGColorSpaceCreateDeviceRGB();
-        CGContextRef imageContext = CGBitmapContextCreate(imageBuffer, width, height, 8, width * 4, colourSpace, kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little);
-        CGContextTranslateCTM(imageContext, 0.0, height);
-        CGContextScaleCTM(imageContext, 1.0, -1.0);
-        CGColorSpaceRelease(colourSpace);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [view.layer renderInContext:imageContext];
-            CGImageRef outputImage = CGBitmapContextCreateImage(imageContext);
-            UIImage *img = [UIImage imageWithCGImage:outputImage];
-            UIImageWriteToSavedPhotosAlbum(img, NULL, NULL, NULL);
-            if (finishedBlock) {
-                finishedBlock(img);
-            }
-            CGImageRelease(outputImage);
-            CGContextRelease(imageContext);
-            free(imageBuffer);
-        });
-    });
+    //开启图片上下文
+    UIGraphicsBeginImageContextWithOptions(pointRect.size, NO, 0.f);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:ctx];
+    //获取截图
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    //关闭图片上下文
+    UIGraphicsEndImageContext();
+    //保存相册
+    if (boolSave) UIImageWriteToSavedPhotosAlbum(image, NULL, NULL, NULL);
+    if (finishedBlock) {
+        finishedBlock(image);
+    }
 }
 
 #pragma mark - 内容截图
