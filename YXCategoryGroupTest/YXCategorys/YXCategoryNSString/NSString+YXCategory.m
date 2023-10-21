@@ -608,6 +608,31 @@
     return [NSString stringWithFormat:@"%@", @(tempfloat.doubleValue)];
 }
 
+#pragma mark - 格式化显示，填充数据（如11000 -> 1.1w）
++ (NSString *)yxGetNumberWithNum:(double)num segmentationNum:(CGFloat)segmentationNum splice:(NSString *)splice {
+    
+    NSString *endValue;
+    if (num < segmentationNum) {
+        endValue = [NSString yxFloatKeepTwoBitsAndRemoveAllZero:num];
+    }
+    else {
+        double value = (num / segmentationNum);
+        NSString *valueStr = [NSString yxFloatKeepTwoBitsAndRemoveAllZero:value];
+        NSArray *array = [valueStr componentsSeparatedByString:@"."];
+        if (array.count > 1) {
+            if ([array[1] intValue] > 0) {
+                endValue = [NSString stringWithFormat:@"%@%@", valueStr, splice];
+            }
+            else {
+                endValue = [NSString stringWithFormat:@"%d%@", [array[0] intValue], splice];
+            }
+        }
+        else {
+            endValue = [NSString stringWithFormat:@"%@%@", valueStr, splice];
+        }
+    }
+    return endValue;
+}
 
 #pragma mark - 获取设备名称
 + (NSString *)yxGetDeviceName {

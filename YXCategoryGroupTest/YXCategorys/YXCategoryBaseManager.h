@@ -84,6 +84,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)yxJudgeAVCaptureDevice:(UIViewController *)vc
                    resultBlock:(void(^)(BOOL boolSuccess))resultBlock;
 
+/** 判断是否开启定位 */
+- (BOOL)yxJudgeLocationg;
+
 /**
  * 权限开启情况
  * @param type 权限类型
@@ -91,6 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)yxJudgePermissionsByType:(YXCategoryPermissionsType)type
                        failBlock:(void(^)(void))failBlock;
+
 @property (nonatomic, assign) CBManagerState cbManagerState;
 
 /**

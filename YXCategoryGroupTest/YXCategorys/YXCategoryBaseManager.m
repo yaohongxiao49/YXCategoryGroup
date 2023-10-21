@@ -150,6 +150,17 @@
     }
 }
 
+#pragma mark - 判断是否开启定位
+- (BOOL)yxJudgeLocationg {
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
+}
+
 #pragma mark - 判断权限开启情况
 - (void)yxJudgePermissionsByType:(YXCategoryPermissionsType)type failBlock:(void(^)(void))failBlock {
     
@@ -308,7 +319,7 @@
 #pragma mark - 显示弹窗
 - (void)yxShowAlertViewWithTitle:(NSString *)title message:(NSString *)message buttonTitles:(NSArray *)buttontitles {
     
-    NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@YES};
+    NSDictionary *options = @{UIApplicationOpenURLOptionUniversalLinksOnly:@NO};
     UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@", title] message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *sureAlert = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"%@", buttontitles[0]] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         

@@ -215,6 +215,16 @@ NS_ASSUME_NONNULL_BEGIN
 /** 保留两位小数，没有时出去 */
 + (NSString *)yxFloatKeepTwoBitsAndRemoveAllZero:(double)floatnum;
 
+/**
+ * 格式化显示，填充数据（如11000 -> 1.1w）
+ * @param num 需改变的数据
+ * @param segmentationNum 以什么单位数据分割（如11000，以10000为分割）
+ * @param splice 拼接数据（如1.1w中的w）
+ */
++ (NSString *)yxGetNumberWithNum:(double)num
+                 segmentationNum:(CGFloat)segmentationNum
+                          splice:(NSString *)splice;
+
 /** 获取设备名称 */
 + (NSString *)yxGetDeviceName;
 
