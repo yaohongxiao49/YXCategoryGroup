@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -74,6 +74,7 @@
 		B1A15EF92AB1A16A00A68539 /* YXWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EF72AB1A16A00A68539 /* YXWaterFallLayout.m */; };
 		B1A15EFD2AB1A17C00A68539 /* YXProgressSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15EFB2AB1A17C00A68539 /* YXProgressSlider.m */; };
 		B1D8C0C2273CED0C008B6903 /* NSDictionary+YXCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */; };
+		B1EC965C2AE7CCF20004A3AA /* YXImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1EC965B2AE7CCF20004A3AA /* YXImagePicker.m */; };
 		B1F4710B29BF0E8900662819 /* YXBigFileDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710629BF0E8900662819 /* YXBigFileDownloadRequest.m */; };
 		B1F4710C29BF0E8900662819 /* YXSharedHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710829BF0E8900662819 /* YXSharedHTTPManager.m */; };
 		B1F4710D29BF0E8900662819 /* YXNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4710929BF0E8900662819 /* YXNetworkRequest.m */; };
@@ -234,6 +235,8 @@
 		B1A15EFC2AB1A17C00A68539 /* YXProgressSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProgressSlider.h; sourceTree = "<group>"; };
 		B1D8C0C0273CED0C008B6903 /* NSDictionary+YXCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YXCategory.h"; sourceTree = "<group>"; };
 		B1D8C0C1273CED0C008B6903 /* NSDictionary+YXCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YXCategory.m"; sourceTree = "<group>"; };
+		B1EC965A2AE7CCF20004A3AA /* YXImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXImagePicker.h; sourceTree = "<group>"; };
+		B1EC965B2AE7CCF20004A3AA /* YXImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXImagePicker.m; sourceTree = "<group>"; };
 		B1F4710529BF0E8900662819 /* YXSharedHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSharedHTTPManager.h; sourceTree = "<group>"; };
 		B1F4710629BF0E8900662819 /* YXBigFileDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBigFileDownloadRequest.m; sourceTree = "<group>"; };
 		B1F4710729BF0E8900662819 /* YXNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNetworkRequest.h; sourceTree = "<group>"; };
@@ -285,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				848794202446D9FF0010B23B /* YXToolsPCH.pch */,
+				B1EC96592AE7CCF20004A3AA /* YXImagePicker */,
 				B106FE122AB2B37D0085912A /* YXAudioManager */,
 				B1A15EFA2AB1A17C00A68539 /* YXProgressSlider */,
 				B1A15EF22AB1A12D00A68539 /* YXMJRefresGifManager */,
@@ -774,6 +778,15 @@
 			path = "../../../../../项目/社交项目/社交-客户端/MuchProj/Common/YXCommon/YXTools/YXProgressSlider";
 			sourceTree = "<group>";
 		};
+		B1EC96592AE7CCF20004A3AA /* YXImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				B1EC965A2AE7CCF20004A3AA /* YXImagePicker.h */,
+				B1EC965B2AE7CCF20004A3AA /* YXImagePicker.m */,
+			);
+			path = YXImagePicker;
+			sourceTree = "<group>";
+		};
 		B1F4710429BF0E8900662819 /* YXNetworkBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -1030,6 +1043,7 @@
 				B106FE1A2AB2B37D0085912A /* YXRecordManager.m in Sources */,
 				84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */,
 				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,
+				B1EC965C2AE7CCF20004A3AA /* YXImagePicker.m in Sources */,
 				844E19EA24407990009FE378 /* YXToolGetSandbox.m in Sources */,
 				846E55A6243EF2D200CB7233 /* UIImage+YXCategory.m in Sources */,
 				B1F4710B29BF0E8900662819 /* YXBigFileDownloadRequest.m in Sources */,
