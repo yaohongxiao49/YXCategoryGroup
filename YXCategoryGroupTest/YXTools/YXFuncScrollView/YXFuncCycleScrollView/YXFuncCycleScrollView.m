@@ -71,8 +71,8 @@
         [self initImgVByCount:self.imgValueArr.count];
         
         for (UIImageView *imageView in _imgViewsArr) {
-            YXShoppingMallAdvertingModel *infoModel = self.imgValueArr[i];
-            [imageView st_setImageWithURLString:infoModel.advertisementImgUrl];
+            BannerJumpModel *infoModel = self.imgValueArr[i];
+            [imageView st_setImageWithURLString:infoModel.imgUrl];
             imageView.tag = i;
             imageView.transform = CGAffineTransformIdentity;
             
@@ -99,15 +99,15 @@
             
             if (self.imgValueArr.count < judgeCount && i > judgeShowCount) { //只有两张图片时，将最后一张视图的图片，以第一张图片进行设置。
                 if (j == self.imgValueArr.count) j = 0;
-                YXShoppingMallAdvertingModel *infoModel = self.imgValueArr[j];
-                [imageView st_setImageWithURLString:infoModel.advertisementImgUrl];
+                BannerJumpModel *infoModel = self.imgValueArr[j];
+                [imageView st_setImageWithURLString:infoModel.imgUrl];
                 imageView.tag = j;
                 
                 j++;
             }
             else {
-                YXShoppingMallAdvertingModel *infoModel = self.imgValueArr[i];
-                [imageView st_setImageWithURLString:infoModel.advertisementImgUrl];
+                BannerJumpModel *infoModel = self.imgValueArr[i];
+                [imageView st_setImageWithURLString:infoModel.imgUrl];
                 imageView.tag = i;
             }
             i++;
@@ -288,7 +288,7 @@
 - (void)singleTapAction:(UITapGestureRecognizer *)gesture {
     
     if (self.yxFuncCycleScrollViewBlock && self.imgValueArr.count != 0) {
-        YXShoppingMallAdvertingModel *infoModel = self.imgValueArr[gesture.view.tag];
+        BannerJumpModel *infoModel = self.imgValueArr[gesture.view.tag];
         self.yxFuncCycleScrollViewBlock(infoModel);
     }
 }
@@ -312,7 +312,7 @@
     if (!boolFirst) judgeCount = 1;
     
     for (NSInteger i = 0; i < judgeCount; i ++) {
-        YXShoppingMallAdvertingModel *infoModel = self.imgValueArr.lastObject;
+        BannerJumpModel *infoModel = self.imgValueArr.lastObject;
         [self.imgValueArr removeLastObject];
         [self.imgValueArr insertObject:infoModel atIndex:0];
     }
@@ -321,9 +321,11 @@
 #pragma mark - 更新最后一条数据
 - (void)updateLastValue {
     
-    YXShoppingMallAdvertingModel *infoModel = self.imgValueArr.firstObject;
-    [self.imgValueArr removeObjectAtIndex:0];
-    [self.imgValueArr addObject:infoModel];
+    if (self.imgValueArr.count != 0) {
+        BannerJumpModel *infoModel = self.imgValueArr.firstObject;
+        [self.imgValueArr removeObjectAtIndex:0];
+        [self.imgValueArr addObject:infoModel];
+    }
 }
 
 #pragma mark - 移除Timer
@@ -381,6 +383,7 @@
         _pageControl.currentPage = judgeShowCount;
         
         [_pageBtn setTitle:[NSString stringWithFormat:@" %@/%@ ", @(_pageControl.currentPage + 1), @(self.imgValueArr.count)] forState:UIControlStateNormal];
+        [self scrollViewBlock];
     }
     else {
         if (offsetOrigin >= judgeBigCount *_rollingDistance) { //滑动到右边视图
@@ -763,9 +766,11 @@
             else {
                 imgV.frame = CGRectMake(0, _scrollView.frame.size.height *i, _scrollView.frame.size.width, _scrollView.frame.size.height);
             }
-            imgV.contentMode = UIViewContentModeScaleAspectFill;
+            imgV.contentMode = self.boolFit ? UIViewContentModeScaleAspectFit : UIViewContentModeScaleAspectFill;
             imgV.userInteractionEnabled = YES;
             imgV.backgroundColor = [UIColor clearColor];
+            imgV.layer.masksToBounds = YES;
+            imgV.clipsToBounds = YES;
             [_scrollView addSubview:imgV];
             [_imgViewsArr addObject:imgV];
             

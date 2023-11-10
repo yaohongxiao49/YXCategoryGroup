@@ -25,7 +25,7 @@
 }
 
 #pragma mark - setting
-- (void)setModel:(YXShoppingMallAdvertingModel *)model {
+- (void)setModel:(BannerJumpModel *)model {
     
     _model = model;
     

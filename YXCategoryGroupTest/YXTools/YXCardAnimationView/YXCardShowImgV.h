@@ -6,13 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YXShoppingMallAdvertingModel.h"
+#import "BannerJumpModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXCardShowImgV : UIView
 
-@property (nonatomic, strong) YXShoppingMallAdvertingModel *model;
+@property (nonatomic, strong) BannerJumpModel *model;
 
 @end
 

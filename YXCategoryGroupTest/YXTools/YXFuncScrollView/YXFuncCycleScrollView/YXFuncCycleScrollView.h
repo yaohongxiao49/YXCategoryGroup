@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YXShoppingMallAdvertingModel.h"
+#import "BannerJumpModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, YXFuncCycleScrollViewDirectionType) {
 };
 
 /** 点击 */
-typedef void(^YXFuncCycleScrollViewBlock)(YXShoppingMallAdvertingModel *model);
+typedef void(^YXFuncCycleScrollViewBlock)(BannerJumpModel *model);
 /** 滚动 */
 typedef void(^YXFuncCycleScrollViewMoveBlock)(NSInteger page);
 

@@ -50,7 +50,7 @@
 		B106FE192AB2B37D0085912A /* YXPlayAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B106FE152AB2B37D0085912A /* YXPlayAudioManager.m */; };
 		B106FE1A2AB2B37D0085912A /* YXRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B106FE182AB2B37D0085912A /* YXRecordManager.m */; };
 		B15C400F29B0722E009130B9 /* YXCustomURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B15C400D29B0722E009130B9 /* YXCustomURLProtocol.m */; };
-		B15EF777284F02180042018B /* YXShoppingMallAdvertingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */; };
+		B15EF777284F02180042018B /* BannerJumpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF775284F02180042018B /* BannerJumpModel.m */; };
 		B15EF77B284F02530042018B /* YXShoppingMallCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15EF779284F02530042018B /* YXShoppingMallCategoryModel.m */; };
 		B16BCA71274DDB610002B606 /* YXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5D274DDB610002B606 /* YXPageControl.m */; };
 		B16BCA72274DDB610002B606 /* YXFuncCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA5E274DDB610002B606 /* YXFuncCycleScrollView.m */; };
@@ -187,8 +187,8 @@
 		B106FE182AB2B37D0085912A /* YXRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRecordManager.m; sourceTree = "<group>"; };
 		B15C400D29B0722E009130B9 /* YXCustomURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCustomURLProtocol.m; sourceTree = "<group>"; };
 		B15C400E29B0722E009130B9 /* YXCustomURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCustomURLProtocol.h; sourceTree = "<group>"; };
-		B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXShoppingMallAdvertingModel.m; sourceTree = "<group>"; };
-		B15EF776284F02180042018B /* YXShoppingMallAdvertingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXShoppingMallAdvertingModel.h; sourceTree = "<group>"; };
+		B15EF775284F02180042018B /* BannerJumpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerJumpModel.m; sourceTree = "<group>"; };
+		B15EF776284F02180042018B /* BannerJumpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerJumpModel.h; sourceTree = "<group>"; };
 		B15EF779284F02530042018B /* YXShoppingMallCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXShoppingMallCategoryModel.m; sourceTree = "<group>"; };
 		B15EF77A284F02530042018B /* YXShoppingMallCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXShoppingMallCategoryModel.h; sourceTree = "<group>"; };
 		B16BCA5D274DDB610002B606 /* YXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPageControl.m; sourceTree = "<group>"; };
@@ -601,13 +601,13 @@
 			path = YXWebCustomUrlProtocol;
 			sourceTree = "<group>";
 		};
-		B15EF774284F02180042018B /* YXShoppingMallAdvertingModel */ = {
+		B15EF774284F02180042018B /* BannerJumpModel */ = {
 			isa = PBXGroup;
 			children = (
-				B15EF776284F02180042018B /* YXShoppingMallAdvertingModel.h */,
-				B15EF775284F02180042018B /* YXShoppingMallAdvertingModel.m */,
+				B15EF776284F02180042018B /* BannerJumpModel.h */,
+				B15EF775284F02180042018B /* BannerJumpModel.m */,
 			);
-			path = YXShoppingMallAdvertingModel;
+			path = BannerJumpModel;
 			sourceTree = "<group>";
 		};
 		B15EF778284F02530042018B /* YXShoppingMallCategoryModel */ = {
@@ -634,7 +634,7 @@
 			isa = PBXGroup;
 			children = (
 				B15EF778284F02530042018B /* YXShoppingMallCategoryModel */,
-				B15EF774284F02180042018B /* YXShoppingMallAdvertingModel */,
+				B15EF774284F02180042018B /* BannerJumpModel */,
 				B16BCA60274DDB610002B606 /* YXFuncCycleScrollView.h */,
 				B16BCA5E274DDB610002B606 /* YXFuncCycleScrollView.m */,
 				B16BCA5F274DDB610002B606 /* YXPageControl.h */,
@@ -1002,7 +1002,7 @@
 				B174F04C298CAD9D006D6761 /* YXListCountDown.m in Sources */,
 				B1A15EDA2AB1A0D300A68539 /* YXCardAnimationView.m in Sources */,
 				B16BCA74274DDB610002B606 /* YXFuncScrollBaseView.m in Sources */,
-				B15EF777284F02180042018B /* YXShoppingMallAdvertingModel.m in Sources */,
+				B15EF777284F02180042018B /* BannerJumpModel.m in Sources */,
 				846E555D243EF2BE00CB7233 /* ViewController.m in Sources */,
 				B1A15EFD2AB1A17C00A68539 /* YXProgressSlider.m in Sources */,
 				846E55A3243EF2D200CB7233 /* UIView+YXCategory.m in Sources */,
