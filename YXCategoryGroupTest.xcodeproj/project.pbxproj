@@ -62,6 +62,8 @@
 		B16BCA78274DDB610002B606 /* YXFuncScrollBaseTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA6E274DDB610002B606 /* YXFuncScrollBaseTabView.m */; };
 		B16BCA7C274DDB990002B606 /* YXBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B16BCA7A274DDB990002B606 /* YXBadgeButton.m */; };
 		B174F04C298CAD9D006D6761 /* YXListCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = B174F04B298CAD9D006D6761 /* YXListCountDown.m */; };
+		B19EB6D72B020BF100E0E57C /* YXOpenThirdMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B19EB6D32B020BF100E0E57C /* YXOpenThirdMapModel.m */; };
+		B19EB6D82B020BF100E0E57C /* YXOpenThirdMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B19EB6D62B020BF100E0E57C /* YXOpenThirdMapManager.m */; };
 		B1A15E532AB1A0A400A68539 /* YXLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15E522AB1A0A400A68539 /* YXLocationManager.m */; };
 		B1A15EDA2AB1A0D300A68539 /* YXCardAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15ED62AB1A0D300A68539 /* YXCardAnimationView.m */; };
 		B1A15EDB2AB1A0D300A68539 /* YXCardShowImgV.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A15ED72AB1A0D300A68539 /* YXCardShowImgV.m */; };
@@ -211,6 +213,10 @@
 		B16BCA7B274DDB990002B606 /* YXBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBadgeButton.h; sourceTree = "<group>"; };
 		B174F04A298CAD9D006D6761 /* YXListCountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXListCountDown.h; sourceTree = "<group>"; };
 		B174F04B298CAD9D006D6761 /* YXListCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXListCountDown.m; sourceTree = "<group>"; };
+		B19EB6D32B020BF100E0E57C /* YXOpenThirdMapModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXOpenThirdMapModel.m; sourceTree = "<group>"; };
+		B19EB6D42B020BF100E0E57C /* YXOpenThirdMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXOpenThirdMapManager.h; sourceTree = "<group>"; };
+		B19EB6D52B020BF100E0E57C /* YXOpenThirdMapModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXOpenThirdMapModel.h; sourceTree = "<group>"; };
+		B19EB6D62B020BF100E0E57C /* YXOpenThirdMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXOpenThirdMapManager.m; sourceTree = "<group>"; };
 		B1A15E512AB1A0A400A68539 /* YXLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLocationManager.h; sourceTree = "<group>"; };
 		B1A15E522AB1A0A400A68539 /* YXLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLocationManager.m; sourceTree = "<group>"; };
 		B1A15ED62AB1A0D300A68539 /* YXCardAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCardAnimationView.m; sourceTree = "<group>"; };
@@ -288,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				848794202446D9FF0010B23B /* YXToolsPCH.pch */,
+				B19EB6D22B020BF100E0E57C /* YXOpenThirdMapManager */,
 				B1EC96592AE7CCF20004A3AA /* YXImagePicker */,
 				B106FE122AB2B37D0085912A /* YXAudioManager */,
 				B1A15EFA2AB1A17C00A68539 /* YXProgressSlider */,
@@ -695,6 +702,17 @@
 			path = YXListCountDown;
 			sourceTree = "<group>";
 		};
+		B19EB6D22B020BF100E0E57C /* YXOpenThirdMapManager */ = {
+			isa = PBXGroup;
+			children = (
+				B19EB6D42B020BF100E0E57C /* YXOpenThirdMapManager.h */,
+				B19EB6D62B020BF100E0E57C /* YXOpenThirdMapManager.m */,
+				B19EB6D52B020BF100E0E57C /* YXOpenThirdMapModel.h */,
+				B19EB6D32B020BF100E0E57C /* YXOpenThirdMapModel.m */,
+			);
+			path = YXOpenThirdMapManager;
+			sourceTree = "<group>";
+		};
 		B1A15E502AB1A0A400A68539 /* YXLocationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,6 +1035,7 @@
 				B1F4711529BF151600662819 /* UIImageView+YXCategory.m in Sources */,
 				B1A15EE22AB1A0F700A68539 /* YXPaymentManager.m in Sources */,
 				B1A15EF92AB1A16A00A68539 /* YXWaterFallLayout.m in Sources */,
+				B19EB6D82B020BF100E0E57C /* YXOpenThirdMapManager.m in Sources */,
 				84AD55FE24442B7400004B7E /* TYShowAlertView.m in Sources */,
 				844E19E724406F3D009FE378 /* YXToolLocalSaveBySqlite.m in Sources */,
 				84AD560024442B7400004B7E /* TYAlertController.m in Sources */,
@@ -1040,6 +1059,7 @@
 				844E19DB2440563C009FE378 /* YXToolLogs.m in Sources */,
 				B16BCA72274DDB610002B606 /* YXFuncCycleScrollView.m in Sources */,
 				84AD55FF24442B7400004B7E /* TYBaseAnimation.m in Sources */,
+				B19EB6D72B020BF100E0E57C /* YXOpenThirdMapModel.m in Sources */,
 				B106FE1A2AB2B37D0085912A /* YXRecordManager.m in Sources */,
 				84E92ADD260349F400CCF2C3 /* YXEvaluationStarView.m in Sources */,
 				846E55AA243EFBCD00CB7233 /* NSObject+YXCategory.m in Sources */,
