@@ -84,6 +84,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)yxJudgeAVCaptureDevice:(UIViewController *)vc
                    resultBlock:(void(^)(BOOL boolSuccess))resultBlock;
 
+/** 判断是否开启麦克风权限 */
+- (void)yxJudgeAudio:(UIViewController *)vc
+         resultBlock:(void(^)(BOOL boolSuccess))resultBlock;
+
 /** 判断是否开启定位 */
 - (BOOL)yxJudgeLocationg;
 

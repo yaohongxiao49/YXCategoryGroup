@@ -150,6 +150,27 @@
     }
 }
 
+#pragma mark - 判断是否开启麦克风权限
+- (void)yxJudgeAudio:(UIViewController *)vc resultBlock:(void(^)(BOOL boolSuccess))resultBlock {
+    
+    AVAuthorizationStatus videoAuthStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+    if (videoAuthStatus == AVAuthorizationStatusNotDetermined) { //未询问用户是否授权
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
+            [audioSession performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+                
+            }];
+        }
+    }
+    else if(videoAuthStatus == AVAuthorizationStatusRestricted || videoAuthStatus == AVAuthorizationStatusDenied) {
+        //未授权
+    }
+    else {
+        //已授权
+        NSLog(@"已授权");
+    }
+}
+
 #pragma mark - 判断是否开启定位
 - (BOOL)yxJudgeLocationg {
     
