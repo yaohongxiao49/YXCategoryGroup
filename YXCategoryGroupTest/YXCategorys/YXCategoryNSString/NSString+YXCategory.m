@@ -258,7 +258,7 @@
             NSString *trackViewUrl = dic[@"trackViewUrl"]; //链接
             NSLog(@"App store版本号:%@，更新说明:%@，App下载链接:%@", lineVersion, releaseNotes, trackViewUrl);
             
-            BOOL boolUp = [NSString yxGetNeedUpdate:lineVersion];
+            BOOL boolUp =! [NSString yxGetNeedUpdate:lineVersion];
             finishBlock(boolUp);
         }
         else {
