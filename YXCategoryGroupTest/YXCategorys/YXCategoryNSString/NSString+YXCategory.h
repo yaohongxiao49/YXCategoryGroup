@@ -73,6 +73,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)yxGetNeedUpdate:(NSString *)v2;
 
 /**
+ * 与商店应用版本号比较
+ * @param url 应用商店地址
+ */
++ (void)yxGetAppStoreVersionByUrl:(NSString *)url
+                      finishBlock:(void(^)(BOOL boolUp))finishBlock;
+
+/**
  * 字典/数组转字符串
  * @param data 字典/数组
  */

@@ -240,6 +240,30 @@
     return NO;
 }
 
+#pragma mark - 与商店应用版本号比较
++ (void)yxGetAppStoreVersionByUrl:(NSString *)url finishBlock:(void(^)(BOOL boolUp))finishBlock {
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURL *urlValue = [NSURL URLWithString:url];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlValue];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        NSArray *results = dict[@"results"];
+        NSDictionary *dic = results.firstObject;
+        NSString *lineVersion = dic[@"version"]; //版本号
+        NSString *releaseNotes = dic[@"releaseNotes"]; //更新说明
+        NSString *trackViewUrl = dic[@"trackViewUrl"]; //链接
+        NSLog(@"App store版本号:%@，更新说明:%@，App下载链接:%@", lineVersion, releaseNotes, trackViewUrl);
+        
+        BOOL boolUp = [NSString yxGetNeedUpdate:lineVersion];
+        finishBlock(boolUp);
+    }];
+    
+    [dataTask resume];
+}
+
 #pragma mark - 字典转Json字符串
 + (NSString *)yxConvertToJsonDataByData:(id)data {
     
