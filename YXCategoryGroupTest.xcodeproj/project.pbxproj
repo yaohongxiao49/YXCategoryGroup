@@ -758,10 +758,10 @@
 		B1A15EEB2AB1A11D00A68539 /* YXPublicShareManager */ = {
 			isa = PBXGroup;
 			children = (
-				B1A15EEC2AB1A11D00A68539 /* YXPublicShareManagerModel.h */,
 				B1A15EED2AB1A11D00A68539 /* YXPublicShareManager.h */,
-				B1A15EEE2AB1A11D00A68539 /* YXPublicShareManagerModel.m */,
 				B1A15EEF2AB1A11D00A68539 /* YXPublicShareManager.m */,
+				B1A15EEC2AB1A11D00A68539 /* YXPublicShareManagerModel.h */,
+				B1A15EEE2AB1A11D00A68539 /* YXPublicShareManagerModel.m */,
 			);
 			name = YXPublicShareManager;
 			path = "../../../../../项目/社交项目/社交-客户端/MuchProj/Common/YXCommon/YXTools/YXPublicShareManager";
