@@ -229,15 +229,30 @@ static const char *UIControlAcceptEventTime = "UIControl_acceptEventTime";
             NSString *timeStr = [NSString stringWithFormat:@"%2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                weakSelf.backgroundColor = afterBgColor;
-                [weakSelf setTitleColor:afterTextColor forState:UIControlStateNormal];
-                if (beforeSubTitle != nil) {
-                    [weakSelf setTitle:[NSString stringWithFormat:@"%@%@%@", beforeSubTitle, timeStr, subTitle] forState:UIControlStateNormal];
+                if (isCerificationCode) {
+                    weakSelf.backgroundColor = afterBgColor;
+                    [weakSelf setTitleColor:afterTextColor forState:UIControlStateNormal];
+                    if (beforeSubTitle != nil) {
+                        [weakSelf setTitle:[NSString stringWithFormat:@"%@%@%@", beforeSubTitle, timeStr, subTitle] forState:UIControlStateNormal];
+                    }
+                    else {
+                        [weakSelf setTitle:[NSString stringWithFormat:@"%@%@", timeStr, subTitle] forState:UIControlStateNormal];
+                    }
+                    weakSelf.userInteractionEnabled =! isCerificationCode;
                 }
                 else {
-                    [weakSelf setTitle:[NSString stringWithFormat:@"%@%@", timeStr, subTitle] forState:UIControlStateNormal];
+                    NSString *minute = [NSString stringWithFormat:@"%02d", (seconds / 60) % 60];
+                    NSString *second = [NSString stringWithFormat:@"%02d", seconds % 60];
+                    NSString *value = [NSString stringWithFormat:@"%@:%@", minute, second];
+                    weakSelf.backgroundColor = afterBgColor;
+                    [weakSelf setTitleColor:afterTextColor forState:UIControlStateNormal];
+                    if (beforeSubTitle != nil) {
+                        [weakSelf setTitle:[NSString stringWithFormat:@"%@%@%@", beforeSubTitle, value, subTitle] forState:UIControlStateNormal];
+                    }
+                    else {
+                        [weakSelf setTitle:[NSString stringWithFormat:@"%@%@", value, subTitle] forState:UIControlStateNormal];
+                    }
                 }
-                weakSelf.userInteractionEnabled =! isCerificationCode;
             });
             timeOut--;
         }
