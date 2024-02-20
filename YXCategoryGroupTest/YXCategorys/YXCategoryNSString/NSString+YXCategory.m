@@ -9,6 +9,7 @@
 #import "NSString+YXCategory.h"
 #import <sys/utsname.h>
 #import <AdSupport/AdSupport.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
 
 @implementation NSString (YXCategory)
 
@@ -172,11 +173,30 @@
 }
 
 #pragma mark - 获取设备唯一标识
-+ (NSString *)yxGetUUID {
++ (void)yxGetUUIDBlock:(void(^)(NSString *uuid, BOOL boolSure))uuidBlock {
     
-    NSString *uuid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    
-    return uuid;
+    if (@available(iOS 14, *)) {
+        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            
+            NSString *uuid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+            if (status == ATTrackingManagerAuthorizationStatusAuthorized) { //已授权
+                uuid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+                uuidBlock(uuid, YES);
+            }
+            else {
+                uuidBlock(uuid, NO);
+            }
+        }];
+    }
+    else {
+        NSString *uuid = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        if ([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+            uuidBlock(uuid, YES);
+        }
+        else {
+            uuidBlock(uuid, NO);
+        }
+    }
 }
 
 #pragma mark - 获取app版本号

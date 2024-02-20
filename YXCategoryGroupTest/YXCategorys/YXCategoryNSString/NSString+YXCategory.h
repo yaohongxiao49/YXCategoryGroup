@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)yxJudgeCanOpenUrlByPlatformId:(NSString *)platformId;
 
 /** 获取设备唯一标识 */
-+ (NSString *)yxGetUUID;
++ (void)yxGetUUIDBlock:(void(^)(NSString *uuid, BOOL boolSure))uuidBlock;
 
 /**
  * 获取app版本号
