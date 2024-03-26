@@ -652,9 +652,12 @@
 + (NSString *)yxFloatKeepTwoBitsAndRemoveAllZero:(double)floatnum {
     
     //保留2位小数
-    NSString *tempfloat = [NSString stringWithFormat:@"%0.2f", floatnum];
+    NSDecimalNumber *amount = [[NSDecimalNumber alloc] initWithDouble:floatnum];
+    NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:2 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+    NSDecimalNumber *endNum = [amount decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+    
     //末尾清零
-    return [NSString stringWithFormat:@"%@", @(tempfloat.doubleValue)];
+    return [NSString stringWithFormat:@"%@", endNum];
 }
 
 #pragma mark - 格式化显示，填充数据（如11000 -> 1.1w）
